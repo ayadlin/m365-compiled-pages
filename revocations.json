@@ -1,1 +1,8 @@
-{}
+{
+  "test@example.com": {
+    "email": "test@example.com",
+    "reason": "Testing revocation system",
+    "revoked_at": "2025-10-21T13:56:58.211092-07:00",
+    "revoked_by": "admin"
+  }
+}
