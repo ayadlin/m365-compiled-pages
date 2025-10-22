@@ -71,9 +71,9 @@
     }
   ],
   "checkout": {
-    "free": "mailto:support@yourcompany.com?subject=Free%20Trial%20Request",
+    "free": "mailto:ytechm365@gmail.com?subject=Free%20Trial%20Request",
     "pro": "https://buy.stripe.com/test_8x27sL51b8tK9ov1utew800",
     "team": "https://buy.stripe.com/test_8x2aEX9hr6lCasz6ONew801",
-    "enterprise": "mailto:support@yourcompany.com?subject=Enterprise%20Inquiry"
+    "enterprise": "mailto:ytechm365@gmail.com?subject=Enterprise%20Inquiry"
   }
 }
