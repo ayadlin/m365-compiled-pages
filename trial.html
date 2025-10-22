@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Start Free Trial - M365 WebApps</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .trial-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .trial-form {
+      background: var(--card-bg, #13183a);
+      border: 1px solid rgba(31, 78, 255, 0.2);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: var(--fg, #e5e7eb);
+      font-weight: bold;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid rgba(31, 78, 255, 0.3);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.2);
+      color: var(--fg, #e5e7eb);
+      font-size: 1rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent, #1f4eff);
+    }
+
+    .form-group small {
+      display: block;
+      margin-top: 0.25rem;
+      color: var(--muted, #9ca3af);
+      font-size: 0.875rem;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(31, 78, 255, 0.5);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .success-message {
+      display: none;
+      background: rgba(34, 197, 94, 0.1);
+      border: 2px solid #22c55e;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .success-message h3 {
+      color: #22c55e;
+      margin-top: 0;
+    }
+
+    .error-message {
+      display: none;
+      background: rgba(239, 68, 68, 0.1);
+      border: 2px solid #ef4444;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-top: 1rem;
+      color: #ef4444;
+    }
+
+    .download-btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: #22c55e;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      margin: 0.5rem 0.5rem 0.5rem 0;
+      font-weight: bold;
+    }
+
+    .download-btn:hover {
+      background: #16a34a;
+    }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1rem 0;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .feature-list li {
+      padding: 0.5rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .feature-list li:before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--accent, #1f4eff);
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="logo" height="48" alt="M365 WebApps Logo">
+    <h1>M365 WebApps</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: #9ca3af;">by Y-Tech</p>
+  </header>
+
+  <div class="trial-container">
+    <div class="card">
+      <h1>🆓 Start Your Free Trial</h1>
+      <p>Get instant access to Microsoft Word, Excel, and PowerPoint on Linux. No credit card required.</p>
+
+      <ul class="feature-list">
+        <li>30-day full access</li>
+        <li>Word, Excel, PowerPoint</li>
+        <li>Instant license generation</li>
+        <li>No payment information needed</li>
+      </ul>
+    </div>
+
+    <div class="trial-form">
+      <form id="trialForm">
+        <div class="form-group">
+          <label for="name">Full Name *</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address *</label>
+          <input type="email" id="email" name="email" required>
+          <small>We'll send your license files to this email</small>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone Number (Optional)</label>
+          <input type="tel" id="phone" name="phone">
+        </div>
+
+        <div class="form-group">
+          <label for="company">Company (Optional)</label>
+          <input type="text" id="company" name="company">
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Generate Free Trial License
+        </button>
+      </form>
+
+      <div id="errorMessage" class="error-message"></div>
+
+      <div id="successMessage" class="success-message">
+        <h3>🎉 Success! Your License is Ready</h3>
+        <p>Your free trial license has been generated and sent to your email. Download the files below:</p>
+
+        <a href="#" id="downloadLicense" class="download-btn" download="license.json">📄 Download license.json</a>
+        <a href="#" id="downloadSignature" class="download-btn" download="license.sig">🔐 Download license.sig</a>
+
+        <h4>📋 Installation Instructions</h4>
+        <p><strong>Step 1: Install M365 WebApps</strong></p>
+        <div class="code-block">echo "deb [trusted=yes] https://ayadlin.github.io/m365-compiled-pages stable main" | sudo tee /etc/apt/sources.list.d/m365-compiled.list
+sudo apt update && sudo apt install m365-compiled
+m365ctl -mode install</div>
+
+        <p><strong>Step 2: Activate Your License</strong></p>
+        <div class="code-block">m365-pro -feature picker -license license.json -sig license.sig</div>
+
+        <p>You should see: <code>ok:free:your@email.com</code></p>
+
+        <p><a href="docs.html" style="color: var(--accent);">View full documentation →</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_URL = 'http://localhost:8080'; // Will be replaced with production URL
+
+    fetch('brand.json').then(r => r.json()).then(b => {
+      document.getElementById('logo').src = b.logo || 'branding/logo.svg';
+    });
+
+    document.getElementById('trialForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const errorMsg = document.getElementById('errorMessage');
+      const successMsg = document.getElementById('successMessage');
+
+      // Reset messages
+      errorMsg.style.display = 'none';
+      successMsg.style.display = 'none';
+
+      // Get form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        company: document.getElementById('company').value,
+      };
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Generating License...';
+
+      try {
+        const response = await fetch(`${API_URL}/api/trial`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          // Show success message
+          successMsg.style.display = 'block';
+
+          // Create download links
+          const licenseBlob = new Blob([data.license_json], { type: 'application/json' });
+          const sigBlob = new Blob([data.signature], { type: 'text/plain' });
+
+          const licenseURL = URL.createObjectURL(licenseBlob);
+          const sigURL = URL.createObjectURL(sigBlob);
+
+          document.getElementById('downloadLicense').href = licenseURL;
+          document.getElementById('downloadSignature').href = sigURL;
+
+          // Scroll to success message
+          successMsg.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          // Show error
+          errorMsg.textContent = data.message || 'An error occurred. Please try again.';
+          errorMsg.style.display = 'block';
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Generate Free Trial License';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        errorMsg.textContent = 'Network error. Please check your connection and try again.';
+        errorMsg.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate Free Trial License';
+      }
+    });
+  </script>
+</body>
+</html>
