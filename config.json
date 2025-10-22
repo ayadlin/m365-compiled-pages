@@ -71,9 +71,9 @@
     }
   ],
   "checkout": {
-    "free": "mailto:ytechm365@gmail.com?subject=Free%20Trial%20Request",
-    "pro": "https://buy.stripe.com/test_8x27sL51b8tK9ov1utew800",
-    "team": "https://buy.stripe.com/test_8x2aEX9hr6lCasz6ONew801",
-    "enterprise": "https://buy.stripe.com/test_fZu3cv51b8tK7gn7SRew802"
+    "free": "trial.html",
+    "pro": "https://buy.stripe.com/7sY5kDcnw0nvc4s4abgYU02",
+    "team": "https://buy.stripe.com/3cIbJ12MW6LT2tS7mngYU01",
+    "enterprise": "https://buy.stripe.com/3cI5kDbjs4DLfgE367gYU00"
   }
 }
