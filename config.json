@@ -55,7 +55,7 @@
     {
       "id": "enterprise",
       "label": "Enterprise",
-      "price": 199,
+      "price": 299,
       "period": "year",
       "description": "For large organizations",
       "features": [
@@ -67,13 +67,13 @@
         "Extended licenses available"
       ],
       "badge": "🏢",
-      "cta": "Contact Sales"
+      "cta": "Buy Enterprise"
     }
   ],
   "checkout": {
     "free": "mailto:ytechm365@gmail.com?subject=Free%20Trial%20Request",
     "pro": "https://buy.stripe.com/test_8x27sL51b8tK9ov1utew800",
     "team": "https://buy.stripe.com/test_8x2aEX9hr6lCasz6ONew801",
-    "enterprise": "mailto:ytechm365@gmail.com?subject=Enterprise%20Inquiry"
+    "enterprise": "https://buy.stripe.com/test_fZu3cv51b8tK7gn7SRew802"
   }
 }
