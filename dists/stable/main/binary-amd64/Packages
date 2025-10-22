@@ -1,14 +1,14 @@
 Package: m365-compiled
 Architecture: amd64
-Version: 0.2.4
+Version: 0.2.5
 Priority: optional
 Section: utils
 Maintainer: You <you@example.com>
-Filename: pool/main/m365-compiled_0.2.4_amd64.deb
-Size: 27645552
-MD5sum: 4f57e687c10701783792c4fc4bf49c79
-SHA1: 2f0a5170043c528eb852be4bbf6d682b81974430
-SHA256: 45386b0bf8ad55ba8f52dd95146275663954527661a96c7eadeeb833420371e4
-SHA512: 75c9003bc51eb425ab4e13f8a799252d8a5e059349273ded882148b898b0a1ee0cdeca0f259f3673672bf63220b5fdb47d3dbe6c78978e1b8b0dc23b7862d814
+Filename: pool/main/m365-compiled_0.2.5_amd64.deb
+Size: 27645358
+MD5sum: 3d82899ddd0ca432147120148fefc04a
+SHA1: 711f49df013ea2f39230ec6a53048be57ff5209f
+SHA256: 07faf72c4d807608149a2e6e4f8061ddc7b23e973e8f9873dc0439e945e87ba4
+SHA512: 15dd4944db670d8e2284a787bd8e4880cff4edb53ce5fcf2dfa50b92fe50f581e034f07c322d0657d96f2214412e5ef5d41a8e44b86fa1c52c642e00a783979b
 Description: Compiled M365 WebApps wrappers with offline licensing
 
