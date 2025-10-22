@@ -168,15 +168,6 @@ pkill -f "chrome.*office"
 # Try launching again
 m365-launch -app word</code></pre>
 
-    <h2>💬 Support</h2>
-    <p><strong>Email:</strong> <a href="mailto:ytechm365@gmail.com" style="color: var(--accent);">ytechm365@gmail.com</a></p>
-    <p>For faster support, enable debug logging:</p>
-    <pre><code>export M365_DEBUG=1
-m365-pro -feature picker -license ~/.config/m365_webapps/license.json -sig ~/.config/m365_webapps/license.sig
-
-# Send log file to support
-cat ~/.config/m365_webapps/logs/m365-pro-$(date +%Y-%m-%d).log</code></pre>
-
     <h2>🔄 Renewing Your License</h2>
     <p>When you receive renewal license files:</p>
     <pre><code># Replace old files
@@ -200,12 +191,14 @@ m365-pro -feature picker \\
     <h3>What happens when my license expires?</h3>
     <p>Apps continue to launch, but license validation fails. Renew to continue full functionality.</p>
 
-    <h2>🌟 Need More Help?</h2>
-    <p>Email us at <a href="mailto:ytechm365@gmail.com" style="color: var(--accent);">ytechm365@gmail.com</a> with:</p>
+    <h2>🌟 Still Need Help?</h2>
+    <p>Before contacting support, please check the troubleshooting section and FAQ above.</p>
+    <p>If you've tried everything, email <a href="mailto:ytechm365@gmail.com" style="color: var(--accent);">ytechm365@gmail.com</a> with:</p>
     <ul>
       <li>Description of the issue</li>
+      <li>What you've already tried</li>
       <li>Error messages (if any)</li>
-      <li>Debug log file (see above)</li>
+      <li>Debug log (optional - run <code>export M365_DEBUG=1</code> before testing, then send <code>~/.config/m365_webapps/logs/m365-pro-*.log</code>)</li>
     </ul>
 
     <a href="index.html" class="back-link">← Back to Home</a>
