@@ -1,0 +1,10 @@
+{
+  "logo": "branding/logo.svg",
+  "colors": {
+    "bg": "#0b1029",
+    "card": "#13183a",
+    "fg": "#e5e7eb",
+    "accent": "#1f4eff",
+    "muted": "#c77800"
+  }
+}

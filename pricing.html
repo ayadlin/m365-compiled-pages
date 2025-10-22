@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing - M365 WebApps</title>
+  <link rel="stylesheet" href="theme.css">
+  <style>
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .pricing-card {
+      background: var(--card-bg, #13183a);
+      border: 2px solid rgba(31, 78, 255, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent, #1f4eff);
+      box-shadow: 0 8px 24px rgba(31, 78, 255, 0.3);
+    }
+
+    .pricing-card.popular {
+      border-color: var(--accent, #1f4eff);
+      box-shadow: 0 4px 16px rgba(31, 78, 255, 0.2);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      right: 1rem;
+      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      color: white;
+      padding: 0.25rem 1rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .plan-badge {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .plan-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0.5rem 0;
+      color: var(--fg, #e5e7eb);
+    }
+
+    .plan-description {
+      color: var(--muted, #9ca3af);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .plan-price {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--accent, #1f4eff);
+      margin: 1rem 0;
+    }
+
+    .plan-price .currency {
+      font-size: 1.5rem;
+      vertical-align: super;
+    }
+
+    .plan-price .period {
+      font-size: 1rem;
+      color: var(--muted, #9ca3af);
+      font-weight: normal;
+    }
+
+    .plan-features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+
+    .plan-features li {
+      padding: 0.5rem 0;
+      color: var(--fg, #e5e7eb);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .plan-features li::before {
+      content: "✓";
+      color: #10b981;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .plan-cta {
+      display: block;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin-top: 1.5rem;
+    }
+
+    .plan-cta:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(31, 78, 255, 0.5);
+    }
+
+    .pricing-card.free .plan-cta {
+      background: linear-gradient(135deg, #6b7280, #4b5563);
+    }
+
+    .pricing-card.enterprise .plan-cta {
+      background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted, #9ca3af);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="logo" height="48" alt="M365 WebApps Logo">
+    <h1>M365 WebApps</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: #9ca3af;">by Y-Tech</p>
+  </header>
+
+  <div class="hero">
+    <h1>Choose Your Plan</h1>
+    <p>Run Microsoft Office apps natively on Linux with offline licensing and full desktop integration</p>
+  </div>
+
+  <div class="pricing-grid" id="pricing-grid">
+    <!-- Pricing cards will be loaded here -->
+  </div>
+
+  <div class="wrap" style="margin-top: 4rem;">
+    <div class="card">
+      <h2>🔒 Secure Offline Licensing</h2>
+      <p>All licenses use Ed25519 cryptographic signatures for offline verification. Your license works without an internet connection.</p>
+    </div>
+
+    <div class="card">
+      <h2>📦 Easy Installation</h2>
+      <p>Install via APT repository or download .deb packages. Desktop launchers are automatically configured for all Microsoft apps.</p>
+    </div>
+
+    <div class="card">
+      <h2>📚 Documentation</h2>
+      <p>Complete user guide with installation instructions, troubleshooting, and FAQs. <a href="docs.html" style="color: var(--accent); font-weight: bold;">View Documentation →</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Load branding
+    fetch('brand.json').then(r => r.json()).then(b => {
+      document.getElementById('logo').src = b.logo || 'branding/logo.svg';
+
+      // Apply brand colors
+      if (b.colors) {
+        document.documentElement.style.setProperty('--bg', b.colors.bg);
+        document.documentElement.style.setProperty('--card-bg', b.colors.card);
+        document.documentElement.style.setProperty('--fg', b.colors.fg);
+        document.documentElement.style.setProperty('--accent', b.colors.accent);
+        document.documentElement.style.setProperty('--muted', b.colors.muted);
+      }
+    });
+
+    // Load pricing config
+    fetch('config.json').then(r => r.json()).then(config => {
+      const grid = document.getElementById('pricing-grid');
+
+      config.plans.forEach(plan => {
+        const card = document.createElement('div');
+        card.className = `pricing-card ${plan.id}`;
+        if (plan.popular) {
+          card.classList.add('popular');
+        }
+
+        const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
+
+        const priceDisplay = plan.price === 0
+          ? '<div class="plan-price">Free</div>'
+          : `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span></div>`;
+
+        const features = plan.features.map(f => `<li>${f}</li>`).join('');
+
+        const checkoutUrl = config.checkout[plan.id] || '#';
+
+        card.innerHTML = `
+          ${popularBadge}
+          <div class="plan-badge">${plan.badge || '📦'}</div>
+          <div class="plan-name">${plan.label}</div>
+          <div class="plan-description">${plan.description || ''}</div>
+          ${priceDisplay}
+          <ul class="plan-features">
+            ${features}
+          </ul>
+          <a href="${checkoutUrl}" class="plan-cta">${plan.cta || 'Get Started'}</a>
+        `;
+
+        grid.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>
