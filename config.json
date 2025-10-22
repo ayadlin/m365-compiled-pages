@@ -19,7 +19,7 @@
     {
       "id": "pro",
       "label": "Pro",
-      "price": 15,
+      "price": 18,
       "period": "year",
       "description": "Perfect for individuals and freelancers",
       "features": [
@@ -38,7 +38,7 @@
     {
       "id": "team",
       "label": "Team",
-      "price": 49,
+      "price": 59,
       "period": "year",
       "description": "Ideal for small teams and startups",
       "features": [
@@ -72,8 +72,8 @@
   ],
   "checkout": {
     "free": "mailto:support@yourcompany.com?subject=Free%20Trial%20Request",
-    "pro": "https://buy.stripe.com/replace_me_pro",
-    "team": "https://buy.stripe.com/replace_me_team",
+    "pro": "https://buy.stripe.com/test_8x27sL51b8tK9ov1utew800",
+    "team": "https://buy.stripe.com/test_8x2aEX9hr6lCasz6ONew801",
     "enterprise": "mailto:support@yourcompany.com?subject=Enterprise%20Inquiry"
   }
 }
