@@ -226,7 +226,7 @@ m365ctl -mode install</div>
   </div>
 
   <script>
-    const API_URL = 'http://localhost:8080'; // Will be replaced with production URL
+    const API_URL = 'https://m365-license-server.fly.dev';
 
     fetch('brand.json').then(r => r.json()).then(b => {
       document.getElementById('logo').src = b.logo || 'branding/logo.svg';
