@@ -1,10 +1,10 @@
 {
-  "logo": "branding/logo.svg",
+  "logo": "branding/ytech_logo.png",
   "colors": {
-    "bg": "#0b1029",
-    "card": "#13183a",
+    "bg": "#0a1628",
+    "card": "#0D3B66",
     "fg": "#e5e7eb",
-    "accent": "#1f4eff",
-    "muted": "#c77800"
+    "accent": "#FF6B35",
+    "muted": "#0ea5e9"
   }
 }
