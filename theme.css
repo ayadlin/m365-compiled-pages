@@ -1,4 +1,87 @@
-:root{--bg:#0a1628;--card:#0D3B66;--fg:#e5e7eb;--accent:#FF6B35;--muted:#0ea5e9}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--fg)}
-header{background:linear-gradient(110deg,#0D3B66,#1a5a8f);padding:40px;text-align:center}
-.wrap{max-width:960px;margin:0 auto;padding:24px}.card{background:var(--card);border-radius:16px;padding:20px;margin:16px 0}
+/* M365 WebApps - Universal Theme (Light & Dark Mode) */
+
+/* Color palette - works in both modes */
+:root {
+  --bg: #0a1628;
+  --card-bg: #0D3B66;
+  --fg: #e5e7eb;
+  --accent: #FF6B35;  /* Orange - primary brand color */
+  --muted: #0ea5e9;   /* Blue - secondary color */
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #ffffff;
+    --card-bg: #f9fafb;
+    --fg: #1f2937;
+    --accent: #FF6B35;  /* Keep orange in light mode */
+    --muted: #0ea5e9;   /* Keep blue in light mode */
+  }
+}
+
+/* Base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+header {
+  background: linear-gradient(110deg, #0D3B66, #1a5a8f);
+  padding: 40px;
+  text-align: center;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 20px;
+  margin: 16px 0;
+  border: 1px solid rgba(255, 107, 53, 0.1);
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--accent);
+}
+
+code {
+  background: rgba(255, 107, 53, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  color: var(--fg);
+}
+
+pre {
+  background: rgba(255, 107, 53, 0.1);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
