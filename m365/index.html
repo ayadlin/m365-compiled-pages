@@ -311,45 +311,15 @@ m365ctl -mode install</code></pre>
       }
     });
 
-    // Show admin link for authorized users
-    // Checks localStorage for saved admin credentials
+    // Show admin link for logged-in admin users
+    // Checks if user has valid admin session from dashboard
     (function checkAdminAccess() {
-      const savedEmail = localStorage.getItem('adminEmail');
-      const savedPassword = localStorage.getItem('adminPassword');
-      const adminEmails = ['ytechm365@gmail.com', 'alewolf@gmail.com'];
-      const adminPassword = 'ytech2025'; // Simple password for admin access
+      // Check if admin_token cookie exists (user is logged into admin dashboard)
+      const hasAdminToken = document.cookie.split('; ').find(row => row.startsWith('admin_token='));
 
-      if (savedEmail && savedPassword === adminPassword && adminEmails.includes(savedEmail)) {
+      if (hasAdminToken) {
         document.getElementById('admin-link').style.display = 'block';
       }
-
-      // Quick shortcut: press Shift+A+A to set admin access
-      let keySequence = '';
-      document.addEventListener('keydown', (e) => {
-        if (e.shiftKey && e.key === 'A') {
-          keySequence += 'A';
-          if (keySequence === 'AA') {
-            const email = prompt('Enter admin email (ytechm365@gmail.com or alewolf@gmail.com):');
-            if (email && adminEmails.includes(email)) {
-              const password = prompt('Enter admin password:');
-              if (password === adminPassword) {
-                localStorage.setItem('adminEmail', email);
-                localStorage.setItem('adminPassword', password);
-                document.getElementById('admin-link').style.display = 'block';
-                alert('✅ Admin access granted!');
-              } else {
-                alert('❌ Incorrect password');
-              }
-            } else {
-              alert('❌ Unauthorized email');
-            }
-            keySequence = '';
-          }
-          setTimeout(() => keySequence = '', 1000);
-        } else {
-          keySequence = '';
-        }
-      });
     })();
   </script>
   <script src="/ga.js"></script>
