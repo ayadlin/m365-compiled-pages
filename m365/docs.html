@@ -45,14 +45,37 @@
     .docs-container ul, .docs-container ol {
       line-height: 1.8;
     }
+    .back-links {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
     .back-link {
       display: inline-block;
-      margin: 2rem 0;
+      background: rgba(255, 107, 53, 0.1);
       color: var(--accent, #FF6B35);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 107, 53, 0.3);
       text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
     }
     .back-link:hover {
-      text-decoration: underline;
+      background: rgba(255, 107, 53, 0.2);
+      border-color: var(--accent, #FF6B35);
+      transform: translateX(-4px);
+      text-decoration: none;
+    }
+    .back-link.primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      border-color: transparent;
+    }
+    .back-link.primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
     }
   </style>
 </head>
@@ -64,7 +87,10 @@
   </header>
 
   <div class="docs-container">
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="back-links">
+      <a href="index.html" class="back-link primary">← M365 WebApps</a>
+      <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+    </div>
 
     <h1>📚 M365 WebApps - User Documentation</h1>
     <p>Complete guide for installing, activating, and using Microsoft Office apps on Linux.</p>
@@ -201,7 +227,10 @@ m365-pro -feature picker \\
       <li>Debug log (optional - run <code>export M365_DEBUG=1</code> before testing, then send <code>~/.config/m365_webapps/logs/m365-pro-*.log</code>)</li>
     </ul>
 
-    <a href="index.html" class="back-link">← Back to Home</a>
+    <div class="back-links">
+      <a href="index.html" class="back-link primary">← M365 WebApps</a>
+      <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+    </div>
   </div>
 
   <script>

@@ -132,6 +132,48 @@
       margin: 3rem auto;
       padding: 0 1rem;
     }
+
+    /* Enhanced card styling with light orange background */
+    .install-section .card {
+      background: rgba(255, 107, 53, 0.05);
+      border: 2px solid rgba(255, 107, 53, 0.2);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .install-section .card:hover {
+      border-color: rgba(255, 107, 53, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+    }
+
+    .install-section .card h2 {
+      color: var(--accent, #FF6B35);
+      margin-bottom: 1rem;
+    }
+
+    /* Admin link - hidden by default */
+    .admin-link {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+      z-index: 1000;
+      transition: all 0.3s ease;
+    }
+
+    .admin-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.7);
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -140,6 +182,9 @@
     <h1>M365 WebApps</h1>
     <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">by Ytech</p>
   </header>
+
+  <!-- Admin access link - only visible to authorized users -->
+  <a href="https://m365-license-server.fly.dev/admin/" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
 
   <div class="hero">
     <h1>Microsoft Office on Linux</h1>
@@ -265,6 +310,39 @@ m365ctl -mode install</code></pre>
         document.documentElement.style.setProperty('--muted', b.colors.muted);
       }
     });
+
+    // Show admin link for authorized users
+    // Checks localStorage for saved admin email
+    (function checkAdminAccess() {
+      const savedEmail = localStorage.getItem('adminEmail');
+      const adminEmails = ['ytechm365@gmail.com', 'alewolf@gmail.com'];
+
+      if (savedEmail && adminEmails.includes(savedEmail)) {
+        document.getElementById('admin-link').style.display = 'block';
+      }
+
+      // Quick shortcut: press Shift+A+A to set admin access
+      let keySequence = '';
+      document.addEventListener('keydown', (e) => {
+        if (e.shiftKey && e.key === 'A') {
+          keySequence += 'A';
+          if (keySequence === 'AA') {
+            const email = prompt('Enter admin email:');
+            if (email && adminEmails.includes(email)) {
+              localStorage.setItem('adminEmail', email);
+              document.getElementById('admin-link').style.display = 'block';
+              alert('Admin access granted!');
+            } else {
+              alert('Unauthorized email');
+            }
+            keySequence = '';
+          }
+          setTimeout(() => keySequence = '', 1000);
+        } else {
+          keySequence = '';
+        }
+      });
+    })();
   </script>
   <script src="/ga.js"></script>
 </body>
