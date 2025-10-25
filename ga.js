@@ -7,7 +7,9 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 // Configure your GA4 property
-const MEASUREMENT_ID = 'G-ETMMN0VXS4';
+// TODO: Get your Measurement ID from https://analytics.google.com
+// Then update the ID below (format: G-XXXXXXXXXX)
+const MEASUREMENT_ID = 'G-XXXXXXXXXX'; // ← REPLACE THIS
 
 if (MEASUREMENT_ID !== 'G-XXXXXXXXXX') {
   gtag('config', MEASUREMENT_ID, {
