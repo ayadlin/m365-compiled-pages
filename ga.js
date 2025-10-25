@@ -43,6 +43,15 @@ window.trackTrialSignup = function(email) {
   });
 };
 
+// Track trial downloads/installs
+window.trackTrialDownload = function(source) {
+  trackEvent('trial_download', {
+    'event_category': 'conversion',
+    'event_label': source || 'unknown',
+    'value': 1
+  });
+};
+
 // Track purchase clicks
 window.trackPurchaseClick = function(plan) {
   trackEvent('purchase_initiated', {
@@ -51,3 +60,65 @@ window.trackPurchaseClick = function(plan) {
     'value': 1
   });
 };
+
+// Track billing portal access
+window.trackBillingPortal = function(email) {
+  trackEvent('billing_portal_opened', {
+    'event_category': 'engagement',
+    'event_label': 'customer_billing',
+    'value': 1
+  });
+};
+
+// Track pricing page views
+window.trackPricingView = function() {
+  trackEvent('pricing_viewed', {
+    'event_category': 'engagement',
+    'event_label': 'pricing_page',
+    'value': 1
+  });
+};
+
+// Track documentation access
+window.trackDocsView = function() {
+  trackEvent('docs_viewed', {
+    'event_category': 'engagement',
+    'event_label': 'documentation',
+    'value': 1
+  });
+};
+
+// Track install instructions viewed
+window.trackInstallView = function() {
+  trackEvent('install_viewed', {
+    'event_category': 'engagement',
+    'event_label': 'install_instructions',
+    'value': 1
+  });
+};
+
+// Track CTA button clicks
+window.trackCTA = function(ctaType) {
+  trackEvent('cta_clicked', {
+    'event_category': 'engagement',
+    'event_label': ctaType,
+    'value': 1
+  });
+};
+
+// Auto-track page views based on URL
+(function autoTrackPageViews() {
+  const path = window.location.pathname;
+
+  if (path.includes('pricing')) {
+    trackPricingView();
+  } else if (path.includes('docs')) {
+    trackDocsView();
+  } else if (path.includes('index') || path === '/' || path.endsWith('/m365/')) {
+    trackEvent('homepage_viewed', {
+      'event_category': 'engagement',
+      'event_label': 'landing_page',
+      'value': 1
+    });
+  }
+})();

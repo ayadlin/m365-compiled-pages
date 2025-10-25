@@ -249,6 +249,12 @@
 
         const checkoutUrl = config.checkout[plan.id] || '#';
 
+        // Determine tracking based on plan type
+        const isFree = plan.price === 0;
+        const trackingCode = isFree
+          ? `onclick="if(window.trackTrialDownload) trackTrialDownload('pricing_free_plan');"`
+          : `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
+
         card.innerHTML = `
           ${popularBadge}
           <div class="plan-badge">${plan.badge || '📦'}</div>
@@ -258,7 +264,7 @@
           <ul class="plan-features">
             ${features}
           </ul>
-          <a href="${checkoutUrl}" class="plan-cta">${plan.cta || 'Get Started'}</a>
+          <a href="${checkoutUrl}" class="plan-cta" ${trackingCode}>${plan.cta || 'Get Started'}</a>
         `;
 
         grid.appendChild(card);
@@ -280,6 +286,11 @@
         statusDiv.style.color = '#ef4444';
         statusDiv.textContent = 'Please enter your email address';
         return;
+      }
+
+      // Track billing portal access
+      if (window.trackBillingPortal) {
+        window.trackBillingPortal(email);
       }
 
       // Disable button and show loading
