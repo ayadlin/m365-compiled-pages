@@ -73,7 +73,7 @@
     <h3>Method 1: APT Repository (Recommended)</h3>
     <p>For Debian/Ubuntu-based systems:</p>
     <pre><code># Add the repository
-echo "deb [trusted=yes] https://ayadlin.github.io/m365-compiled-pages stable main" \\
+echo "deb [trusted=yes] https://m365.ytech.tools stable main" \\
   | sudo tee /etc/apt/sources.list.d/m365-compiled.list
 
 # Update and install
@@ -86,7 +86,7 @@ m365ctl -mode install</code></pre>
     <h3>Method 2: Download .deb Package</h3>
     <p>For manual installation, download the latest <code>.deb</code> package:</p>
     <pre><code># Download from APT repository
-wget https://ayadlin.github.io/m365-compiled-pages/pool/main/m365-compiled_latest_amd64.deb
+wget https://m365.ytech.tools/pool/main/m365-compiled_latest_amd64.deb
 
 # Install
 sudo dpkg -i m365-compiled_latest_amd64.deb
