@@ -186,6 +186,31 @@
       <h2>📚 Documentation</h2>
       <p>Complete user guide with installation instructions, troubleshooting, and FAQs. <a href="docs.html" style="color: var(--accent); font-weight: bold;">View Documentation →</a></p>
     </div>
+
+    <div class="card">
+      <h2>💳 Manage Your Billing</h2>
+      <p>Already a customer? Update your payment method, view invoices, or manage your subscription.</p>
+
+      <div style="margin-top: 1.5rem;">
+        <input
+          type="email"
+          id="billing-email"
+          placeholder="Enter your email address"
+          style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem; margin-bottom: 1rem;"
+        />
+
+        <button
+          id="manage-billing-btn"
+          style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #FF6B35, #ff8c5a); color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;"
+          onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 4px 16px rgba(255, 107, 53, 0.5)';"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+        >
+          Open Billing Portal
+        </button>
+
+        <div id="billing-status" style="margin-top: 1rem; padding: 1rem; border-radius: 6px; display: none;"></div>
+      </div>
+    </div>
   </div>
 
   <script>
@@ -238,6 +263,60 @@
 
         grid.appendChild(card);
       });
+    });
+
+    // Billing portal handler
+    const API_URL = 'https://m365-license-server.fly.dev';
+
+    document.getElementById('manage-billing-btn').addEventListener('click', async () => {
+      const email = document.getElementById('billing-email').value.trim();
+      const statusDiv = document.getElementById('billing-status');
+      const btn = document.getElementById('manage-billing-btn');
+
+      if (!email) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+        statusDiv.style.border = '2px solid #ef4444';
+        statusDiv.style.color = '#ef4444';
+        statusDiv.textContent = 'Please enter your email address';
+        return;
+      }
+
+      // Disable button and show loading
+      btn.disabled = true;
+      btn.textContent = 'Loading...';
+      statusDiv.style.display = 'none';
+
+      try {
+        const response = await fetch(`${API_URL}/api/create-portal-session`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: email,
+            return_url: window.location.href
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.url) {
+          // Redirect to Stripe Customer Portal
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Failed to create portal session');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
+        statusDiv.style.border = '2px solid #ef4444';
+        statusDiv.style.color = '#ef4444';
+        statusDiv.textContent = error.message || 'An error occurred. Please try again or contact support.';
+        btn.disabled = false;
+        btn.textContent = 'Open Billing Portal';
+      }
     });
   </script>
   <script src="/ga.js"></script>
