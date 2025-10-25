@@ -312,12 +312,14 @@ m365ctl -mode install</code></pre>
     });
 
     // Show admin link for authorized users
-    // Checks localStorage for saved admin email
+    // Checks localStorage for saved admin credentials
     (function checkAdminAccess() {
       const savedEmail = localStorage.getItem('adminEmail');
+      const savedPassword = localStorage.getItem('adminPassword');
       const adminEmails = ['ytechm365@gmail.com', 'alewolf@gmail.com'];
+      const adminPassword = 'ytech2025'; // Simple password for admin access
 
-      if (savedEmail && adminEmails.includes(savedEmail)) {
+      if (savedEmail && savedPassword === adminPassword && adminEmails.includes(savedEmail)) {
         document.getElementById('admin-link').style.display = 'block';
       }
 
@@ -327,13 +329,19 @@ m365ctl -mode install</code></pre>
         if (e.shiftKey && e.key === 'A') {
           keySequence += 'A';
           if (keySequence === 'AA') {
-            const email = prompt('Enter admin email:');
+            const email = prompt('Enter admin email (ytechm365@gmail.com or alewolf@gmail.com):');
             if (email && adminEmails.includes(email)) {
-              localStorage.setItem('adminEmail', email);
-              document.getElementById('admin-link').style.display = 'block';
-              alert('Admin access granted!');
+              const password = prompt('Enter admin password:');
+              if (password === adminPassword) {
+                localStorage.setItem('adminEmail', email);
+                localStorage.setItem('adminPassword', password);
+                document.getElementById('admin-link').style.display = 'block';
+                alert('✅ Admin access granted!');
+              } else {
+                alert('❌ Incorrect password');
+              }
             } else {
-              alert('Unauthorized email');
+              alert('❌ Unauthorized email');
             }
             keySequence = '';
           }
