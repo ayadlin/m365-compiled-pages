@@ -255,7 +255,7 @@ m365ctl -mode install</code></pre>
   </div>
 
   <script>
-    fetch('brand.json').then(r => r.json()).then(b => {
+    fetch('../brand.json').then(r => r.json()).then(b => {
       document.getElementById('logo').src = b.logo || 'branding/logo.svg';
 
       // Apply brand colors

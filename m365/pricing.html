@@ -190,7 +190,7 @@
 
   <script>
     // Load branding
-    fetch('brand.json').then(r => r.json()).then(b => {
+    fetch('../brand.json').then(r => r.json()).then(b => {
       document.getElementById('logo').src = b.logo || 'branding/logo.svg';
 
       // Apply brand colors
