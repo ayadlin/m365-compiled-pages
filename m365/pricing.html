@@ -159,7 +159,7 @@
   <header>
     <img id="logo" height="48" alt="M365 WebApps Logo">
     <h1>M365 WebApps</h1>
-    <p style="margin: 0; font-size: 0.9rem; color: #9ca3af;">by Ytech</p>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">by Ytech</p>
   </header>
 
   <div class="hero">
@@ -191,7 +191,7 @@
   <script>
     // Load branding
     fetch('../brand.json').then(r => r.json()).then(b => {
-      document.getElementById('logo').src = b.logo || 'branding/logo.svg';
+      document.getElementById('logo').src = '../' + b.logo || 'branding/logo.svg';
 
       // Apply brand colors
       if (b.colors) {
