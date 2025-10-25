@@ -84,14 +84,13 @@ sudo apt install m365-compiled
 m365ctl -mode install</code></pre>
 
     <h3>Method 2: Download .deb Package</h3>
-    <ol>
-      <li>Visit <a href="https://github.com/ayadlin/m365-compiled/releases" style="color: var(--accent);">GitHub Releases</a></li>
-      <li>Download the latest <code>.deb</code> file</li>
-      <li>Install:
-        <pre><code>sudo dpkg -i m365-compiled_*.deb
+    <p>For manual installation, download the latest <code>.deb</code> package:</p>
+    <pre><code># Download from APT repository
+wget https://ayadlin.github.io/m365-compiled-pages/pool/main/m365-compiled_latest_amd64.deb
+
+# Install
+sudo dpkg -i m365-compiled_latest_amd64.deb
 m365ctl -mode install</code></pre>
-      </li>
-    </ol>
 
     <h2>🔑 License Activation</h2>
     <p>After purchasing a license, you'll receive two files:</p>
