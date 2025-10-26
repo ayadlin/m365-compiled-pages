@@ -184,7 +184,7 @@
   </header>
 
   <!-- Admin access link - only visible to authorized users -->
-  <a href="https://api.ytech.tools/admin/" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
 
   <div class="hero">
     <h1>Microsoft Office on Linux</h1>
@@ -314,10 +314,10 @@ m365ctl -mode install</code></pre>
     // Show admin link for logged-in admin users
     // Checks if user has valid admin session from dashboard
     (function checkAdminAccess() {
-      // Check if admin_token cookie exists (user is logged into admin dashboard)
-      const hasAdminToken = document.cookie.split('; ').find(row => row.startsWith('admin_token='));
+      // Check if admin_logged_in cookie exists (user is logged into admin dashboard)
+      const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
 
-      if (hasAdminToken) {
+      if (hasAdminAccess) {
         document.getElementById('admin-link').style.display = 'block';
       }
     })();
