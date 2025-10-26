@@ -314,10 +314,10 @@ m365ctl -mode install</code></pre>
     // Show admin link for logged-in admin users
     // Checks if user has valid admin session from dashboard
     (function checkAdminAccess() {
-      // Check if admin_token cookie exists (user is logged into admin dashboard)
-      const hasAdminToken = document.cookie.split('; ').find(row => row.startsWith('admin_token='));
+      // Check if admin_logged_in cookie exists (user is logged into admin dashboard)
+      const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
 
-      if (hasAdminToken) {
+      if (hasAdminAccess) {
         document.getElementById('admin-link').style.display = 'block';
       }
     })();
