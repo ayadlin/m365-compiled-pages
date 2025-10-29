@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Portal - M365 WebApps</title>
+  <link rel="stylesheet" href="../theme.css">
+  <style>
+    .portal-container {
+      max-width: 500px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    .portal-card {
+      background: var(--card-bg, #0D3B66);
+      border: 2px solid rgba(255, 107, 53, 0.2);
+      border-radius: 16px;
+      padding: 3rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .portal-card h1 {
+      color: var(--accent, #FF6B35);
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .portal-card p {
+      color: var(--fg, #e5e7eb);
+      margin-bottom: 2rem;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--accent, #FF6B35);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid rgba(255, 107, 53, 0.3);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--fg, #e5e7eb);
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--accent, #FF6B35);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .message.success {
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #10b981;
+    }
+
+    .message.error {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: var(--accent, #FF6B35);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .form-group input {
+        background: white;
+        color: #1f2937;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="logo" height="48" alt="M365 WebApps Logo">
+    <h1>Customer Portal</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">M365 WebApps by Ytech</p>
+  </header>
+
+  <div class="portal-container">
+    <div class="portal-card">
+      <h1>🔐 Access Your Account</h1>
+      <p>Enter your email address to receive a secure login link</p>
+
+      <div id="messageContainer"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
+            placeholder="your@email.com"
+            autocomplete="email"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          Send Login Link
+        </button>
+      </form>
+
+      <div style="text-align: center;">
+        <a href="/m365/" class="back-link">← Back to M365 WebApps</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Load brand logo
+    fetch('../brand.json').then(r => r.json()).then(b => {
+      document.getElementById('logo').src = '../' + (b.logo || 'branding/logo.svg');
+
+      // Apply brand colors
+      if (b.colors) {
+        document.documentElement.style.setProperty('--card-bg', b.colors.card);
+        document.documentElement.style.setProperty('--accent', b.colors.accent);
+        document.documentElement.style.setProperty('--muted', b.colors.muted);
+      }
+    });
+
+    // Handle form submission
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const email = document.getElementById('email').value.trim();
+      const messageContainer = document.getElementById('messageContainer');
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending...';
+      messageContainer.innerHTML = '';
+
+      try {
+        const response = await fetch('/api/portal/request-access', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          messageContainer.innerHTML = `
+            <div class="message success">
+              ✉️ Login link sent! Check your email inbox.
+            </div>
+          `;
+          document.getElementById('email').value = '';
+        } else {
+          messageContainer.innerHTML = `
+            <div class="message error">
+              ${data.error || 'Failed to send login link. Please try again.'}
+            </div>
+          `;
+        }
+      } catch (error) {
+        messageContainer.innerHTML = `
+          <div class="message error">
+            Network error. Please check your connection and try again.
+          </div>
+        `;
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Login Link';
+      }
+    });
+
+    // Check for error/expired token messages from query params
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    const messageContainer = document.getElementById('messageContainer');
+
+    if (error === 'invalid_token') {
+      messageContainer.innerHTML = `
+        <div class="message error">
+          Invalid or expired login link. Please request a new one.
+        </div>
+      `;
+    } else if (error === 'expired_token') {
+      messageContainer.innerHTML = `
+        <div class="message error">
+          Login link has expired. Please request a new one.
+        </div>
+      `;
+    }
+  </script>
+  <script src="/ga.js"></script>
+</body>
+</html>
