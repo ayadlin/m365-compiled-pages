@@ -149,8 +149,15 @@
     }
 
     .install-section .card h2 {
-      color: var(--accent, #FF6B35);
+      color: #2d3748; /* Dark gray for better contrast on light orange background */
       margin-bottom: 1rem;
+    }
+
+    /* Dark mode: use accent color for h2 headings */
+    @media (prefers-color-scheme: dark) {
+      .install-section .card h2 {
+        color: var(--accent, #FF6B35);
+      }
     }
 
     /* Admin link - hidden by default */
