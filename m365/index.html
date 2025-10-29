@@ -117,6 +117,13 @@
       transform: translateY(-4px);
     }
 
+    /* In light mode, make feature card text more readable */
+    @media (prefers-color-scheme: light) {
+      .feature-card p {
+        color: #0ea5e9; /* Light blue for readability on colored background */
+      }
+    }
+
     .feature-icon {
       font-size: 2rem;
       margin-bottom: 0.5rem;
@@ -149,14 +156,15 @@
     }
 
     .install-section .card h2 {
-      color: #2d3748; /* Dark gray for better contrast on light orange background */
+      color: var(--accent, #FF6B35);
       margin-bottom: 1rem;
     }
 
-    /* Dark mode: use accent color for h2 headings */
-    @media (prefers-color-scheme: dark) {
-      .install-section .card h2 {
-        color: var(--accent, #FF6B35);
+    /* In light mode, make card text more readable */
+    @media (prefers-color-scheme: light) {
+      .install-section .card p,
+      .install-section .card li {
+        color: #0ea5e9; /* Light blue for readability on light background */
       }
     }
 
