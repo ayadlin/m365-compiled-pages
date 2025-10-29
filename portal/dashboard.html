@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard - M365 WebApps Customer Portal</title>
+  <link rel="stylesheet" href="../theme.css">
+  <style>
+    .dashboard-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .welcome-section h1 {
+      color: var(--accent, #FF6B35);
+      margin-bottom: 0.5rem;
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .dashboard-card {
+      background: var(--card-bg, #0D3B66);
+      border: 2px solid rgba(255, 107, 53, 0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .dashboard-card:hover {
+      border-color: var(--accent, #FF6B35);
+      transform: translateY(-4px);
+    }
+
+    .dashboard-card h2 {
+      color: var(--accent, #FF6B35);
+      margin: 0 0 1rem 0;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255, 107, 53, 0.1);
+    }
+
+    .info-row:last-child {
+      border-bottom: none;
+    }
+
+    .info-label {
+      font-weight: 600;
+      color: var(--fg, #e5e7eb);
+    }
+
+    .info-value {
+      color: var(--muted, #0ea5e9);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .status-active {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+    }
+
+    .status-expired {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      transform: scale(1.02);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 107, 53, 0.1);
+      color: var(--accent, #FF6B35);
+      border: 2px solid rgba(255, 107, 53, 0.3);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+      background: rgba(255, 107, 53, 0.2);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .actions-card {
+      grid-column: 1 / -1;
+    }
+
+    .actions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .logout-link {
+      display: block;
+      text-align: center;
+      color: var(--muted, #0ea5e9);
+      text-decoration: none;
+      margin-top: 2rem;
+      font-weight: 600;
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--muted, #0ea5e9);
+    }
+
+    .error-message {
+      background: rgba(239, 68, 68, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      color: #ef4444;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    @media (prefers-color-scheme: light) {
+      .info-value {
+        color: #0ea5e9;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img id="logo" height="48" alt="M365 WebApps Logo">
+    <h1>Customer Portal</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">M365 WebApps by Ytech</p>
+  </header>
+
+  <div class="dashboard-container">
+    <div class="welcome-section">
+      <h1>Welcome Back!</h1>
+      <p style="color: var(--fg, #e5e7eb);">Manage your M365 WebApps license and billing</p>
+    </div>
+
+    <div id="loadingState" class="loading">
+      <p>Loading your account information...</p>
+    </div>
+
+    <div id="errorState" style="display: none;">
+      <div class="error-message">
+        Failed to load account information. Please try refreshing the page.
+      </div>
+    </div>
+
+    <div id="dashboardContent" style="display: none;">
+      <div class="dashboard-grid">
+        <!-- License Information Card -->
+        <div class="dashboard-card">
+          <h2>📋 License Information</h2>
+          <div class="info-row">
+            <span class="info-label">Status:</span>
+            <span class="info-value" id="licenseStatus">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Plan:</span>
+            <span class="info-value" id="licensePlan">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Devices Allowed:</span>
+            <span class="info-value" id="licenseDevices">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Expires:</span>
+            <span class="info-value" id="licenseExpiry">-</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Email:</span>
+            <span class="info-value" id="licenseEmail">-</span>
+          </div>
+        </div>
+
+        <!-- Quick Actions Card -->
+        <div class="dashboard-card">
+          <h2>⚡ Quick Actions</h2>
+          <button class="btn btn-primary" id="downloadBtn">
+            📥 Download License Files
+          </button>
+          <button class="btn btn-secondary" id="billingBtn" style="display: none;">
+            💳 Manage Billing
+          </button>
+          <a href="/m365/docs.html" class="btn btn-secondary">
+            📚 View Documentation
+          </a>
+        </div>
+
+        <!-- Support Card -->
+        <div class="dashboard-card actions-card">
+          <h2>🆘 Need Help?</h2>
+          <p style="margin: 1rem 0;">
+            If you have questions or need assistance, check out our documentation or contact support.
+          </p>
+          <div class="actions-grid">
+            <a href="/m365/docs.html" class="btn btn-secondary">Documentation</a>
+            <a href="mailto:ytechm365@gmail.com" class="btn btn-secondary">Email Support</a>
+            <a href="/m365/" class="btn btn-secondary">Back to M365</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="logout-link" id="logoutLink">🚪 Logout</a>
+  </div>
+
+  <script>
+    // Load brand logo
+    fetch('../brand.json').then(r => r.json()).then(b => {
+      document.getElementById('logo').src = '../' + (b.logo || 'branding/logo.svg');
+
+      // Apply brand colors
+      if (b.colors) {
+        document.documentElement.style.setProperty('--card-bg', b.colors.card);
+        document.documentElement.style.setProperty('--accent', b.colors.accent);
+        document.documentElement.style.setProperty('--muted', b.colors.muted);
+      }
+    });
+
+    // Load license information
+    async function loadDashboard() {
+      try {
+        const response = await fetch('/api/portal/license-info', {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to load license info');
+        }
+
+        const data = await response.json();
+
+        // Update UI with license data
+        document.getElementById('licenseStatus').innerHTML =
+          `<span class="status-badge status-${data.status}">${data.status.toUpperCase()}</span>`;
+        document.getElementById('licensePlan').textContent = data.plan;
+        document.getElementById('licenseDevices').textContent = data.max_devices;
+        document.getElementById('licenseEmail').textContent = data.email;
+
+        // Format expiry date
+        const expiryDate = new Date(data.expires_at);
+        document.getElementById('licenseExpiry').textContent = expiryDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric'
+        });
+
+        // Show billing button if customer has Stripe billing
+        if (data.has_billing) {
+          document.getElementById('billingBtn').style.display = 'block';
+        }
+
+        // Hide loading, show content
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('dashboardContent').style.display = 'block';
+
+      } catch (error) {
+        console.error('Dashboard load error:', error);
+        document.getElementById('loadingState').style.display = 'none';
+        document.getElementById('errorState').style.display = 'block';
+      }
+    }
+
+    // Download license files
+    document.getElementById('downloadBtn').addEventListener('click', async () => {
+      try {
+        const response = await fetch('/api/portal/download-license', {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to download license');
+        }
+
+        const data = await response.json();
+
+        // Create license.json file
+        const licenseBlob = new Blob([data.license_json], { type: 'application/json' });
+        const licenseUrl = URL.createObjectURL(licenseBlob);
+        const licenseLink = document.createElement('a');
+        licenseLink.href = licenseUrl;
+        licenseLink.download = 'license.json';
+        licenseLink.click();
+        URL.revokeObjectURL(licenseUrl);
+
+        // Create license.sig file
+        const sigBlob = new Blob([data.signature], { type: 'text/plain' });
+        const sigUrl = URL.createObjectURL(sigBlob);
+        const sigLink = document.createElement('a');
+        sigLink.href = sigUrl;
+        sigLink.download = 'license.sig';
+        sigLink.click();
+        URL.revokeObjectURL(sigUrl);
+
+        alert('License files downloaded! Check your Downloads folder for license.json and license.sig');
+
+      } catch (error) {
+        console.error('Download error:', error);
+        alert('Failed to download license files. Please try again.');
+      }
+    });
+
+    // Manage billing
+    document.getElementById('billingBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('billingBtn');
+      btn.disabled = true;
+      btn.textContent = 'Opening billing portal...';
+
+      try {
+        const response = await fetch('/api/portal/billing-session', {
+          method: 'POST',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to create billing session');
+        }
+
+        const data = await response.json();
+        window.location.href = data.url;
+
+      } catch (error) {
+        console.error('Billing error:', error);
+        alert('Failed to open billing portal. Please try again.');
+        btn.disabled = false;
+        btn.textContent = '💳 Manage Billing';
+      }
+    });
+
+    // Logout
+    document.getElementById('logoutLink').addEventListener('click', async (e) => {
+      e.preventDefault();
+
+      try {
+        await fetch('/api/portal/logout', {
+          method: 'POST',
+          credentials: 'include',
+        });
+
+        window.location.href = '/portal/';
+      } catch (error) {
+        console.error('Logout error:', error);
+        window.location.href = '/portal/';
+      }
+    });
+
+    // Load dashboard on page load
+    loadDashboard();
+  </script>
+  <script src="/ga.js"></script>
+</body>
+</html>
