@@ -323,6 +323,15 @@
         if (response.ok && data.url) {
           // Redirect to Stripe Customer Portal
           window.location.href = data.url;
+        } else if (response.ok && data.is_free_user === "true") {
+          // Free trial user - show upgrade message
+          statusDiv.style.display = 'block';
+          statusDiv.style.background = 'rgba(14, 165, 233, 0.1)';
+          statusDiv.style.border = '2px solid #0ea5e9';
+          statusDiv.style.color = '#0ea5e9';
+          statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${data.message}<br><br>Scroll up to choose a plan above.`;
+          btn.disabled = false;
+          btn.textContent = 'Open Billing Portal';
         } else {
           throw new Error(data.error || 'Failed to create portal session');
         }
