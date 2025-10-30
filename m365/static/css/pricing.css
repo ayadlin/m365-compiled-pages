@@ -9,7 +9,7 @@
 
 .pricing-card {
   background: var(--card-bg, #13183a);
-  border: 2px solid rgba(31, 78, 255, 0.2);
+  border: 2px solid rgba(255, 107, 53, 0.2);
   border-radius: 16px;
   padding: 2rem;
   position: relative;
@@ -18,20 +18,20 @@
 
 .pricing-card:hover {
   transform: translateY(-4px);
-  border-color: var(--accent, #1f4eff);
-  box-shadow: 0 8px 24px rgba(31, 78, 255, 0.3);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(255, 107, 53, 0.3);
 }
 
 .pricing-card.popular {
-  border-color: var(--accent, #1f4eff);
-  box-shadow: 0 4px 16px rgba(31, 78, 255, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.2);
 }
 
 .popular-badge {
   position: absolute;
   top: -12px;
   right: 1rem;
-  background: linear-gradient(135deg, #1f4eff, #0b8fff);
+  background: var(--accent);
   color: white;
   padding: 0.25rem 1rem;
   border-radius: 12px;
@@ -61,7 +61,7 @@
 .plan-price {
   font-size: 3rem;
   font-weight: bold;
-  color: var(--accent, #1f4eff);
+  color: var(--accent);
   margin: 1rem 0;
 }
 
@@ -102,7 +102,7 @@
   display: block;
   width: 100%;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #1f4eff, #0b8fff);
+  background: var(--accent);
   color: white;
   text-decoration: none;
   border-radius: 8px;
@@ -114,7 +114,7 @@
 
 .plan-cta:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 16px rgba(31, 78, 255, 0.5);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
 }
 
 .pricing-card.free .plan-cta {
@@ -135,10 +135,7 @@
 .hero h1 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #1f4eff, #0b8fff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--accent);
 }
 
 .hero p {
