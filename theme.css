@@ -89,3 +89,178 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* ===== Unified Styles for Consistency ===== */
+
+/* Portal & Admin Links - Fixed position buttons */
+.portal-link,
+.admin-link {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Dark mode: Blue gradient for contrast against orange header */
+.portal-link {
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  color: white;
+}
+
+.admin-link {
+  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  color: white;
+  top: auto;
+  bottom: 1rem;
+  display: none; /* Hidden by default */
+}
+
+.portal-link:hover,
+.admin-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(14, 165, 233, 0.5);
+  text-decoration: none;
+}
+
+/* Light mode: Orange/blue swapped for visibility */
+@media (prefers-color-scheme: light) {
+  .portal-link,
+  .admin-link {
+    background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  }
+
+  .portal-link:hover,
+  .admin-link:hover {
+    box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+  }
+}
+
+/* Back links container - Centered */
+.back-links {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 1rem;
+  justify-content: center; /* Center the links */
+}
+
+.back-link {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: var(--accent);
+  transform: translateX(-4px);
+  text-decoration: none;
+}
+
+.back-link.primary {
+  background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+  color: white;
+  border-color: transparent;
+}
+
+.back-link.primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+}
+
+/* Light mode adjustments for back links */
+@media (prefers-color-scheme: light) {
+  .back-link {
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--accent);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  .back-link:hover {
+    background: rgba(14, 165, 233, 0.2);
+    border-color: var(--accent);
+  }
+
+  .back-link.primary {
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    color: white;
+  }
+
+  .back-link.primary:hover {
+    box-shadow: 0 4px 16px rgba(14, 165, 233, 0.5);
+  }
+}
+
+/* Unified Button Styles */
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(255, 107, 53, 0.5);
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--accent);
+  border-color: rgba(255, 107, 53, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: var(--accent);
+  text-decoration: none;
+}
+
+/* Light mode button adjustments */
+@media (prefers-color-scheme: light) {
+  .btn-primary {
+    background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+  }
+
+  .btn-secondary {
+    background: rgba(14, 165, 233, 0.1);
+    color: var(--accent);
+    border-color: rgba(14, 165, 233, 0.3);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(14, 165, 233, 0.2);
+    border-color: var(--accent);
+  }
+}
