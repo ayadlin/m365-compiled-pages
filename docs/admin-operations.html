@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Operations Guide - Admin Documentation</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/docs/docs.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+  <header class="docs-header">
+    <div class="container">
+      <h1>⚙️ Admin Operations Guide <span class="admin-badge">ADMIN-ONLY</span></h1>
+      <nav class="docs-nav">
+        <a href="/admin/docs">← Admin Docs</a>
+        <a href="/admin/dashboard">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="docs-container">
+    <div class="docs-content">
+      <div class="loading" id="loading">Loading documentation...</div>
+      <div id="markdown-content"></div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="/docs/docs.js"></script>
+  <script>
+    document.getElementById('loading').style.display = 'block';
+    loadMarkdown('/docs/ADMIN_OPERATIONS_GUIDE.md').then(() => {
+      document.getElementById('loading').style.display = 'none';
+    });
+  </script>
+  <script src="/ga.js"></script>
+</body>
+</html>

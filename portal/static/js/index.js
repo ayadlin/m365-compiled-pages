@@ -1,6 +1,6 @@
     // Load brand logo
-    fetch('../brand.json').then(r => r.json()).then(b => {
-      document.getElementById('logo').src = '../' + (b.logo || 'branding/logo.svg');
+    fetch('/brand.json').then(r => r.json()).then(b => {
+      document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');
 
       // Apply brand colors
       if (b.colors) {
