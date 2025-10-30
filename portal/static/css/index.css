@@ -1,157 +1,125 @@
-    .portal-container {
-      max-width: 500px;
-      margin: 4rem auto;
-      padding: 0 2rem;
-    }
+.portal-container {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 0 2rem;
+}
 
-    .portal-card {
-      background: var(--card-bg, #0D3B66);
-      border: 2px solid rgba(255, 107, 53, 0.2);
-      border-radius: 16px;
-      padding: 3rem;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    }
+.portal-card {
+  background: var(--card-bg);
+  border: 2px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: 16px;
+  padding: 3rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
 
-    .portal-card h1 {
-      color: var(--accent, #FF6B35);
-      margin: 0 0 1rem 0;
-      font-size: 2rem;
-      text-align: center;
-    }
+.portal-card h1 {
+  color: var(--accent);
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+  text-align: center;
+}
 
-    .portal-card p {
-      color: var(--fg, #e5e7eb);
-      margin-bottom: 2rem;
-      text-align: center;
-      line-height: 1.6;
-    }
+.portal-card p {
+  color: var(--fg);
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.6;
+}
 
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
+.form-group {
+  margin-bottom: 1.5rem;
+}
 
-    .form-group label {
-      display: block;
-      color: var(--accent, #FF6B35);
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+.form-group label {
+  display: block;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
 
-    .form-group input {
-      width: 100%;
-      padding: 0.75rem;
-      border: 2px solid rgba(255, 107, 53, 0.3);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--fg, #e5e7eb);
-      font-size: 1rem;
-      box-sizing: border-box;
-    }
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid rgba(var(--accent-rgb), 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--fg);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
 
-    .form-group input:focus {
-      outline: none;
-      border-color: var(--accent, #FF6B35);
-    }
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
 
-    .btn {
-      width: 100%;
-      padding: 1rem;
-      border: none;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1.1rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+.message {
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
 
-    .btn-primary {
-      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
-      color: white;
-    }
+.message.success {
+  background: rgba(var(--success-rgb), 0.2);
+  border: 1px solid rgba(var(--success-rgb), 0.4);
+  color: var(--success);
+}
 
-    .btn-primary:hover:not(:disabled) {
-      transform: scale(1.02);
-      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
-    }
+.message.error {
+  background: rgba(var(--error-rgb), 0.2);
+  border: 1px solid rgba(var(--error-rgb), 0.4);
+  color: var(--error);
+}
 
-    .btn-primary:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+/* Simple back link for within card */
+.portal-card .back-link {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
 
-    .message {
-      padding: 1rem;
-      border-radius: 8px;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
+.portal-card .back-link:hover {
+  text-decoration: underline;
+}
 
-    .message.success {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: #10b981;
-    }
+/* Light mode: white background for input */
+@media (prefers-color-scheme: light) {
+  .form-group input {
+    background: white;
+    color: #1f2937;
+  }
+}
 
-    .message.error {
-      background: rgba(239, 68, 68, 0.2);
-      border: 1px solid rgba(239, 68, 68, 0.4);
-      color: #ef4444;
-    }
+/* Alias nav-back-link to back-link for backwards compatibility */
+.nav-back-link {
+  display: inline-block;
+  background: rgba(var(--muted-rgb), 0.1);
+  color: var(--accent);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(var(--muted-rgb), 0.3);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
 
-    .back-link {
-      display: inline-block;
-      margin-top: 2rem;
-      color: var(--accent, #FF6B35);
-      text-decoration: none;
-      font-weight: 600;
-    }
+.nav-back-link:hover {
+  background: rgba(var(--muted-rgb), 0.2);
+  border-color: var(--accent);
+  transform: translateX(-4px);
+  text-decoration: none;
+}
 
-    .back-link:hover {
-      text-decoration: underline;
-    }
+.nav-back-link.primary {
+  background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+  color: white;
+  border-color: transparent;
+}
 
-    .back-links {
-      display: flex;
-      gap: 1rem;
-      margin: 2rem auto;
-      flex-wrap: wrap;
-      max-width: 1200px;
-      padding: 0 1rem;
-    }
-
-    .nav-back-link {
-      display: inline-block;
-      background: rgba(255, 107, 53, 0.1);
-      color: var(--accent, #FF6B35);
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      border: 2px solid rgba(255, 107, 53, 0.3);
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .nav-back-link:hover {
-      background: rgba(255, 107, 53, 0.2);
-      border-color: var(--accent, #FF6B35);
-      transform: translateX(-4px);
-      text-decoration: none;
-    }
-
-    .nav-back-link.primary {
-      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
-      color: white;
-      border-color: transparent;
-    }
-
-    .nav-back-link.primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
-    }
-
-    @media (prefers-color-scheme: light) {
-      .form-group input {
-        background: white;
-        color: #1f2937;
-      }
-    }
+.nav-back-link.primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(var(--muted-rgb), 0.5);
+}

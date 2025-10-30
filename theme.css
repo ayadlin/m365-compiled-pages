@@ -12,8 +12,11 @@
   --warning: #fbbf24;   /* Yellow - warnings */
   --header-grad-1: #0D3B66;
   --header-grad-2: #1a5a8f;
-  --accent-rgb: 255, 107, 53;  /* RGB for rgba() usage */
-  --muted-rgb: 14, 165, 233;   /* RGB for rgba() usage */
+  --accent-rgb: 255, 107, 53;     /* RGB for rgba() usage */
+  --muted-rgb: 14, 165, 233;      /* RGB for rgba() usage */
+  --success-rgb: 16, 185, 129;    /* RGB for rgba() usage */
+  --error-rgb: 239, 68, 68;       /* RGB for rgba() usage */
+  --warning-rgb: 251, 191, 36;    /* RGB for rgba() usage */
 }
 
 /* Light mode overrides - Inverse colors */
