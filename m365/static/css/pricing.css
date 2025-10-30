@@ -1,0 +1,207 @@
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.pricing-card {
+  background: var(--card-bg, #13183a);
+  border: 2px solid rgba(31, 78, 255, 0.2);
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent, #1f4eff);
+  box-shadow: 0 8px 24px rgba(31, 78, 255, 0.3);
+}
+
+.pricing-card.popular {
+  border-color: var(--accent, #1f4eff);
+  box-shadow: 0 4px 16px rgba(31, 78, 255, 0.2);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  right: 1rem;
+  background: linear-gradient(135deg, #1f4eff, #0b8fff);
+  color: white;
+  padding: 0.25rem 1rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.plan-badge {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.plan-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: var(--fg, #e5e7eb);
+}
+
+.plan-description {
+  color: var(--muted, #9ca3af);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.plan-price {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--accent, #1f4eff);
+  margin: 1rem 0;
+}
+
+.plan-price .currency {
+  font-size: 1.5rem;
+  vertical-align: super;
+}
+
+.plan-price .period {
+  font-size: 1rem;
+  color: var(--muted, #9ca3af);
+  font-weight: normal;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  text-align: left;
+}
+
+.plan-features li {
+  padding: 0.5rem 0;
+  color: var(--fg, #e5e7eb);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.plan-features li::before {
+  content: "✓";
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.plan-cta {
+  display: block;
+  width: 100%;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1f4eff, #0b8fff);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.plan-cta:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(31, 78, 255, 0.5);
+}
+
+.pricing-card.free .plan-cta {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+}
+
+.pricing-card.enterprise .plan-cta {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #1f4eff, #0b8fff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: var(--muted, #9ca3af);
+}
+
+.back-links {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem auto;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+.back-link {
+  display: inline-block;
+  background: rgba(255, 107, 53, 0.1);
+  color: var(--accent, #FF6B35);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  border: 2px solid rgba(255, 107, 53, 0.3);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  background: rgba(255, 107, 53, 0.2);
+  border-color: var(--accent, #FF6B35);
+  transform: translateX(-4px);
+  text-decoration: none;
+}
+
+.back-link.primary {
+  background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+  color: white;
+  border-color: transparent;
+}
+
+.back-link.primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+}
+
+.portal-link {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+  z-index: 1000;
+}
+
+.portal-link:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+}
