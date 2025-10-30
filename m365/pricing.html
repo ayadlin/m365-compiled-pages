@@ -268,9 +268,9 @@
 
       <div style="margin-top: 1.5rem;">
         <input
-          type="email"
-          id="billing-email"
-          placeholder="Enter your email address"
+          type="text"
+          id="billing-search"
+          placeholder="Enter your email or company name"
           style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem; margin-bottom: 1rem;"
         />
 
@@ -350,22 +350,22 @@
     const API_URL = 'https://api.ytech.tools';
 
     document.getElementById('manage-billing-btn').addEventListener('click', async () => {
-      const email = document.getElementById('billing-email').value.trim();
+      const searchQuery = document.getElementById('billing-search').value.trim();
       const statusDiv = document.getElementById('billing-status');
       const btn = document.getElementById('manage-billing-btn');
 
-      if (!email) {
+      if (!searchQuery) {
         statusDiv.style.display = 'block';
         statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
         statusDiv.style.border = '2px solid #ef4444';
         statusDiv.style.color = '#ef4444';
-        statusDiv.textContent = 'Please enter your email address';
+        statusDiv.textContent = 'Please enter your email or company name';
         return;
       }
 
       // Track billing portal access
       if (window.trackBillingPortal) {
-        window.trackBillingPortal(email);
+        window.trackBillingPortal(searchQuery);
       }
 
       // Disable button and show loading
@@ -380,7 +380,7 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            email: email,
+            search: searchQuery,
             return_url: window.location.href
           }),
         });

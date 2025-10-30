@@ -118,6 +118,45 @@
       text-decoration: underline;
     }
 
+    .back-links {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+
+    .nav-back-link {
+      display: inline-block;
+      background: rgba(255, 107, 53, 0.1);
+      color: var(--accent, #FF6B35);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 107, 53, 0.3);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-back-link:hover {
+      background: rgba(255, 107, 53, 0.2);
+      border-color: var(--accent, #FF6B35);
+      transform: translateX(-4px);
+      text-decoration: none;
+    }
+
+    .nav-back-link.primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      border-color: transparent;
+    }
+
+    .nav-back-link.primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
+
     @media (prefers-color-scheme: light) {
       .form-group input {
         background: white;
@@ -132,6 +171,11 @@
     <h1>Customer Portal</h1>
     <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">M365 WebApps by Ytech</p>
   </header>
+
+  <div class="back-links">
+    <a href="/m365/" class="nav-back-link primary">← M365 WebApps</a>
+    <a href="https://ytech.tools/" class="nav-back-link">🏠 Ytech Home</a>
+  </div>
 
   <div class="portal-container">
     <div class="portal-card">
