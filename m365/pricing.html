@@ -153,6 +153,45 @@
       font-size: 1.2rem;
       color: var(--muted, #9ca3af);
     }
+
+    .back-links {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      background: rgba(255, 107, 53, 0.1);
+      color: var(--accent, #FF6B35);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 107, 53, 0.3);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 107, 53, 0.2);
+      border-color: var(--accent, #FF6B35);
+      transform: translateX(-4px);
+      text-decoration: none;
+    }
+
+    .back-link.primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      border-color: transparent;
+    }
+
+    .back-link.primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -163,6 +202,11 @@
     <h1>M365 WebApps</h1>
     <p style="margin: 0; font-size: 0.9rem; color: var(--accent, #FF6B35); font-weight: 600;">by Ytech</p>
   </header>
+
+  <div class="back-links">
+    <a href="index.html" class="back-link primary">← M365 WebApps</a>
+    <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+  </div>
 
   <div class="hero">
     <h1>Choose Your Plan</h1>
