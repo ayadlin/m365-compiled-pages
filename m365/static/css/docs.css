@@ -4,13 +4,13 @@
       padding: 0 2rem;
     }
     .docs-container h1 {
-      color: var(--accent, #FF6B35);
+      color: var(--accent);
       margin-top: 2rem;
     }
     .docs-container h2 {
-      color: var(--accent, #FF6B35);
+      color: var(--accent);
       margin-top: 2rem;
-      border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+      border-bottom: 2px solid rgba(var(--accent-rgb), 0.2);
       padding-bottom: 0.5rem;
     }
     .docs-container h3 {
@@ -18,14 +18,14 @@
       margin-top: 1.5rem;
     }
     .docs-container code {
-      background: rgba(255, 107, 53, 0.1);
+      background: rgba(var(--accent-rgb), 0.1);
       padding: 0.2rem 0.4rem;
       border-radius: 4px;
       font-family: 'Courier New', monospace;
       color: var(--fg, #1f2937);
     }
     .docs-container pre {
-      background: rgba(255, 107, 53, 0.1);
+      background: rgba(var(--accent-rgb), 0.1);
       padding: 1rem;
       border-radius: 8px;
       overflow-x: auto;
@@ -45,36 +45,36 @@
     }
     .back-link {
       display: inline-block;
-      background: rgba(255, 107, 53, 0.1);
-      color: var(--accent, #FF6B35);
+      background: rgba(var(--accent-rgb), 0.1);
+      color: var(--accent);
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
-      border: 2px solid rgba(255, 107, 53, 0.3);
+      border: 2px solid rgba(var(--accent-rgb), 0.3);
       text-decoration: none;
       font-weight: 600;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background: rgba(255, 107, 53, 0.2);
-      border-color: var(--accent, #FF6B35);
+      background: rgba(var(--accent-rgb), 0.2);
+      border-color: var(--accent);
       transform: translateX(-4px);
       text-decoration: none;
     }
     .back-link.primary {
-      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
       color: white;
       border-color: transparent;
     }
     .back-link.primary:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
 
     .portal-link {
       position: fixed;
       top: 1rem;
       right: 1rem;
-      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
@@ -82,11 +82,11 @@
       font-weight: 600;
       font-size: 0.95rem;
       transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+      box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.3);
       z-index: 1000;
     }
 
     .portal-link:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }

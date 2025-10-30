@@ -6,7 +6,7 @@
 
     .trial-form {
       background: var(--card-bg, #13183a);
-      border: 1px solid rgba(255, 107, 53, 0.2);
+      border: 1px solid rgba(var(--accent-rgb), 0.2);
       border-radius: 12px;
       padding: 2rem;
     }
@@ -18,17 +18,17 @@
     .form-group label {
       display: block;
       margin-bottom: 0.5rem;
-      color: var(--fg, #e5e7eb);
+      color: var(--fg);
       font-weight: bold;
     }
 
     .form-group input {
       width: 100%;
       padding: 0.75rem;
-      border: 2px solid rgba(255, 107, 53, 0.3);
+      border: 2px solid rgba(var(--accent-rgb), 0.3);
       border-radius: 6px;
       background: rgba(0, 0, 0, 0.2);
-      color: var(--fg, #e5e7eb);
+      color: var(--fg);
       font-size: 1rem;
     }
 
@@ -59,7 +59,7 @@
 
     .submit-btn:hover:not(:disabled) {
       transform: scale(1.02);
-      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
 
     .submit-btn:disabled {
@@ -83,12 +83,12 @@
 
     .error-message {
       display: none;
-      background: rgba(239, 68, 68, 0.1);
-      border: 2px solid #ef4444;
+      background: rgba(var(--error-rgb), 0.1);
+      border: 2px solid var(--error);
       border-radius: 8px;
       padding: 1rem;
       margin-top: 1rem;
-      color: #ef4444;
+      color: var(--error);
     }
 
     .download-btn {

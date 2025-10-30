@@ -10,21 +10,21 @@
     .terms-container h2 {
       color: var(--accent);
       margin-top: 2rem;
-      border-bottom: 2px solid rgba(255, 107, 53, 0.2);
+      border-bottom: 2px solid rgba(var(--accent-rgb), 0.2);
       padding-bottom: 0.5rem;
     }
     .terms-container h3 {
-      color: var(--fg, #e5e7eb);
+      color: var(--fg);
       margin-top: 1.5rem;
     }
     .terms-container ul, .terms-container ol {
       line-height: 1.8;
     }
     .terms-container strong {
-      color: #fbbf24;
+      color: var(--warning);
     }
     .info-box {
-      background: rgba(255, 107, 53, 0.1);
+      background: rgba(var(--accent-rgb), 0.1);
       border-left: 4px solid var(--accent);
       padding: 1rem;
       margin: 1.5rem 0;
