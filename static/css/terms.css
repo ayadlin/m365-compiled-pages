@@ -4,13 +4,13 @@
       padding: 0 2rem;
     }
     .terms-container h1 {
-      color: var(--accent, #1f4eff);
+      color: var(--accent);
       margin-top: 2rem;
     }
     .terms-container h2 {
-      color: var(--accent, #1f4eff);
+      color: var(--accent);
       margin-top: 2rem;
-      border-bottom: 2px solid rgba(31, 78, 255, 0.2);
+      border-bottom: 2px solid rgba(255, 107, 53, 0.2);
       padding-bottom: 0.5rem;
     }
     .terms-container h3 {
@@ -32,7 +32,7 @@
     .back-link {
       display: inline-block;
       margin: 2rem 0;
-      color: var(--accent, #1f4eff);
+      color: var(--accent);
       text-decoration: none;
     }
     .back-link:hover {
