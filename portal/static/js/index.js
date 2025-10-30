@@ -1,3 +1,6 @@
+    // API base URL - use api.ytech.tools for production, or same domain for local/direct access
+    const API_BASE = window.location.hostname === 'ytech.tools' ? 'https://api.ytech.tools' : '';
+
     // Load brand logo
     fetch('/brand.json').then(r => r.json()).then(b => {
       document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');
@@ -24,7 +27,7 @@
       messageContainer.innerHTML = '';
 
       try {
-        const response = await fetch('/api/portal/request-access', {
+        const response = await fetch(`${API_BASE}/api/portal/request-access`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

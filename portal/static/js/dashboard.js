@@ -1,3 +1,6 @@
+// API base URL - use api.ytech.tools for production, or same domain for local/direct access
+const API_BASE = window.location.hostname === 'ytech.tools' ? 'https://api.ytech.tools' : '';
+
 // Load brand logo
 fetch('/brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');
@@ -13,7 +16,7 @@ fetch('/brand.json').then(r => r.json()).then(b => {
 // Load license information
 async function loadDashboard() {
   try {
-    const response = await fetch('/api/portal/license-info', {
+    const response = await fetch(`${API_BASE}/api/portal/license-info`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -58,7 +61,7 @@ async function loadDashboard() {
 // Download license files
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   try {
-    const response = await fetch('/api/portal/download-license', {
+    const response = await fetch(`${API_BASE}/api/portal/download-license`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -102,7 +105,7 @@ document.getElementById('billingBtn').addEventListener('click', async () => {
   btn.textContent = 'Opening billing portal...';
 
   try {
-    const response = await fetch('/api/portal/billing-session', {
+    const response = await fetch(`${API_BASE}/api/portal/billing-session`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -127,7 +130,7 @@ document.getElementById('logoutLink').addEventListener('click', async (e) => {
   e.preventDefault();
 
   try {
-    await fetch('/api/portal/logout', {
+    await fetch(`${API_BASE}/api/portal/logout`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -144,7 +147,7 @@ let currentTeamData = null;
 
 async function loadTeamInfo() {
   try {
-    const response = await fetch('/api/portal/team/info', {
+    const response = await fetch(`${API_BASE}/api/portal/team/info`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -232,7 +235,7 @@ async function updateMemberRole(email, newRole) {
   if (!confirm(`Change ${email} to ${newRole}?`)) return;
 
   try {
-    const response = await fetch('/api/portal/team/member/role', {
+    const response = await fetch(`${API_BASE}/api/portal/team/member/role`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -256,7 +259,7 @@ async function removeMember(email) {
   if (!confirm(`Remove ${email} from the team?`)) return;
 
   try {
-    const response = await fetch('/api/portal/team/member/remove', {
+    const response = await fetch(`${API_BASE}/api/portal/team/member/remove`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -297,7 +300,7 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
   statusDiv.style.display = 'none';
 
   try {
-    const response = await fetch('/api/portal/team/member/add', {
+    const response = await fetch(`${API_BASE}/api/portal/team/member/add`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
