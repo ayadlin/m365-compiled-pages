@@ -65,9 +65,9 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
 
   if (!searchQuery) {
     statusDiv.style.display = 'block';
-    statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
-    statusDiv.style.border = '2px solid #ef4444';
-    statusDiv.style.color = '#ef4444';
+    statusDiv.style.background = 'rgba(var(--error-rgb), 0.1)';
+    statusDiv.style.border = '2px solid var(--error)';
+    statusDiv.style.color = 'var(--error)';
     statusDiv.textContent = 'Please enter your email or company name';
     return;
   }
@@ -102,9 +102,9 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
     } else if (response.ok && data.is_free_user === "true") {
       // Free trial user - show upgrade message
       statusDiv.style.display = 'block';
-      statusDiv.style.background = 'rgba(14, 165, 233, 0.1)';
-      statusDiv.style.border = '2px solid #0ea5e9';
-      statusDiv.style.color = '#0ea5e9';
+      statusDiv.style.background = 'rgba(var(--muted-rgb), 0.1)';
+      statusDiv.style.border = '2px solid var(--muted)';
+      statusDiv.style.color = 'var(--muted)';
       statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${data.message}<br><br>Scroll up to choose a plan above.`;
       btn.disabled = false;
       btn.textContent = 'Open Billing Portal';
@@ -114,9 +114,9 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
   } catch (error) {
     console.error('Error:', error);
     statusDiv.style.display = 'block';
-    statusDiv.style.background = 'rgba(239, 68, 68, 0.1)';
-    statusDiv.style.border = '2px solid #ef4444';
-    statusDiv.style.color = '#ef4444';
+    statusDiv.style.background = 'rgba(var(--error-rgb), 0.1)';
+    statusDiv.style.border = '2px solid var(--error)';
+    statusDiv.style.color = 'var(--error)';
     statusDiv.textContent = error.message || 'An error occurred. Please try again or contact support.';
     btn.disabled = false;
     btn.textContent = 'Open Billing Portal';

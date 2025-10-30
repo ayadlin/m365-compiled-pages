@@ -287,10 +287,8 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
   const btn = document.getElementById('addMemberBtn');
 
   if (!email) {
+    statusDiv.className = 'error-message';
     statusDiv.style.display = 'block';
-    statusDiv.style.background = 'rgba(239, 68, 68, 0.2)';
-    statusDiv.style.color = '#ef4444';
-    statusDiv.style.border = '2px solid rgba(239, 68, 68, 0.4)';
     statusDiv.textContent = 'Please enter an email address';
     return;
   }
@@ -318,10 +316,8 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
     document.getElementById('newMemberRole').value = 'member';
 
     // Show success
+    statusDiv.className = 'success-message';
     statusDiv.style.display = 'block';
-    statusDiv.style.background = 'rgba(16, 185, 129, 0.2)';
-    statusDiv.style.color = '#10b981';
-    statusDiv.style.border = '2px solid rgba(16, 185, 129, 0.4)';
     statusDiv.textContent = `Successfully added ${email} as ${role}`;
 
     // Reload team data
@@ -332,10 +328,8 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
       statusDiv.style.display = 'none';
     }, 3000);
   } catch (error) {
+    statusDiv.className = 'error-message';
     statusDiv.style.display = 'block';
-    statusDiv.style.background = 'rgba(239, 68, 68, 0.2)';
-    statusDiv.style.color = '#ef4444';
-    statusDiv.style.border = '2px solid rgba(239, 68, 68, 0.4)';
     statusDiv.textContent = 'Error: ' + error.message;
   } finally {
     btn.disabled = false;

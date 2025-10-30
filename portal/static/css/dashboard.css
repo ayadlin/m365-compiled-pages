@@ -123,6 +123,16 @@
   text-align: center;
 }
 
+.success-message {
+  background: rgba(var(--success-rgb), 0.2);
+  border: 1px solid rgba(var(--success-rgb), 0.4);
+  color: var(--success);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
 .member-card {
   background: rgba(var(--accent-rgb), 0.05);
   border: 1px solid rgba(var(--accent-rgb), 0.2);

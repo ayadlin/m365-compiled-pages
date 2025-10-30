@@ -33,7 +33,7 @@ async function loadMarkdown(mdPath) {
 
   } catch (error) {
     contentEl.innerHTML = `
-      <div style="text-align: center; padding: 4rem; color: #dc2626;">
+      <div style="text-align: center; padding: 4rem; color: var(--error);">
         <h2>⚠️ Error Loading Documentation</h2>
         <p>${error.message}</p>
         <a href="/" class="back-link">← Back to Home</a>
