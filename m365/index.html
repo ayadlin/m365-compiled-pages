@@ -189,9 +189,32 @@
       box-shadow: 0 6px 20px rgba(255, 107, 53, 0.7);
       text-decoration: none;
     }
+
+    .portal-link {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+      z-index: 1000;
+    }
+
+    .portal-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
   </style>
 </head>
 <body>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
   <header>
     <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
       <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">

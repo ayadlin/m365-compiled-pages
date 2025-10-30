@@ -162,9 +162,32 @@
       font-size: 0.9rem;
       font-weight: bold;
     }
+
+    .portal-link {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+      z-index: 1000;
+    }
+
+    .portal-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
   </style>
 </head>
 <body>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
   <header>
     <img src="branding/ytech_logo.png" height="64" alt="Ytech Tools Logo">
     <h1 style="margin-top: 1rem;">Ytech Tools</h1>
