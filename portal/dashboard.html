@@ -176,6 +176,129 @@
         color: #0ea5e9;
       }
     }
+
+    .back-links {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+      max-width: 1000px;
+      padding: 0 2rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      background: rgba(255, 107, 53, 0.1);
+      color: var(--accent, #FF6B35);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 2px solid rgba(255, 107, 53, 0.3);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(255, 107, 53, 0.2);
+      border-color: var(--accent, #FF6B35);
+      transform: translateX(-4px);
+      text-decoration: none;
+    }
+
+    .back-link.primary {
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
+      color: white;
+      border-color: transparent;
+    }
+
+    .back-link.primary:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
+    }
+
+    .member-card {
+      background: rgba(255, 107, 53, 0.05);
+      border: 1px solid rgba(255, 107, 53, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .member-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .member-email {
+      font-weight: 600;
+      color: var(--fg, #e5e7eb);
+    }
+
+    .member-meta {
+      font-size: 0.85rem;
+      color: var(--muted, #9ca3af);
+    }
+
+    .member-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-danger {
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+    }
+
+    .btn-danger:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-role {
+      background: rgba(14, 165, 233, 0.2);
+      color: #0ea5e9;
+      border: 1px solid rgba(14, 165, 233, 0.4);
+    }
+
+    .btn-role:hover {
+      background: rgba(14, 165, 233, 0.3);
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .role-admin {
+      background: rgba(255, 107, 53, 0.2);
+      color: #FF6B35;
+      border: 1px solid rgba(255, 107, 53, 0.4);
+    }
+
+    .role-member {
+      background: rgba(14, 165, 233, 0.2);
+      color: #0ea5e9;
+      border: 1px solid rgba(14, 165, 233, 0.4);
+    }
   </style>
 </head>
 <body>
@@ -184,6 +307,11 @@
     <h1>Customer Portal</h1>
     <p style="margin: 0; font-size: 0.9rem; color: var(--muted, #0ea5e9);">M365 WebApps by Ytech</p>
   </header>
+
+  <div class="back-links">
+    <a href="/m365/" class="back-link primary">← M365 WebApps</a>
+    <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+  </div>
 
   <div class="dashboard-container">
     <div class="welcome-section">
@@ -240,6 +368,51 @@
           <a href="/m365/docs.html" class="btn btn-secondary">
             📚 View Documentation
           </a>
+        </div>
+
+        <!-- Team Management Card (shown for team/enterprise plans) -->
+        <div class="dashboard-card actions-card" id="teamCard" style="display: none;">
+          <h2>👥 Team Management</h2>
+          <div id="teamInfo" style="margin: 1rem 0;">
+            <div class="info-row">
+              <span class="info-label">Company:</span>
+              <span class="info-value" id="teamCompany">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Plan:</span>
+              <span class="info-value" id="teamPlan">-</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Primary Admin:</span>
+              <span class="info-value" id="teamAdmin">-</span>
+            </div>
+          </div>
+
+          <!-- Team Members List -->
+          <h3 style="color: var(--accent, #FF6B35); margin-top: 2rem; margin-bottom: 1rem;">Team Members</h3>
+          <div id="teamMembersList"></div>
+
+          <!-- Add Member Form (shown for admins only) -->
+          <div id="addMemberSection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 107, 53, 0.2);">
+            <h3 style="color: var(--accent, #FF6B35); margin-bottom: 1rem;">Add Team Member</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; margin-bottom: 1rem;">
+              <input
+                type="email"
+                id="newMemberEmail"
+                placeholder="member@email.com"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              />
+              <select
+                id="newMemberRole"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              >
+                <option value="member">Member</option>
+                <option value="admin">Admin</option>
+              </select>
+              <button id="addMemberBtn" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">Add</button>
+            </div>
+            <div id="addMemberStatus" style="padding: 1rem; border-radius: 6px; display: none; margin-top: 1rem;"></div>
+          </div>
         </div>
 
         <!-- Support Card -->
@@ -402,8 +575,210 @@
       }
     });
 
+    // Team management functions
+    let currentTeamData = null;
+
+    async function loadTeamInfo() {
+      try {
+        const response = await fetch('/api/portal/team/info', {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        if (!response.ok) {
+          // Not a team account or no team found
+          return;
+        }
+
+        currentTeamData = await response.json();
+
+        // Show team card
+        document.getElementById('teamCard').style.display = 'block';
+
+        // Fill team info
+        document.getElementById('teamCompany').textContent = currentTeamData.company_name;
+        document.getElementById('teamPlan').textContent = currentTeamData.plan.toUpperCase();
+        document.getElementById('teamAdmin').textContent = currentTeamData.primary_admin;
+
+        // Render team members
+        renderTeamMembers();
+
+        // Show add member section for admins
+        if (currentTeamData.is_admin) {
+          document.getElementById('addMemberSection').style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error loading team info:', error);
+      }
+    }
+
+    function renderTeamMembers() {
+      const membersList = document.getElementById('teamMembersList');
+      membersList.innerHTML = '';
+
+      if (!currentTeamData || !currentTeamData.members || currentTeamData.members.length === 0) {
+        membersList.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 2rem;">No team members yet</p>';
+        return;
+      }
+
+      currentTeamData.members.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'member-card';
+
+        const roleClass = member.role === 'admin' ? 'role-admin' : 'role-member';
+        const roleBadge = `<span class="role-badge ${roleClass}">${member.role.toUpperCase()}</span>`;
+
+        const addedDate = new Date(member.added_at).toLocaleDateString();
+        const lastLogin = member.last_login ? new Date(member.last_login).toLocaleDateString() : 'Never';
+
+        card.innerHTML = `
+          <div class="member-info">
+            <div class="member-email">${member.email}${roleBadge}</div>
+            <div class="member-meta">Added by ${member.added_by} on ${addedDate}</div>
+            <div class="member-meta">Last login: ${lastLogin}</div>
+          </div>
+          <div class="member-actions" id="actions-${member.email.replace('@', '-').replace('.', '-')}"></div>
+        `;
+
+        membersList.appendChild(card);
+
+        // Add action buttons for admins
+        if (currentTeamData.is_admin && member.email !== currentTeamData.primary_admin) {
+          const actionsDiv = document.getElementById(`actions-${member.email.replace('@', '-').replace('.', '-')}`);
+
+          // Toggle role button
+          const newRole = member.role === 'admin' ? 'member' : 'admin';
+          const roleBtn = document.createElement('button');
+          roleBtn.className = 'btn-sm btn-role';
+          roleBtn.textContent = `Make ${newRole}`;
+          roleBtn.onclick = () => updateMemberRole(member.email, newRole);
+          actionsDiv.appendChild(roleBtn);
+
+          // Remove button
+          const removeBtn = document.createElement('button');
+          removeBtn.className = 'btn-sm btn-danger';
+          removeBtn.textContent = 'Remove';
+          removeBtn.onclick = () => removeMember(member.email);
+          actionsDiv.appendChild(removeBtn);
+        }
+      });
+    }
+
+    async function updateMemberRole(email, newRole) {
+      if (!confirm(`Change ${email} to ${newRole}?`)) return;
+
+      try {
+        const response = await fetch('/api/portal/team/member/role', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ member_email: email, role: newRole }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Failed to update role');
+        }
+
+        // Reload team data
+        await loadTeamInfo();
+        alert(`Successfully changed ${email} to ${newRole}`);
+      } catch (error) {
+        alert('Error updating role: ' + error.message);
+      }
+    }
+
+    async function removeMember(email) {
+      if (!confirm(`Remove ${email} from the team?`)) return;
+
+      try {
+        const response = await fetch('/api/portal/team/member/remove', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ member_email: email }),
+        });
+
+        if (!response.ok) {
+          const data = await response.json();
+          throw new Error(data.error || 'Failed to remove member');
+        }
+
+        // Reload team data
+        await loadTeamInfo();
+        alert(`Successfully removed ${email} from the team`);
+      } catch (error) {
+        alert('Error removing member: ' + error.message);
+      }
+    }
+
+    // Add member handler
+    document.getElementById('addMemberBtn').addEventListener('click', async () => {
+      const email = document.getElementById('newMemberEmail').value.trim();
+      const role = document.getElementById('newMemberRole').value;
+      const statusDiv = document.getElementById('addMemberStatus');
+      const btn = document.getElementById('addMemberBtn');
+
+      if (!email) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = 'rgba(239, 68, 68, 0.2)';
+        statusDiv.style.color = '#ef4444';
+        statusDiv.style.border = '2px solid rgba(239, 68, 68, 0.4)';
+        statusDiv.textContent = 'Please enter an email address';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Adding...';
+      statusDiv.style.display = 'none';
+
+      try {
+        const response = await fetch('/api/portal/team/member/add', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ member_email: email, role: role }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Failed to add member');
+        }
+
+        // Clear form
+        document.getElementById('newMemberEmail').value = '';
+        document.getElementById('newMemberRole').value = 'member';
+
+        // Show success
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = 'rgba(16, 185, 129, 0.2)';
+        statusDiv.style.color = '#10b981';
+        statusDiv.style.border = '2px solid rgba(16, 185, 129, 0.4)';
+        statusDiv.textContent = `Successfully added ${email} as ${role}`;
+
+        // Reload team data
+        await loadTeamInfo();
+
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+          statusDiv.style.display = 'none';
+        }, 3000);
+      } catch (error) {
+        statusDiv.style.display = 'block';
+        statusDiv.style.background = 'rgba(239, 68, 68, 0.2)';
+        statusDiv.style.color = '#ef4444';
+        statusDiv.style.border = '2px solid rgba(239, 68, 68, 0.4)';
+        statusDiv.textContent = 'Error: ' + error.message;
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Add';
+      }
+    });
+
     // Load dashboard on page load
     loadDashboard();
+    loadTeamInfo();
   </script>
   <script src="/ga.js"></script>
 </body>
