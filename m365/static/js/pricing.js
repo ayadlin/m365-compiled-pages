@@ -4,6 +4,14 @@ fetch('../brand.json').then(r => r.json()).then(b => {
   // Colors are now managed by CSS theme system (theme.css) for light/dark mode support
 });
 
+// Show admin link for logged-in admin users
+(function checkAdminAccess() {
+  const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
+  if (hasAdminAccess) {
+    document.getElementById('admin-link').style.display = 'block';
+  }
+})();
+
 // Load pricing config
 fetch('config.json').then(r => r.json()).then(config => {
   const grid = document.getElementById('pricing-grid');

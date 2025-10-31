@@ -8,7 +8,7 @@
     .hero h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -38,7 +38,7 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
       color: white;
     }
 
@@ -166,7 +166,7 @@
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
       color: white;
       padding: 12px 24px;
       border-radius: 8px;

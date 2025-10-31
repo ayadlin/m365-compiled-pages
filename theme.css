@@ -213,7 +213,7 @@ a:hover {
 }
 
 .back-link.primary {
-  background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+  background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
   border-color: transparent;
 }
@@ -235,7 +235,7 @@ a:hover {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+  background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
   box-shadow: 0 4px 12px rgba(var(--muted-rgb), 0.3);
 }
