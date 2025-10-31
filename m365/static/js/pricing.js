@@ -1,15 +1,7 @@
 // Load branding
 fetch('../brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '../' + b.logo || 'branding/logo.svg';
-
-  // Apply brand colors
-  if (b.colors) {
-    document.documentElement.style.setProperty('--bg', b.colors.bg);
-    document.documentElement.style.setProperty('--card-bg', b.colors.card);
-    document.documentElement.style.setProperty('--fg', b.colors.fg);
-    document.documentElement.style.setProperty('--accent', b.colors.accent);
-    document.documentElement.style.setProperty('--muted', b.colors.muted);
-  }
+  // Colors are now managed by CSS theme system (theme.css) for light/dark mode support
 });
 
 // Load pricing config
