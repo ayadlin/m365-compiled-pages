@@ -163,7 +163,8 @@ a:hover {
 
 .home-link:hover {
   transform: scale(1.05);
-  background: rgba(var(--accent-rgb), 0.1);
+  background: var(--accent);
+  color: white;
   border-color: var(--accent);
   text-decoration: none;
 }
