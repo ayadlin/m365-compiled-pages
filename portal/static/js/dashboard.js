@@ -4,14 +4,35 @@ const API_BASE = window.location.hostname === 'ytech.tools' ? 'https://api.ytech
 // Load brand logo
 fetch('/brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');
-
-  // Apply brand colors
-  if (b.colors) {
-    document.documentElement.style.setProperty('--card-bg', b.colors.card);
-    document.documentElement.style.setProperty('--accent', b.colors.accent);
-    document.documentElement.style.setProperty('--muted', b.colors.muted);
-  }
+  // Colors are now managed by CSS theme system (theme.css) for light/dark mode support
 });
+
+// Show message for users without an active license
+function showNoLicenseMessage() {
+  document.getElementById('loadingState').style.display = 'none';
+  document.getElementById('errorState').style.display = 'none';
+  document.getElementById('dashboardContent').style.display = 'block';
+
+  // Replace the license card content with upgrade message
+  const licenseCard = document.querySelector('.dashboard-card');
+  licenseCard.innerHTML = `
+    <h2>🆓 Free Trial Account</h2>
+    <div style="background: rgba(var(--muted-rgb), 0.1); border: 2px solid var(--muted); padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
+      <p style="margin: 0 0 1rem 0; font-size: 1.1rem;">
+        <strong>You currently have a free trial account.</strong>
+      </p>
+      <p style="margin: 0 0 1rem 0;">
+        To access your license files and manage your account, you need to purchase a subscription plan.
+      </p>
+      <a href="/m365/pricing.html" class="btn btn-primary" style="display: inline-block; margin-top: 1rem;">
+        📊 View Plans & Upgrade
+      </a>
+    </div>
+    <p style="color: var(--muted); margin-top: 1.5rem;">
+      Already purchased? It may take a few minutes for your account to activate. Try refreshing the page.
+    </p>
+  `;
+}
 
 // Load license information
 async function loadDashboard() {
@@ -22,6 +43,14 @@ async function loadDashboard() {
     });
 
     if (!response.ok) {
+      // Check if it's a "no license found" error (free trial user)
+      if (response.status === 404) {
+        const errorData = await response.json();
+        if (errorData.error && errorData.error.includes('no active license')) {
+          showNoLicenseMessage();
+          return;
+        }
+      }
       throw new Error('Failed to load license info');
     }
 
