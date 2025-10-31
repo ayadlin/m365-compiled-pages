@@ -186,7 +186,7 @@
       position: fixed;
       top: 1rem;
       right: 1rem;
-      background: linear-gradient(135deg, var(--muted), var(--header-grad-2));
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
       color: white;
       padding: 0.75rem 1.5rem;
       border-radius: 8px;
