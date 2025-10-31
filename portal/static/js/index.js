@@ -7,6 +7,23 @@
       // Colors are now managed by CSS theme system (theme.css) for light/dark mode support
     });
 
+    // Redirect to dashboard if already logged in
+    (async function checkLoginStatus() {
+      try {
+        const response = await fetch(`${API_BASE}/api/portal/license-info`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+
+        // If request succeeds or returns 404 (free trial), user is logged in
+        if (response.ok || response.status === 404) {
+          window.location.href = '/portal/dashboard';
+        }
+      } catch (error) {
+        // User not logged in, stay on login page
+      }
+    })();
+
     // Handle form submission
     document.getElementById('loginForm').addEventListener('submit', async (e) => {
       e.preventDefault();

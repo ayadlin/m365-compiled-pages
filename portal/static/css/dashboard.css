@@ -43,6 +43,16 @@
   gap: 0.5rem;
 }
 
+.dashboard-card .btn {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.dashboard-card .btn:last-child {
+  margin-bottom: 0;
+}
+
 .info-row {
   display: flex;
   justify-content: space-between;
