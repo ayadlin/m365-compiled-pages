@@ -376,7 +376,7 @@ m365-pro -feature picker \
 
 **Removing a Device:**
 
-If you've reached your device limit, contact support at ytechm365@gmail.com to remove old devices.
+If you've reached your device limit, contact support at support@ytech.tools to remove old devices.
 
 ### 5.3 Renewing Your License
 
@@ -649,7 +649,7 @@ In the customer portal, you can see:
 5. Copy files to `~/.config/m365_webapps/`
 
 **Or request via email:**
-- Send request to ytechm365@gmail.com
+- Send request to support@ytech.tools
 - Include your registered email address
 - We'll resend your license files
 
@@ -742,7 +742,7 @@ update-desktop-database ~/.local/share/applications/
 ```bash
 # Download fresh files from customer portal
 # Or request resend:
-# Email ytechm365@gmail.com with your registered email
+# Email support@ytech.tools with your registered email
 ```
 
 #### Issue: "Device limit reached" (Team plans)
@@ -750,7 +750,7 @@ update-desktop-database ~/.local/share/applications/
 **Cause:** You've registered 10 devices (Team plan limit)
 
 **Solution:**
-- Email ytechm365@gmail.com
+- Email support@ytech.tools
 - Specify which device(s) to remove
 - Provide device fingerprint or hostname
 - We'll remove old devices so you can register new ones
@@ -833,7 +833,7 @@ m365-launch -app word
 cat ~/.config/m365_webapps/logs/m365-launch-word-*.log
 ```
 
-Send logs to ytechm365@gmail.com for investigation.
+Send logs to support@ytech.tools for investigation.
 
 ### 8.4 Performance Issues
 
@@ -887,7 +887,7 @@ Send logs to ytechm365@gmail.com for investigation.
 3. **Email provider blocking:**
    - Some providers block automated emails
    - Try alternative email address
-   - Contact ytechm365@gmail.com for manual send
+   - Contact support@ytech.tools for manual send
 
 #### Issue: Magic link not working
 
@@ -943,11 +943,11 @@ A: Apps will no longer validate the license and you won't be able to use M365 We
 
 **Q: Can I downgrade or upgrade my plan?**
 
-A: Yes. Contact ytechm365@gmail.com to change plans. You'll receive a new license and can cancel the old subscription.
+A: Yes. Contact support@ytech.tools to change plans. You'll receive a new license and can cancel the old subscription.
 
 **Q: Do you offer student discounts?**
 
-A: Not currently, but contact us at ytechm365@gmail.com to discuss educational pricing.
+A: Not currently, but contact us at support@ytech.tools to discuss educational pricing.
 
 ### 9.3 Technical Questions
 
@@ -1004,7 +1004,7 @@ A: We use Stripe for payments, which accepts:
 
 **Q: Can I pay annually?**
 
-A: Currently only monthly subscriptions are available. Contact ytechm365@gmail.com if you'd like to discuss annual pricing.
+A: Currently only monthly subscriptions are available. Contact support@ytech.tools if you'd like to discuss annual pricing.
 
 **Q: Do you offer refunds?**
 
@@ -1036,7 +1036,7 @@ Before contacting support, please try:
 
 ### 10.2 Contacting Support
 
-**Email:** ytechm365@gmail.com
+**Email:** support@ytech.tools
 
 **When emailing, please include:**
 1. **Subject line** describing the issue
@@ -1088,14 +1088,14 @@ While we don't have official forums, you may find these resources helpful:
 - **Ubuntu Forums**: ubuntuforums.org
 - **Debian User Forums**: forums.debian.net
 
-**Note:** These are third-party communities. For official support, email ytechm365@gmail.com.
+**Note:** These are third-party communities. For official support, email support@ytech.tools.
 
 ### 10.5 Feature Requests
 
 We welcome feedback and feature requests!
 
 **To suggest a feature:**
-1. Email ytechm365@gmail.com
+1. Email support@ytech.tools
 2. Subject: "Feature Request: [brief description]"
 3. Explain:
    - What feature you'd like
@@ -1108,7 +1108,7 @@ We read all suggestions and consider them for future updates.
 
 **Found a bug?** Please report it!
 
-**Email:** ytechm365@gmail.com
+**Email:** support@ytech.tools
 **Subject:** Bug Report: [brief description]
 
 **Include:**
@@ -1296,7 +1296,7 @@ If you want to reinstall later, **do NOT** delete `~/.config/m365_webapps/`. Thi
 
 **Thank you for using M365 WebApps!**
 
-For questions or support: ytechm365@gmail.com
+For questions or support: support@ytech.tools
 Website: https://ytech.tools/m365/
 
 *Document Version: 1.0.0*

@@ -165,8 +165,6 @@ ls ~/.config/m365_webapps/
 
 **Full Documentation:** See `docs/USER_GUIDE.md` for comprehensive guide
 
-**Email Support:** ytechm365@gmail.com
-
 **Website:** https://ytech.tools/m365/
 
 ---
@@ -208,11 +206,11 @@ rm -rf ~/.config/m365_webapps/
 
 ## Upgrading Your Plan
 
-Contact ytechm365@gmail.com to switch between Free Trial, Pro, Team, or Enterprise plans.
+Contact support@ytech.tools to switch between Free Trial, Pro, Team, or Enterprise plans.
 
 ---
 
-**Questions?** Email ytechm365@gmail.com
+**Questions?** Contact support@ytech.tools
 
 **Full Documentation:** `docs/USER_GUIDE.md`
 

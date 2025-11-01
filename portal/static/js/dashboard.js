@@ -76,6 +76,23 @@ async function loadDashboard() {
       document.getElementById('billingBtn').style.display = 'block';
     }
 
+    // Show contextual upgrade button based on plan
+    const upgradeBtn = document.getElementById('upgradeBtn');
+    const plan = data.plan.toLowerCase();
+
+    if (plan.includes('pro') && !plan.includes('enterprise')) {
+      // Pro user: can upgrade to Team or Enterprise
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Pro&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Pro to a higher tier.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Pro%0D%0A%0D%0AInterested in:%0D%0A[ ] Team (up to 10 devices)%0D%0A[ ] Enterprise (unlimited devices)%0D%0A%0D%0AThank you!`;
+      upgradeBtn.textContent = '⬆️ Upgrade to Team/Enterprise';
+      upgradeBtn.style.display = 'block';
+    } else if (plan.includes('team')) {
+      // Team user: can upgrade to Enterprise
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Team&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Team to Enterprise.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Team%0D%0A%0D%0AThank you!`;
+      upgradeBtn.textContent = '⬆️ Upgrade to Enterprise';
+      upgradeBtn.style.display = 'block';
+    }
+    // Enterprise users and Free Trial users don't see the upgrade button
+
     // Hide loading, show content
     document.getElementById('loadingState').style.display = 'none';
     document.getElementById('dashboardContent').style.display = 'block';

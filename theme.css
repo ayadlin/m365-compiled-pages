@@ -257,3 +257,24 @@ a:hover {
   border-color: var(--accent);
   text-decoration: none;
 }
+
+/* Footer */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem 1.5rem;
+  margin-top: 4rem;
+  border-top: 1px solid rgba(var(--muted-rgb), 0.2);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.site-footer a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.site-footer a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
