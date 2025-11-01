@@ -23,7 +23,9 @@
   <div class="docs-container">
     <div class="docs-content">
       <div class="loading" id="loading">Loading documentation...</div>
+      <div id="top-nav"></div>
       <div id="markdown-content"></div>
+      <div id="bottom-nav"></div>
     </div>
   </div>
 
@@ -31,9 +33,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
   <script src="/docs/docs.js"></script>
   <script>
+    // Add navigation buttons
+    const navHTML = `
+      <div class="docs-nav-buttons">
+        <a href="https://ytech.tools" class="docs-nav-btn">🏠 Home</a>
+        <a href="/admin/dashboard" class="docs-nav-btn secondary">📊 Dashboard</a>
+        <a href="/admin/docs" class="docs-nav-btn secondary">📚 Admin Docs</a>
+      </div>
+    `;
+
     document.getElementById('loading').style.display = 'block';
+    document.getElementById('top-nav').innerHTML = navHTML;
+
     loadMarkdown('/docs/ADMIN_OPERATIONS_GUIDE.md').then(() => {
       document.getElementById('loading').style.display = 'none';
+      document.getElementById('bottom-nav').innerHTML = navHTML;
     });
   </script>
   <script src="/ga.js"></script>

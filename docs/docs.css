@@ -119,17 +119,18 @@ body {
 }
 
 .docs-content code {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(var(--accent-rgb), 0.15);
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.9em;
-  color: var(--success);
+  color: var(--fg);
+  border: 1px solid rgba(var(--accent-rgb), 0.3);
 }
 
 .docs-content pre {
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(var(--accent-rgb), 0.3);
+  background: rgba(var(--accent-rgb), 0.1);
+  border: 2px solid rgba(var(--accent-rgb), 0.4);
   border-radius: 8px;
   padding: 1.5rem;
   overflow-x: auto;
@@ -139,7 +140,8 @@ body {
 .docs-content pre code {
   background: none;
   padding: 0;
-  color: #e5e7eb;
+  color: var(--fg);
+  border: none;
 }
 
 .docs-content a {
@@ -221,4 +223,47 @@ body {
 .back-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 16px rgba(var(--accent-rgb), 0.3);
+}
+
+/* Navigation buttons */
+.docs-nav-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: rgba(var(--accent-rgb), 0.05);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
+  border-radius: 8px;
+}
+
+.docs-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--accent);
+  color: white;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 2px solid var(--accent);
+}
+
+.docs-nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(var(--accent-rgb), 0.4);
+  text-decoration: none;
+}
+
+.docs-nav-btn.secondary {
+  background: none;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.docs-nav-btn.secondary:hover {
+  background: var(--accent);
+  color: white;
 }
