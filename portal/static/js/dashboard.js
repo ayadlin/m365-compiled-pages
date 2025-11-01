@@ -80,7 +80,12 @@ async function loadDashboard() {
     const upgradeBtn = document.getElementById('upgradeBtn');
     const plan = data.plan.toLowerCase();
 
-    if (plan.includes('pro') && !plan.includes('enterprise')) {
+    if (plan.includes('free') || plan.includes('trial')) {
+      // Free trial user: can upgrade to Pro, Team, or Enterprise
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=Upgrade from Free Trial&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps free trial to a paid plan.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Free Trial%0D%0A%0D%0AInterested in:%0D%0A[ ] Pro ($18/year - 1 device)%0D%0A[ ] Team ($150/year - 10 devices)%0D%0A[ ] Enterprise (Contact for pricing - unlimited devices)%0D%0A%0D%0AThank you!`;
+      upgradeBtn.textContent = '⬆️ Upgrade to Pro/Team/Enterprise';
+      upgradeBtn.style.display = 'block';
+    } else if (plan.includes('pro') && !plan.includes('enterprise')) {
       // Pro user: can upgrade to Team or Enterprise
       upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Pro&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Pro to a higher tier.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Pro%0D%0A%0D%0AInterested in:%0D%0A[ ] Team (up to 10 devices)%0D%0A[ ] Enterprise (unlimited devices)%0D%0A%0D%0AThank you!`;
       upgradeBtn.textContent = '⬆️ Upgrade to Team/Enterprise';
@@ -91,7 +96,7 @@ async function loadDashboard() {
       upgradeBtn.textContent = '⬆️ Upgrade to Enterprise';
       upgradeBtn.style.display = 'block';
     }
-    // Enterprise users and Free Trial users don't see the upgrade button
+    // Enterprise users don't see the upgrade button (already on highest tier)
 
     // Hide loading, show content
     document.getElementById('loadingState').style.display = 'none';
