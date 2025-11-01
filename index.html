@@ -187,6 +187,7 @@
 </head>
 <body>
   <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Portal</a>
 
   <header>
     <img src="branding/ytech_logo.png" height="64" alt="Ytech Tools Logo">
@@ -264,6 +265,19 @@
       <a href="/terms.html" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">Terms of Service</a>
     </p>
   </footer>
+  <script>
+    // Show admin link if admin is logged in
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return '';
+    }
+
+    if (getCookie('admin_logged_in') === 'true') {
+      document.getElementById('admin-link').style.display = 'block';
+    }
+  </script>
   <script src="/ga.js"></script>
 </body>
 </html>
