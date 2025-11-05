@@ -55,15 +55,20 @@
       box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.3);
     }
 
-    /* In light mode, make product card text more readable and change background to light orange */
+    /* Light mode improvements */
     @media (prefers-color-scheme: light) {
       .product-card {
-        background: linear-gradient(135deg, #fff7ed, #fed7aa) !important; /* Light orange gradient instead of white */
+        background: linear-gradient(135deg, #fff7ed, #fed7aa);
+        border-color: rgba(255, 107, 53, 0.3);
       }
 
       .product-card p,
       .product-card .features li {
-        color: var(--fg) !important; /* Use theme foreground color for consistency */
+        color: #1a1a1a;
+      }
+
+      .product-card:hover {
+        border-color: rgba(255, 107, 53, 0.6);
       }
     }
 
