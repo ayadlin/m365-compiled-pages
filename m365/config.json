@@ -125,7 +125,7 @@
         "Add Mobile: $399/year (unlimited)"
       ],
       "badge": "🏢",
-      "cta": "Contact Sales"
+      "cta": "Buy Enterprise"
     },
     {
       "id": "enterprise-native",
@@ -143,7 +143,7 @@
         "SLA guarantees available"
       ],
       "badge": "🏢⚡",
-      "cta": "Contact Sales"
+      "cta": "Buy Enterprise Native"
     },
     {
       "id": "enterprise-mobile",
@@ -161,7 +161,7 @@
         "Upgrade to Native: $699/year"
       ],
       "badge": "🏢📱",
-      "cta": "Coming Q1 2026"
+      "cta": "Buy Enterprise + Mobile"
     },
     {
       "id": "enterprise-ultimate",
@@ -179,7 +179,7 @@
         "Priority feature requests"
       ],
       "badge": "🌟",
-      "cta": "Contact Sales"
+      "cta": "Buy Enterprise Ultimate"
     }
   ],
   "checkout": {

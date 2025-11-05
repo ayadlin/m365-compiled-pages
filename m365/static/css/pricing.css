@@ -135,6 +135,8 @@
   padding: 2rem;
   position: relative;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .pricing-card:hover {
@@ -202,6 +204,7 @@
   padding: 0;
   margin: 1.5rem 0;
   text-align: left;
+  flex-grow: 1;
 }
 
 .plan-features li {
@@ -230,7 +233,7 @@
   font-weight: bold;
   text-align: center;
   transition: all 0.3s ease;
-  margin-top: 1.5rem;
+  margin-top: auto;
 }
 
 .plan-cta:hover {
