@@ -16,7 +16,41 @@ fetch('../brand.json').then(r => r.json()).then(b => {
 fetch('config.json').then(r => r.json()).then(config => {
   const grid = document.getElementById('pricing-grid');
 
-  config.plans.forEach(plan => {
+  // Separate free trial from paid plans
+  const freeTrial = config.plans.find(plan => plan.id === 'free');
+  const paidPlans = config.plans.filter(plan => plan.id !== 'free');
+
+  // Render free trial as hero bar if it exists
+  if (freeTrial) {
+    const heroContainer = document.createElement('div');
+    heroContainer.className = 'free-trial-hero';
+
+    const features = freeTrial.features.map(f => `<li>${f}</li>`).join('');
+    const checkoutUrl = config.checkout[freeTrial.id] || '#';
+    const trackingCode = `onclick="if(window.trackTrialDownload) trackTrialDownload('pricing_free_plan');"`;
+
+    heroContainer.innerHTML = `
+      <div class="free-trial-content">
+        <div class="free-trial-header">
+          <div class="free-trial-badge">${freeTrial.badge || '🆓'}</div>
+          <div class="free-trial-info">
+            <div class="free-trial-name">${freeTrial.label}</div>
+            <div class="free-trial-description">${freeTrial.description || ''}</div>
+          </div>
+        </div>
+        <ul class="free-trial-features">
+          ${features}
+        </ul>
+        <a href="${checkoutUrl}" class="free-trial-cta" ${trackingCode}>${freeTrial.cta || 'Get Started'}</a>
+      </div>
+    `;
+
+    // Insert before the pricing grid
+    grid.parentNode.insertBefore(heroContainer, grid);
+  }
+
+  // Render paid plans in the grid
+  paidPlans.forEach(plan => {
     const card = document.createElement('div');
     card.className = `pricing-card ${plan.id}`;
     if (plan.popular) {
@@ -25,19 +59,14 @@ fetch('config.json').then(r => r.json()).then(config => {
 
     const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
 
-    const priceDisplay = plan.price === 0
-      ? '<div class="plan-price">Free</div>'
-      : `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span></div>`;
+    const priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span></div>`;
 
     const features = plan.features.map(f => `<li>${f}</li>`).join('');
 
     const checkoutUrl = config.checkout[plan.id] || '#';
 
-    // Determine tracking based on plan type
-    const isFree = plan.price === 0;
-    const trackingCode = isFree
-      ? `onclick="if(window.trackTrialDownload) trackTrialDownload('pricing_free_plan');"`
-      : `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
+    // Tracking for paid plans
+    const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
 
     card.innerHTML = `
       ${popularBadge}
