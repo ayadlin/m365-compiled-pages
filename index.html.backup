@@ -3,267 +3,315 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>M365 WebApps - Microsoft Office on Linux</title>
+  <title>Ytech Tools - Software for Modern Workflows</title>
   <link rel="stylesheet" href="theme.css">
+  <link rel="icon" type="image/png" href="favicon.png">
   <style>
     .hero {
       text-align: center;
-      padding: 4rem 1rem 2rem;
-      max-width: 900px;
+      padding: 6rem 2rem 4rem;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
     .hero h1 {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      font-weight: bold;
     }
 
     .hero p {
-      font-size: 1.3rem;
-      color: var(--muted, #9ca3af);
-      margin-bottom: 2rem;
+      font-size: 1.5rem;
+      color: var(--muted);
+      margin-bottom: 3rem;
+      line-height: 1.6;
     }
 
-    .cta-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin: 2rem 0;
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(var(--accent-rgb), 0.2);
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+
+    .product-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(var(--accent-rgb), 0.3);
+    }
+
+    /* Light mode improvements */
+    @media (prefers-color-scheme: light) {
+      .product-card {
+        background: linear-gradient(135deg, #fff7ed, #fed7aa);
+        border-color: rgba(255, 107, 53, 0.3);
+      }
+
+      .product-card p,
+      .product-card .features li {
+        color: #1a1a1a;
+      }
+
+      .product-card:hover {
+        border-color: rgba(255, 107, 53, 0.6);
+      }
+    }
+
+    .product-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      display: block;
+    }
+
+    .product-card h2 {
+      color: var(--accent);
+      margin: 0 0 1rem 0;
+      font-size: 2rem;
+    }
+
+    .product-card p {
+      color: var(--fg);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+    }
+
+    .product-card .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+
+    .product-card .features li {
+      padding: 0.5rem 0;
+      color: var(--fg);
+      font-size: 1rem;
+    }
+
+    .product-card .features li:before {
+      content: "✓ ";
+      color: var(--accent);
+      font-weight: bold;
+      margin-right: 0.5rem;
     }
 
     .btn {
-      padding: 1rem 2rem;
+      padding: 1rem 2.5rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
       transition: all 0.3s ease;
       display: inline-block;
+      font-size: 1.1rem;
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #1f4eff, #0b8fff);
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
       color: white;
     }
 
     .btn-primary:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(31, 78, 255, 0.5);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
     }
 
-    .btn-secondary {
-      background: rgba(31, 78, 255, 0.1);
-      color: var(--accent, #1f4eff);
-      border: 2px solid var(--accent, #1f4eff);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(31, 78, 255, 0.2);
-    }
-
-    .apps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-      gap: 1rem;
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-
-    .app-badge {
-      background: rgba(31, 78, 255, 0.1);
-      border: 1px solid rgba(31, 78, 255, 0.3);
-      padding: 1rem;
-      border-radius: 12px;
-      text-align: center;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .app-badge:hover {
-      background: rgba(31, 78, 255, 0.2);
-      transform: translateY(-2px);
-    }
-
-    .app-icon {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-
-    .feature-card {
-      background: var(--card-bg, #13183a);
-      border: 1px solid rgba(31, 78, 255, 0.2);
-      border-radius: 12px;
-      padding: 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-      border-color: var(--accent, #1f4eff);
-      transform: translateY(-4px);
-    }
-
-    .feature-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .feature-card h3 {
-      color: var(--accent, #1f4eff);
-      margin: 0.5rem 0;
-    }
-
-    .install-section {
+    .about-section {
       max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 1rem;
+      margin: 4rem auto;
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+
+    .about-section h2 {
+      color: var(--accent);
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-section p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: var(--fg);
+      margin-bottom: 1rem;
+    }
+
+    .coming-soon {
+      opacity: 0.6;
+      position: relative;
+    }
+
+    .coming-soon::after {
+      content: "Coming Soon";
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(var(--accent-rgb), 0.2);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    .portal-link {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.3);
+      z-index: 1000;
+    }
+
+    .portal-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
   </style>
 </head>
 <body>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Portal</a>
+
   <header>
-    <img id="logo" height="48" alt="M365 WebApps Logo">
-    <h1>M365 WebApps</h1>
-    <p style="margin: 0; font-size: 0.9rem; color: #9ca3af;">by Y-Tech</p>
+    <img src="branding/ytech_logo.png" height="64" alt="Ytech Tools Logo">
+    <h1 style="margin-top: 1rem;">Ytech Tools</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem; color: var(--accent); font-weight: 600;">Software for Modern Workflows</p>
   </header>
 
   <div class="hero">
-    <h1>Microsoft Office on Linux</h1>
-    <p>Run Word, Excel, PowerPoint, Outlook, Teams, OneNote, and OneDrive as native desktop apps on Linux with secure offline licensing</p>
-    <div class="cta-buttons">
-      <a href="pricing.html" class="btn btn-primary">View Pricing</a>
-      <a href="#install" class="btn btn-secondary">Install Now</a>
-    </div>
+    <h1>Unify Your Digital Ecosystem</h1>
+    <p>Bridging platforms and ecosystems with seamless integration tools. From bringing Microsoft Office to Linux, to connecting Apple and Android families — we make incompatible systems work together.</p>
   </div>
 
-  <div class="apps-grid">
-    <div class="app-badge">
-      <span class="app-icon">📝</span>
-      Word
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">📊</span>
-      Excel
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">📈</span>
-      PowerPoint
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">📧</span>
-      Outlook
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">📔</span>
-      OneNote
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">💬</span>
-      Teams
-    </div>
-    <div class="app-badge">
-      <span class="app-icon">☁️</span>
-      OneDrive
-    </div>
-  </div>
-
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-icon">🖥️</div>
-      <h3>Native Desktop Apps</h3>
-      <p>Each Microsoft app runs as a dedicated desktop application with proper window management and taskbar integration</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔒</div>
-      <h3>Offline Licensing</h3>
-      <p>Ed25519 cryptographic signatures ensure your license works without internet connection requirements</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">⚡</div>
-      <h3>Chromium-Based</h3>
-      <p>Uses your installed Chromium, Chrome, or Edge browser for maximum compatibility and performance</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🎯</div>
-      <h3>Isolated Profiles</h3>
-      <p>Each app uses separate browser profiles to prevent conflicts and enable multi-account support</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">📦</div>
-      <h3>Easy Installation</h3>
-      <p>Install via APT repository or download .deb packages. Desktop launchers configured automatically</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-icon">🔧</div>
-      <h3>Device Management</h3>
-      <p>Track and manage licensed devices with GitHub-based registry for team and enterprise plans</p>
-    </div>
-  </div>
-
-  <div class="install-section" id="install">
-    <div class="card">
-      <h2>📦 Install from APT Repository</h2>
-      <p>Quick installation for Debian/Ubuntu-based systems:</p>
-      <pre><code># Add repository
-echo "deb [trusted=yes] https://ayadlin.github.io/m365-compiled-pages stable main" \
-  | sudo tee /etc/apt/sources.list.d/m365-compiled.list
-
-# Install package
-sudo apt update && sudo apt install m365-compiled
-
-# Install desktop launchers
-m365ctl -mode install</code></pre>
-    </div>
-
-    <div class="card">
-      <h2>🎯 Quick Start</h2>
-      <p>After installation:</p>
-      <ol>
-        <li>Find "Microsoft Word", "Microsoft Excel", etc. in your application menu</li>
-        <li>First launch will open the Microsoft login page</li>
-        <li>Sign in with your Microsoft 365 account</li>
-        <li>Activate your M365 WebApps license (see <a href="pricing.html" style="color: var(--accent);">pricing</a>)</li>
-      </ol>
-    </div>
-
-    <div class="card">
-      <h2>💡 Why M365 WebApps?</h2>
-      <p><b>M365 WebApps</b> provides the best Microsoft Office experience on Linux by combining the full power of Office 365 web apps with native desktop integration. No Wine, no virtual machines, no compromises.</p>
-      <ul style="margin-top: 1rem;">
-        <li>✓ Always up-to-date (uses official Microsoft web apps)</li>
-        <li>✓ Full Office 365 feature set</li>
-        <li>✓ Native Linux desktop integration</li>
-        <li>✓ Secure offline license verification</li>
-        <li>✓ Easy to follow documentation</li>
+  <div class="products-grid">
+    <div class="product-card">
+      <span class="product-icon">🖥️</span>
+      <h2>M365 WebApps Foundation</h2>
+      <p>Linux desktop with Chromium - Perfect to get started with Microsoft Office on Linux.</p>
+      <ul class="features">
+        <li>All 7 Microsoft apps</li>
+        <li>Chromium-based desktop launcher</li>
+        <li>Dedicated browser profiles</li>
+        <li>File picker integration</li>
+        <li>Starting at $19.99/year</li>
       </ul>
+      <a href="/m365/" class="btn btn-primary">Learn More</a>
+    </div>
+
+    <div class="product-card coming-soon">
+      <span class="product-icon">⚡</span>
+      <h2>M365 WebApps Native</h2>
+      <p>Premium Linux native experience with WebKitGTK and OAuth auto-login.</p>
+      <ul class="features">
+        <li>Embedded WebKitGTK (lighter & faster)</li>
+        <li>OAuth 2.0 auto-login</li>
+        <li>System theme integration</li>
+        <li>System tray & notifications</li>
+        <li>Starting at $39.99/year</li>
+      </ul>
+      <a href="/m365/" class="btn btn-primary">Coming Soon</a>
+    </div>
+
+    <div class="product-card coming-soon">
+      <span class="product-icon">📱</span>
+      <h2>M365 WebApps Mobile</h2>
+      <p>Mobile companion app for iOS & Android with desktop continuity.</p>
+      <ul class="features">
+        <li>Mobile companion app (iOS & Android)</li>
+        <li>Desktop-to-mobile continuity</li>
+        <li>Cross-device deep linking</li>
+        <li>Notification sync</li>
+        <li>Bundle with desktop: $49.99/year</li>
+      </ul>
+      <a href="/m365/" class="btn btn-primary">Coming December 2025</a>
+    </div>
+
+    <div class="product-card coming-soon">
+      <span class="product-icon">🌐</span>
+      <h2>OmniHub</h2>
+      <p>Cross-ecosystem hub for mixed Apple/Android families and teams.</p>
+      <ul class="features">
+        <li>Unified calendars & media sharing</li>
+        <li>Call link automation (Meet, Zoom, Teams)</li>
+        <li>Official, compliant APIs only</li>
+        <li>Auto-share to RCS, WhatsApp, etc.</li>
+        <li>No private iMessage/FaceTime protocols</li>
+      </ul>
+      <a href="#" class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</a>
     </div>
   </div>
 
-  <script>
-    fetch('brand.json').then(r => r.json()).then(b => {
-      document.getElementById('logo').src = b.logo || 'branding/logo.svg';
+  <div class="about-section">
+    <h2>About Ytech Tools</h2>
+    <p>
+      Ytech Tools specializes in breaking down platform barriers and connecting incompatible ecosystems.
+      We create integration tools that make Microsoft Office run natively on Linux, unify Apple and Android workflows,
+      and bridge the gaps between proprietary systems.
+    </p>
+    <p>
+      Whether you're a Linux user needing Microsoft Office, or a mixed-device family or team wanting seamless calendar
+      and media sharing — we build the bridges that big tech won't.
+    </p>
+    <p style="margin-top: 2rem;">
+      <strong>Our Mission:</strong> Integration • Interoperability • Open Access • User Freedom
+    </p>
+  </div>
 
-      // Apply brand colors
-      if (b.colors) {
-        document.documentElement.style.setProperty('--card-bg', b.colors.card);
-        document.documentElement.style.setProperty('--accent', b.colors.accent);
-        document.documentElement.style.setProperty('--muted', b.colors.muted);
-      }
-    });
+  <footer style="text-align: center; padding: 3rem 1rem; border-top: 1px solid rgba(var(--accent-rgb), 0.2); margin-top: 4rem;">
+    <p style="font-size: 0.85rem; color: var(--muted); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+      <strong>Disclaimer:</strong> M365 WebApps is an independent desktop wrapper for Microsoft 365 web applications.
+      It is not affiliated with, endorsed by, or sponsored by Microsoft Corporation.
+      Microsoft 365 and Office are trademarks of Microsoft Corporation.
+    </p>
+    <p style="color: var(--muted); margin-bottom: 1rem;">
+      © 2025 Ytech Tools. All rights reserved.
+    </p>
+    <p style="font-size: 0.9rem;">
+      <a href="/privacy.html" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">Privacy Policy</a>
+      <a href="/terms.html" style="color: var(--accent); text-decoration: none; margin: 0 1rem;">Terms of Service</a>
+    </p>
+  </footer>
+  <script>
+    // Show admin link if admin is logged in
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+      return '';
+    }
+
+    if (getCookie('admin_logged_in') === 'true') {
+      document.getElementById('admin-link').style.display = 'block';
+    }
   </script>
+  <script src="/ga.js"></script>
 </body>
 </html>
