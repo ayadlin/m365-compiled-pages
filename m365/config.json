@@ -53,7 +53,7 @@
         "Priority email support"
       ],
       "badge": "⚡",
-      "cta": "Coming Soon",
+      "cta": "Buy Native",
       "popular": false
     },
     {
@@ -72,7 +72,7 @@
         "Priority support"
       ],
       "badge": "📱",
-      "cta": "Coming December 2025"
+      "cta": "Buy Bundle"
     },
     {
       "id": "team",
@@ -107,7 +107,7 @@
         "Priority support with 24h response"
       ],
       "badge": "👥⚡",
-      "cta": "Coming Soon"
+      "cta": "Buy Team Native"
     },
     {
       "id": "enterprise",
@@ -180,18 +180,206 @@
       ],
       "badge": "🌟",
       "cta": "Buy Enterprise Ultimate"
+    },
+    {
+      "id": "foundation-mobile-1",
+      "label": "Foundation + 1 Mobile",
+      "price": 24.99,
+      "period": "year",
+      "description": "Foundation with 1 mobile device",
+      "features": [
+        "All Foundation features",
+        "1 mobile device license",
+        "iOS & Android support",
+        "Cross-device continuity"
+      ],
+      "badge": "🖥️📱",
+      "cta": "Buy Bundle",
+      "section": "foundation-bundles"
+    },
+    {
+      "id": "foundation-mobile-2",
+      "label": "Foundation + 2 Mobile",
+      "price": 29.99,
+      "period": "year",
+      "description": "Foundation with 2 mobile devices",
+      "features": [
+        "All Foundation features",
+        "2 mobile device licenses",
+        "iOS & Android support",
+        "Cross-device continuity"
+      ],
+      "badge": "🖥️📱📱",
+      "cta": "Buy Bundle",
+      "section": "foundation-bundles"
+    },
+    {
+      "id": "native-mobile-1",
+      "label": "Native + 1 Mobile",
+      "price": 44.99,
+      "period": "year",
+      "description": "Native with 1 mobile device",
+      "features": [
+        "All Native features",
+        "OAuth 2.0 auto-login",
+        "1 mobile device license",
+        "iOS & Android support",
+        "Cross-device continuity"
+      ],
+      "badge": "⚡📱",
+      "cta": "Buy Bundle",
+      "section": "foundation-bundles"
+    },
+    {
+      "id": "team-mobile-5",
+      "label": "Team + 5 Mobile",
+      "price": 124,
+      "period": "year",
+      "description": "Team with 5 mobile devices",
+      "features": [
+        "All Team features",
+        "10 desktop licenses",
+        "5 mobile device licenses",
+        "iOS & Android support"
+      ],
+      "badge": "👥📱",
+      "cta": "Buy Bundle",
+      "section": "team-bundles"
+    },
+    {
+      "id": "team-mobile-10",
+      "label": "Team + 10 Mobile",
+      "price": 149,
+      "period": "year",
+      "description": "Team with 10 mobile devices",
+      "features": [
+        "All Team features",
+        "10 desktop licenses",
+        "10 mobile device licenses",
+        "iOS & Android support"
+      ],
+      "badge": "👥📱",
+      "cta": "Buy Bundle",
+      "section": "team-bundles"
+    },
+    {
+      "id": "team-mobile-15",
+      "label": "Team + 15 Mobile",
+      "price": 174,
+      "period": "year",
+      "description": "Team with 15 mobile devices",
+      "features": [
+        "All Team features",
+        "10 desktop licenses",
+        "15 mobile device licenses",
+        "iOS & Android support"
+      ],
+      "badge": "👥📱",
+      "cta": "Buy Bundle",
+      "section": "team-bundles"
+    },
+    {
+      "id": "team-mobile-20",
+      "label": "Team + 20 Mobile",
+      "price": 199,
+      "period": "year",
+      "description": "Team with 20 mobile devices",
+      "features": [
+        "All Team features",
+        "10 desktop licenses",
+        "20 mobile device licenses",
+        "iOS & Android support"
+      ],
+      "badge": "👥📱",
+      "cta": "Buy Bundle",
+      "section": "team-bundles"
+    },
+    {
+      "id": "team-native-mobile-5",
+      "label": "Team Native + 5 Mobile",
+      "price": 224,
+      "period": "year",
+      "description": "Team Native with 5 mobile devices",
+      "features": [
+        "All Team Native features",
+        "10 Native desktop licenses",
+        "5 mobile device licenses",
+        "OAuth auto-login everywhere"
+      ],
+      "badge": "👥⚡📱",
+      "cta": "Buy Bundle",
+      "section": "team-native-bundles"
+    },
+    {
+      "id": "team-native-mobile-10",
+      "label": "Team Native + 10 Mobile",
+      "price": 249,
+      "period": "year",
+      "description": "Team Native with 10 mobile devices",
+      "features": [
+        "All Team Native features",
+        "10 Native desktop licenses",
+        "10 mobile device licenses",
+        "OAuth auto-login everywhere"
+      ],
+      "badge": "👥⚡📱",
+      "cta": "Buy Bundle",
+      "section": "team-native-bundles"
+    },
+    {
+      "id": "team-native-mobile-15",
+      "label": "Team Native + 15 Mobile",
+      "price": 274,
+      "period": "year",
+      "description": "Team Native with 15 mobile devices",
+      "features": [
+        "All Team Native features",
+        "10 Native desktop licenses",
+        "15 mobile device licenses",
+        "OAuth auto-login everywhere"
+      ],
+      "badge": "👥⚡📱",
+      "cta": "Buy Bundle",
+      "section": "team-native-bundles"
+    },
+    {
+      "id": "team-native-mobile-20",
+      "label": "Team Native + 20 Mobile",
+      "price": 299,
+      "period": "year",
+      "description": "Team Native with 20 mobile devices",
+      "features": [
+        "All Team Native features",
+        "10 Native desktop licenses",
+        "20 mobile device licenses",
+        "OAuth auto-login everywhere"
+      ],
+      "badge": "👥⚡📱",
+      "cta": "Buy Bundle",
+      "section": "team-native-bundles"
     }
   ],
   "checkout": {
     "free": "trial.html",
-    "foundation": "https://buy.stripe.com/7sY5kDcnw0nvc4s4gh",
-    "native": "#coming-soon",
-    "bundle": "#coming-soon",
-    "team": "https://buy.stripe.com/3cIbJ12MW6LT2tS7st",
-    "team-native": "#coming-soon",
-    "enterprise": "mailto:support@ytech.tools?subject=Enterprise%20Inquiry",
-    "enterprise-native": "mailto:support@ytech.tools?subject=Enterprise%20Native%20Inquiry",
-    "enterprise-mobile": "mailto:support@ytech.tools?subject=Enterprise%20Mobile%20Inquiry",
-    "enterprise-ultimate": "mailto:support@ytech.tools?subject=Enterprise%20Ultimate%20Inquiry"
+    "foundation": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
+    "foundation-mobile-1": "https://buy.stripe.com/6oUcN54V40nvb0ocGHgYU0g",
+    "foundation-mobile-2": "https://buy.stripe.com/aFacN587g4DL4C0eOPgYU0f",
+    "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
+    "native-mobile-1": "https://buy.stripe.com/4gM14n73cfip6K86ijgYU0e",
+    "bundle": "https://buy.stripe.com/4gMaEX2MWb292tSeOPgYU0u",
+    "team": "https://buy.stripe.com/6oU28r9bkeel9WkayzgYU0m",
+    "team-mobile-5": "https://buy.stripe.com/dRmdR9afo6LT2tSgWXgYU0t",
+    "team-mobile-10": "https://buy.stripe.com/28E14ncnw0nvfgEayzgYU0s",
+    "team-mobile-15": "https://buy.stripe.com/cNiaEX4V48U18Sg223gYU0r",
+    "team-mobile-20": "https://buy.stripe.com/3cIaEXafo3zHfgEayzgYU0q",
+    "team-native": "https://buy.stripe.com/4gM3cvcnw1rz0lK7mngYU0k",
+    "team-native-mobile-5": "https://buy.stripe.com/cNi7sL87gc6d7OcfSTgYU0p",
+    "team-native-mobile-10": "https://buy.stripe.com/5kQ28r2MW7PX6K85efgYU0o",
+    "team-native-mobile-15": "https://buy.stripe.com/fZu14nbjs3zH3xWayzgYU0n",
+    "team-native-mobile-20": "https://buy.stripe.com/6oU28r4V45HPecA223gYU03",
+    "enterprise": "https://buy.stripe.com/3cI5kDbjs4DLfgE367gYU00",
+    "enterprise-native": "https://buy.stripe.com/14A28rgDMc6dgkI223gYU0j",
+    "enterprise-mobile": "https://buy.stripe.com/dRm3cv3R0b29fgEgWXgYU0i",
+    "enterprise-ultimate": "https://buy.stripe.com/dRm7sL2MW5HP4C00XZgYU0h"
   }
 }

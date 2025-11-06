@@ -18,7 +18,10 @@ fetch('config.json').then(r => r.json()).then(config => {
 
   // Separate free trial from paid plans
   const freeTrial = config.plans.find(plan => plan.id === 'free');
-  const paidPlans = config.plans.filter(plan => plan.id !== 'free');
+  const mainPlans = config.plans.filter(plan => plan.id !== 'free' && !plan.section);
+  const foundationBundles = config.plans.filter(plan => plan.section === 'foundation-bundles');
+  const teamBundles = config.plans.filter(plan => plan.section === 'team-bundles');
+  const teamNativeBundles = config.plans.filter(plan => plan.section === 'team-native-bundles');
 
   // Render free trial as hero bar if it exists
   if (freeTrial) {
@@ -49,8 +52,8 @@ fetch('config.json').then(r => r.json()).then(config => {
     grid.parentNode.insertBefore(heroContainer, grid);
   }
 
-  // Render paid plans in the grid
-  paidPlans.forEach(plan => {
+  // Helper function to render a plan card
+  function renderPlanCard(plan) {
     const card = document.createElement('div');
     card.className = `pricing-card ${plan.id}`;
     if (plan.popular) {
@@ -58,14 +61,9 @@ fetch('config.json').then(r => r.json()).then(config => {
     }
 
     const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
-
     const priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span></div>`;
-
     const features = plan.features.map(f => `<li>${f}</li>`).join('');
-
     const checkoutUrl = config.checkout[plan.id] || '#';
-
-    // Tracking for paid plans
     const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
 
     card.innerHTML = `
@@ -80,8 +78,56 @@ fetch('config.json').then(r => r.json()).then(config => {
       <a href="${checkoutUrl}" class="plan-cta" ${trackingCode}>${plan.cta || 'Get Started'}</a>
     `;
 
-    grid.appendChild(card);
+    return card;
+  }
+
+  // Render main plans in the grid
+  mainPlans.forEach(plan => {
+    grid.appendChild(renderPlanCard(plan));
   });
+
+  // Render Foundation + Mobile bundles section
+  if (foundationBundles.length > 0) {
+    const section = document.createElement('div');
+    section.className = 'bundle-section';
+    section.innerHTML = '<h2 class="bundle-title">Foundation + Mobile Bundles</h2><div class="bundle-grid" id="foundation-bundles-grid"></div>';
+    grid.parentNode.insertBefore(section, grid.nextSibling);
+
+    const bundleGrid = document.getElementById('foundation-bundles-grid');
+    foundationBundles.forEach(plan => {
+      bundleGrid.appendChild(renderPlanCard(plan));
+    });
+  }
+
+  // Render Team + Mobile bundles section
+  if (teamBundles.length > 0) {
+    const section = document.createElement('div');
+    section.className = 'bundle-section';
+    section.innerHTML = '<h2 class="bundle-title">Team + Mobile Bundles</h2><div class="bundle-grid" id="team-bundles-grid"></div>';
+
+    const lastSection = document.querySelector('.bundle-section:last-of-type') || grid;
+    lastSection.parentNode.insertBefore(section, lastSection.nextSibling);
+
+    const bundleGrid = document.getElementById('team-bundles-grid');
+    teamBundles.forEach(plan => {
+      bundleGrid.appendChild(renderPlanCard(plan));
+    });
+  }
+
+  // Render Team Native + Mobile bundles section
+  if (teamNativeBundles.length > 0) {
+    const section = document.createElement('div');
+    section.className = 'bundle-section';
+    section.innerHTML = '<h2 class="bundle-title">Team Native + Mobile Bundles</h2><div class="bundle-grid" id="team-native-bundles-grid"></div>';
+
+    const lastSection = document.querySelector('.bundle-section:last-of-type') || grid;
+    lastSection.parentNode.insertBefore(section, lastSection.nextSibling);
+
+    const bundleGrid = document.getElementById('team-native-bundles-grid');
+    teamNativeBundles.forEach(plan => {
+      bundleGrid.appendChild(renderPlanCard(plan));
+    });
+  }
 });
 
 // Billing portal handler
