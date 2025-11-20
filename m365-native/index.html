@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M365 WebApps Native - Premium Microsoft Office on Linux</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+  <a href="/" class="home-link">← Home</a>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>M365 WebApps Native</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">WebKitGTK • OAuth 2.0 • by Ytech</p>
+  </header>
+
+  <!-- Admin access link - only visible to authorized users -->
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
+
+  <div class="hero">
+    <h1>Premium Native Experience</h1>
+    <p>Lightweight WebKitGTK-based launcher with OAuth 2.0 auto-login, system theme integration, and native notifications</p>
+    <div class="cta-buttons">
+      <a href="pricing.html" class="btn btn-primary" onclick="if(window.trackCTA) trackCTA('view_pricing_hero');">View Pricing</a>
+      <a href="docs.html" class="btn btn-secondary" onclick="if(window.trackCTA) trackCTA('view_docs_hero');">Quick Start</a>
+      <a href="#install" class="btn btn-secondary" onclick="if(window.trackTrialDownload) trackTrialDownload('hero_install_now');">Install Now</a>
+    </div>
+  </div>
+
+  <div class="apps-grid">
+    <div class="app-badge">
+      <span class="app-icon">🤖</span>
+      Copilot
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📝</span>
+      Word
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📊</span>
+      Excel
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📈</span>
+      PowerPoint
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📧</span>
+      Outlook
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📔</span>
+      OneNote
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">💬</span>
+      Teams
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">☁️</span>
+      OneDrive
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">🏠</span>
+      Office Home
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>WebKitGTK Native</h3>
+      <p>Embedded WebKitGTK rendering engine - lighter and faster than Chromium, with true native integration</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔐</div>
+      <h3>OAuth 2.0 Auto-Login</h3>
+      <p>Seamless Microsoft authentication with OAuth 2.0 - sign in once, stay signed in across all apps</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎨</div>
+      <h3>System Theme Integration</h3>
+      <p>Automatically adapts to your Linux desktop theme with proper GTK integration</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3>Native Notifications</h3>
+      <p>System tray integration and desktop notifications for emails, messages, and calendar events</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚀</div>
+      <h3>Single Launcher</h3>
+      <p>Choose any Office app from a beautiful launcher window - no separate installations needed</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Secure & Private</h3>
+      <p>Built with Wails framework - all authentication happens through official Microsoft OAuth flows</p>
+    </div>
+  </div>
+
+  <div class="install-section" id="install">
+    <div class="card">
+      <h2>📦 Download & Install</h2>
+      <p>Choose your preferred installation method:</p>
+
+      <div style="display: flex; gap: 1rem; margin: 2rem 0; flex-wrap: wrap;">
+        <a href="#" class="btn btn-primary" style="flex: 1; min-width: 200px; text-align: center;" onclick="alert('Distribution files coming soon! Building .deb package...'); return false;">
+          📥 Download .deb<br>
+          <small style="font-size: 0.85em; opacity: 0.9;">For Debian/Ubuntu</small>
+        </a>
+        <a href="#" class="btn btn-primary" style="flex: 1; min-width: 200px; text-align: center;" onclick="alert('Distribution files coming soon! Building AppImage...'); return false;">
+          📥 Download AppImage<br>
+          <small style="font-size: 0.85em; opacity: 0.9;">Universal Linux</small>
+        </a>
+      </div>
+
+      <p><strong>Installation:</strong></p>
+      <pre><code># For .deb package:
+sudo dpkg -i m365-native_*.deb
+sudo apt -f install  # Install dependencies
+
+# For AppImage:
+chmod +x m365-native-*.AppImage
+./m365-native-*.AppImage</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Quick Start</h2>
+      <p>After installation:</p>
+      <ol>
+        <li>Launch "M365 WebApps Native" from your application menu</li>
+        <li>Enter your license key when prompted</li>
+        <li>Sign in with Microsoft OAuth 2.0 (one-time setup)</li>
+        <li>Select any Office app to launch - Word, Excel, PowerPoint, etc.</li>
+        <li>Stay signed in across all apps!</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>💡 Native vs Foundation</h2>
+      <p><b>Native tier</b> offers a premium experience compared to Foundation:</p>
+      <ul style="margin-top: 1rem;">
+        <li>✓ Lighter & faster (WebKitGTK vs Chromium)</li>
+        <li>✓ OAuth 2.0 auto-login (vs manual sign-in)</li>
+        <li>✓ System tray & notifications</li>
+        <li>✓ True native GTK integration</li>
+        <li>✓ Single launcher for all apps</li>
+        <li>✓ Better battery life on laptops</li>
+      </ul>
+      <p style="margin-top: 1rem;"><a href="/m365-foundation/" class="inline-link">Looking for the Foundation tier?</a></p>
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 3rem auto 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-left: 4px solid var(--accent); border-radius: 8px;">
+    <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--fg);">
+      <strong>⚠️ Legal Disclaimer:</strong> M365 WebApps is an independent desktop wrapper for Microsoft 365 web applications.
+      It is <strong>not affiliated with, endorsed by, or sponsored by Microsoft Corporation</strong>.
+      Microsoft 365 and Office are trademarks of Microsoft Corporation.
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a> | &copy; 2025 Ytech
+  </footer>
+
+  <script src="static/js/index.js"></script>
+  <script src="/ga.js"></script>
+</body>
+</html>

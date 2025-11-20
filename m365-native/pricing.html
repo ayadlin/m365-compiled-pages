@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pricing - M365 WebApps</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="static/css/pricing.css">
+</head>
+<body>
+  <a href="/" class="home-link">← Home</a>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>M365 WebApps</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">by Ytech</p>
+  </header>
+
+  <!-- Admin access link - only visible to authorized users -->
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
+
+  <div class="back-links">
+    <a href="index.html" class="back-link primary">← M365 WebApps</a>
+    <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+  </div>
+
+  <div class="hero">
+    <h1>Choose Your Plan</h1>
+    <p>Run Microsoft Office apps natively on Linux with offline licensing and full desktop integration</p>
+  </div>
+
+  <div class="pricing-grid" id="pricing-grid">
+    <!-- Pricing cards will be loaded here -->
+  </div>
+
+  <div class="wrap" style="margin-top: 4rem;">
+    <div class="card">
+      <a href="index.html#features" style="text-decoration: none; color: inherit;">
+        <h2 style="cursor: pointer;">🔒 Secure Offline Licensing</h2>
+      </a>
+      <p>All licenses use Ed25519 cryptographic signatures for offline verification. Your license works without an internet connection.</p>
+    </div>
+
+    <div class="card">
+      <a href="docs.html#install" style="text-decoration: none; color: inherit;">
+        <h2 style="cursor: pointer;">📦 Easy Installation</h2>
+      </a>
+      <p>Install via APT repository or download .deb packages. Desktop launchers are automatically configured for all Microsoft apps.</p>
+    </div>
+
+    <div class="card">
+      <a href="docs.html" style="text-decoration: none; color: inherit;">
+        <h2 style="cursor: pointer;">📚 Documentation</h2>
+      </a>
+      <p>Complete user guide with installation instructions, troubleshooting, and FAQs.</p>
+    </div>
+
+    <div class="card">
+      <h2>💳 Manage Your Billing</h2>
+      <p>Already a customer? Update your payment method, view invoices, or manage your subscription.</p>
+
+      <div style="margin-top: 1.5rem;">
+        <input
+          type="text"
+          id="billing-search"
+          placeholder="Enter your email or company name"
+          style="width: 100%; padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem; margin-bottom: 1rem;"
+        />
+
+        <button
+          id="manage-billing-btn"
+          style="width: 100%; padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #FF6B35, #ff8c5a); color: white; border: none; border-radius: 6px; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease;"
+          onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 4px 16px rgba(255, 107, 53, 0.5)';"
+          onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none';"
+        >
+          Open Billing Portal
+        </button>
+
+        <div id="billing-status" style="margin-top: 1rem; padding: 1rem; border-radius: 6px; display: none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="static/js/pricing.js"></script>
+  <script src="/ga.js"></script>
+</body>
+</html>

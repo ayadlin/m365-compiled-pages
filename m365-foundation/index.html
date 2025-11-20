@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>M365 WebApps Foundation - Microsoft Office on Linux</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="static/css/index.css">
+</head>
+<body>
+  <a href="/" class="home-link">← Home</a>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>M365 WebApps Foundation</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">Chromium-Based • by Ytech</p>
+  </header>
+
+  <!-- Admin access link - only visible to authorized users -->
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
+
+  <div class="hero">
+    <h1>Microsoft Office on Linux</h1>
+    <p>Run Word, Excel, PowerPoint, Outlook, Teams, OneNote, and OneDrive as native desktop apps on Linux with secure offline licensing</p>
+    <div class="cta-buttons">
+      <a href="pricing.html" class="btn btn-primary" onclick="if(window.trackCTA) trackCTA('view_pricing_hero');">View Pricing</a>
+      <a href="docs.html" class="btn btn-secondary" onclick="if(window.trackCTA) trackCTA('view_docs_hero');">Quick Start</a>
+      <a href="#install" class="btn btn-secondary" onclick="if(window.trackTrialDownload) trackTrialDownload('hero_install_now');">Install Now</a>
+    </div>
+  </div>
+
+  <div class="apps-grid">
+    <div class="app-badge">
+      <span class="app-icon">📝</span>
+      Word
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📊</span>
+      Excel
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📈</span>
+      PowerPoint
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📧</span>
+      Outlook
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">📔</span>
+      OneNote
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">💬</span>
+      Teams
+    </div>
+    <div class="app-badge">
+      <span class="app-icon">☁️</span>
+      OneDrive
+    </div>
+  </div>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">🖥️</div>
+      <h3>Native Desktop Apps</h3>
+      <p>Each Microsoft app runs as a dedicated desktop application with proper window management and taskbar integration</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔒</div>
+      <h3>Offline Licensing</h3>
+      <p>Ed25519 cryptographic signatures ensure your license works without internet connection requirements</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Chromium-Based</h3>
+      <p>Uses your installed Chromium, Chrome, or Edge browser for maximum compatibility and performance</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Isolated Profiles</h3>
+      <p>Each app uses separate browser profiles to prevent conflicts and enable multi-account support</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📦</div>
+      <h3>Easy Installation</h3>
+      <p>Install via APT repository or download .deb packages. Desktop launchers configured automatically</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔧</div>
+      <h3>Device Management</h3>
+      <p>Track and manage licensed devices with GitHub-based registry for team and enterprise plans</p>
+    </div>
+  </div>
+
+  <div class="install-section" id="install">
+    <div class="card">
+      <h2>📦 Install from APT Repository</h2>
+      <p>Quick installation for Debian/Ubuntu-based systems:</p>
+      <pre><code># Add repository
+echo "deb [trusted=yes] https://ytech.tools stable main" \
+  | sudo tee /etc/apt/sources.list.d/m365-compiled.list
+
+# Install package
+sudo apt update && sudo apt install m365-compiled
+
+# Install desktop launchers
+m365ctl -mode install</code></pre>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Quick Start</h2>
+      <p>After installation:</p>
+      <ol>
+        <li>Find "Microsoft Word", "Microsoft Excel", etc. in your application menu</li>
+        <li>First launch will open the Microsoft login page</li>
+        <li>Sign in with your Microsoft 365 account</li>
+        <li>Activate your M365 WebApps license (see <a href="pricing.html" class="inline-link">pricing</a>)</li>
+      </ol>
+    </div>
+
+    <div class="card">
+      <h2>💡 Why M365 WebApps?</h2>
+      <p><b>M365 WebApps</b> provides the best Microsoft Office experience on Linux by combining the full power of Office 365 web apps with native desktop integration. No Wine, no virtual machines, no compromises.</p>
+      <ul style="margin-top: 1rem;">
+        <li>✓ Always up-to-date (uses official Microsoft web apps)</li>
+        <li>✓ Full Office 365 feature set</li>
+        <li>✓ Native Linux desktop integration</li>
+        <li>✓ Secure offline license verification</li>
+        <li>✓ Easy to follow documentation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="max-width: 900px; margin: 3rem auto 2rem; padding: 1.5rem; background: rgba(255, 107, 53, 0.1); border-left: 4px solid var(--accent); border-radius: 8px;">
+    <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--fg);">
+      <strong>⚠️ Legal Disclaimer:</strong> M365 WebApps is an independent desktop wrapper for Microsoft 365 web applications.
+      It is <strong>not affiliated with, endorsed by, or sponsored by Microsoft Corporation</strong>.
+      Microsoft 365 and Office are trademarks of Microsoft Corporation.
+    </p>
+  </div>
+
+  <footer class="site-footer">
+    <a href="/terms.html">Terms of Service</a> | <a href="/privacy.html">Privacy Policy</a> | &copy; 2025 Ytech
+  </footer>
+
+  <script src="static/js/index.js"></script>
+  <script src="/ga.js"></script>
+</body>
+</html>
