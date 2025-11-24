@@ -1,0 +1,16 @@
+Package: m365-native
+Architecture: amd64
+Version: 1.0.0
+Priority: optional
+Section: utils
+Maintainer: Ytech Tools <support@ytech.tools>
+Filename: pool/main/m365-native_1.0.0_amd64.deb
+Size: 3932076
+MD5sum: d65fdaab2765c368171bee4ce7cca5f3
+SHA1: 05a27b10abf4b7b398ef5546fc98f7bb812796d3
+SHA256: e3675c904949a2b6fda986febb77a4f3a8df70c1de5dc50ec9ef0ddd815f30f9
+SHA512: 12d880a6df70f8bc6bc5d76e7a826a88c1b184db6e9f5f23a8ac671cee0c30ff7264acf7ab73f02bb918e0449a0898acdfdc88367985d88504329a5f5ce80c38
+Description: M365 WebApps Native - WebKitGTK launcher
+ Native Microsoft Office launcher for Linux with WebKitGTK and OAuth 2.0.
+ Lighter and faster than Foundation tier, with auto-login support.
+
