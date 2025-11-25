@@ -13,3 +13,33 @@
         document.getElementById('admin-link').style.display = 'block';
       }
     })();
+
+    // Add copy-to-clipboard functionality for all code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('pre code').forEach(function(codeBlock) {
+        const button = document.createElement('button');
+        button.className = 'copy-code-button';
+        button.textContent = 'Copy';
+        button.style.cssText = 'position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.25rem 0.5rem; background: var(--accent); color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; opacity: 0.8; transition: opacity 0.2s;';
+
+        button.addEventListener('mouseover', function() {
+          button.style.opacity = '1';
+        });
+        button.addEventListener('mouseout', function() {
+          button.style.opacity = '0.8';
+        });
+
+        button.addEventListener('click', function() {
+          navigator.clipboard.writeText(codeBlock.textContent).then(function() {
+            button.textContent = 'Copied!';
+            setTimeout(function() {
+              button.textContent = 'Copy';
+            }, 2000);
+          });
+        });
+
+        const pre = codeBlock.parentNode;
+        pre.style.position = 'relative';
+        pre.appendChild(button);
+      });
+    });
