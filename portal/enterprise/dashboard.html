@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enterprise Admin Dashboard - M365 WebApps</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/portal/enterprise/static/css/dashboard.css">
+</head>
+<body>
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>Enterprise Admin Portal</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">M365 WebApps by Ytech</p>
+  </header>
+
+  <div class="back-links">
+    <a href="/m365/" class="back-link primary">← M365 WebApps</a>
+    <a href="https://ytech.tools/" class="back-link">🏠 Ytech Home</a>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="welcome-section">
+      <h1>Enterprise Administration</h1>
+      <p style="color: var(--fg, #e5e7eb);">Manage your organization's M365 WebApps deployment</p>
+    </div>
+
+    <div id="loadingState" class="loading">
+      <p>Loading dashboard...</p>
+    </div>
+
+    <div id="errorState" style="display: none;">
+      <div class="error-message">
+        Failed to load dashboard. Please try refreshing the page.
+      </div>
+    </div>
+
+    <div id="dashboardContent" style="display: none;">
+      <!-- Statistics Overview -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">🏢</div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalTenants">-</div>
+            <div class="stat-label">Tenants</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalUsers">-</div>
+            <div class="stat-label">Total Users</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">✓</div>
+          <div class="stat-content">
+            <div class="stat-value" id="activeUsers">-</div>
+            <div class="stat-label">Active Users</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon">🔐</div>
+          <div class="stat-content">
+            <div class="stat-value" id="logins24h">-</div>
+            <div class="stat-label">Logins (24h)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Cards -->
+      <div class="nav-grid">
+        <a href="/portal/enterprise/users" class="nav-card">
+          <div class="nav-icon">👤</div>
+          <h3>Provisioned Users</h3>
+          <p>View and manage users provisioned via SCIM</p>
+        </a>
+
+        <a href="/portal/enterprise/audit" class="nav-card">
+          <div class="nav-icon">📋</div>
+          <h3>Audit Logs</h3>
+          <p>View authentication and access logs</p>
+        </a>
+
+        <a href="/portal/enterprise/tokens" class="nav-card">
+          <div class="nav-icon">🔑</div>
+          <h3>SCIM Tokens</h3>
+          <p>Manage SCIM bearer tokens</p>
+        </a>
+
+        <a href="/portal/enterprise/tenants" class="nav-card">
+          <div class="nav-icon">🏢</div>
+          <h3>Tenant Overview</h3>
+          <p>View tenant statistics and activity</p>
+        </a>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="dashboard-card">
+        <h2>📊 Recent Activity</h2>
+        <div id="recentActivity" class="activity-list">
+          <p class="loading-text">Loading recent activity...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/portal/enterprise/static/js/dashboard.js"></script>
+  <script>
+    // Set logo based on theme
+    function updateLogo() {
+      const logo = document.getElementById('logo');
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      logo.src = isDark ? '/logo-dark.svg' : '/logo-light.svg';
+    }
+    updateLogo();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+  </script>
+</body>
+</html>
