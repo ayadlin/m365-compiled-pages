@@ -113,12 +113,15 @@
           mangle: false
         });
 
-        // Render markdown to HTML
-        const html = marked.parse(markdown);
-
         // Extract title from first heading
         const titleMatch = markdown.match(/^#\s+(.+)$/m);
         const title = titleMatch ? titleMatch[1] : filename;
+
+        // Remove first H1 from markdown to avoid double title
+        const markdownWithoutFirstH1 = markdown.replace(/^#\s+.+$/m, '');
+
+        // Render markdown to HTML
+        const html = marked.parse(markdownWithoutFirstH1);
 
         // Update page
         document.getElementById('docTitle').textContent = title;
