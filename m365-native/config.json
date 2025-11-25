@@ -75,311 +75,104 @@
       "cta": "Buy Bundle"
     },
     {
-      "id": "team",
-      "label": "Team",
-      "price": 99,
+      "id": "team-foundation",
+      "label": "Team Foundation",
+      "price": 249,
       "period": "year",
-      "description": "Perfect for small teams - 10 devices",
+      "description": "Perfect for small teams - 25 devices",
       "features": [
-        "10 device licenses (Foundation)",
+        "25 Foundation device licenses",
         "All Foundation features per device",
-        "Shared team license management",
+        "Shared team license management portal",
         "Multi-profile support",
-        "Add Native: +$10/device",
-        "Add Mobile: +$5/device",
+        "Bulk license assignment",
         "Priority email support"
       ],
       "badge": "👥",
-      "cta": "Buy Team"
+      "cta": "Buy Team Foundation",
+      "section": "team"
     },
     {
       "id": "team-native",
       "label": "Team Native",
-      "price": 199,
+      "price": 499,
       "period": "year",
-      "description": "Team with all Native licenses - 10 devices",
+      "description": "Team with all Native licenses - 25 devices",
       "features": [
-        "10 Native device licenses",
+        "25 Native device licenses",
         "All Native features per device",
         "OAuth auto-login for all devices",
-        "Shared team license management",
-        "Add Mobile: +$5/device",
+        "Shared team license management portal",
+        "Bulk license assignment",
         "Priority support with 24h response"
       ],
       "badge": "👥⚡",
-      "cta": "Buy Team Native"
+      "cta": "Buy Team Native",
+      "section": "team",
+      "popular": true
+    },
+    {
+      "id": "business",
+      "label": "Business",
+      "price": 899,
+      "period": "year",
+      "description": "Up to 75 users with Azure AD SSO and SCIM provisioning",
+      "features": [
+        "Up to 75 users (flat rate)",
+        "Native tier for all users",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📱 Mobile apps included",
+        "📊 Company admin portal",
+        "🛡️ Audit logging",
+        "⚡ Priority support (24h response)"
+      ],
+      "badge": "🏢",
+      "cta": "Buy Business",
+      "section": "enterprise",
+      "comingSoon": true,
+      "comingSoonNote": "Azure AD features launching Q1 2025"
     },
     {
       "id": "enterprise",
       "label": "Enterprise",
-      "price": 299,
+      "price": "899",
+      "priceNote": "+ $8/user over 75",
       "period": "year",
-      "description": "Unlimited devices for large organizations",
+      "description": "Unlimited users with usage-based pricing",
       "features": [
-        "Unlimited Foundation devices",
-        "All Foundation features",
-        "Custom branding options",
-        "Dedicated support channel",
-        "Custom contract terms",
-        "Add Native: $599/year",
-        "Add Mobile: $399/year (unlimited)"
-      ],
-      "badge": "🏢",
-      "cta": "Buy Enterprise"
-    },
-    {
-      "id": "enterprise-native",
-      "label": "Enterprise Native",
-      "price": 599,
-      "period": "year",
-      "description": "Unlimited Native devices - premium tier",
-      "features": [
-        "Unlimited Native devices",
-        "All Native features per device",
-        "OAuth auto-login everywhere",
-        "Custom branding & deployment",
-        "Dedicated support channel",
-        "Add Mobile: $699/year (unlimited)",
-        "SLA guarantees available"
-      ],
-      "badge": "🏢⚡",
-      "cta": "Buy Enterprise Native"
-    },
-    {
-      "id": "enterprise-mobile",
-      "label": "Enterprise + Mobile",
-      "price": 399,
-      "period": "year",
-      "description": "Unlimited Foundation + unlimited mobile",
-      "features": [
-        "Unlimited Foundation devices",
-        "Unlimited mobile devices",
-        "Cross-platform continuity",
-        "Desktop-to-mobile integration",
-        "Custom deployment options",
-        "Dedicated support channel",
-        "Upgrade to Native: $699/year"
-      ],
-      "badge": "🏢📱",
-      "cta": "Buy Enterprise + Mobile"
-    },
-    {
-      "id": "enterprise-ultimate",
-      "label": "Enterprise Ultimate",
-      "price": 699,
-      "period": "year",
-      "description": "Everything unlimited - the complete package",
-      "features": [
-        "Unlimited Native devices",
-        "Unlimited mobile devices",
-        "OAuth auto-login everywhere",
-        "Complete cross-platform integration",
-        "Custom branding & deployment",
-        "Dedicated support with SLA",
-        "Priority feature requests"
+        "Unlimited users ($8/user over 75)",
+        "Native tier for all users",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📱 Mobile apps included",
+        "🎨 Custom branding (white-label)",
+        "✅ SLA guarantees (99.9% uptime)",
+        "⭐ Priority feature requests"
       ],
       "badge": "🌟",
-      "cta": "Buy Enterprise Ultimate"
-    },
-    {
-      "id": "foundation-mobile-1",
-      "label": "Foundation + 1 Mobile",
-      "price": 24.99,
-      "period": "year",
-      "description": "Foundation with 1 mobile device",
-      "features": [
-        "All Foundation features",
-        "1 mobile device license",
-        "iOS & Android support",
-        "Cross-device continuity"
-      ],
-      "badge": "🖥️📱",
-      "cta": "Buy Bundle",
-      "section": "foundation-bundles"
-    },
-    {
-      "id": "foundation-mobile-2",
-      "label": "Foundation + 2 Mobile",
-      "price": 29.99,
-      "period": "year",
-      "description": "Foundation with 2 mobile devices",
-      "features": [
-        "All Foundation features",
-        "2 mobile device licenses",
-        "iOS & Android support",
-        "Cross-device continuity"
-      ],
-      "badge": "🖥️📱📱",
-      "cta": "Buy Bundle",
-      "section": "foundation-bundles"
-    },
-    {
-      "id": "native-mobile-1",
-      "label": "Native + 1 Mobile",
-      "price": 44.99,
-      "period": "year",
-      "description": "Native with 1 mobile device",
-      "features": [
-        "All Native features",
-        "OAuth 2.0 auto-login",
-        "1 mobile device license",
-        "iOS & Android support",
-        "Cross-device continuity"
-      ],
-      "badge": "⚡📱",
-      "cta": "Buy Bundle",
-      "section": "foundation-bundles"
-    },
-    {
-      "id": "team-mobile-5",
-      "label": "Team + 5 Mobile",
-      "price": 124,
-      "period": "year",
-      "description": "Team with 5 mobile devices",
-      "features": [
-        "All Team features",
-        "10 desktop licenses",
-        "5 mobile device licenses",
-        "iOS & Android support"
-      ],
-      "badge": "👥📱",
-      "cta": "Buy Bundle",
-      "section": "team-bundles"
-    },
-    {
-      "id": "team-mobile-10",
-      "label": "Team + 10 Mobile",
-      "price": 149,
-      "period": "year",
-      "description": "Team with 10 mobile devices",
-      "features": [
-        "All Team features",
-        "10 desktop licenses",
-        "10 mobile device licenses",
-        "iOS & Android support"
-      ],
-      "badge": "👥📱",
-      "cta": "Buy Bundle",
-      "section": "team-bundles"
-    },
-    {
-      "id": "team-mobile-15",
-      "label": "Team + 15 Mobile",
-      "price": 174,
-      "period": "year",
-      "description": "Team with 15 mobile devices",
-      "features": [
-        "All Team features",
-        "10 desktop licenses",
-        "15 mobile device licenses",
-        "iOS & Android support"
-      ],
-      "badge": "👥📱",
-      "cta": "Buy Bundle",
-      "section": "team-bundles"
-    },
-    {
-      "id": "team-mobile-20",
-      "label": "Team + 20 Mobile",
-      "price": 199,
-      "period": "year",
-      "description": "Team with 20 mobile devices",
-      "features": [
-        "All Team features",
-        "10 desktop licenses",
-        "20 mobile device licenses",
-        "iOS & Android support"
-      ],
-      "badge": "👥📱",
-      "cta": "Buy Bundle",
-      "section": "team-bundles"
-    },
-    {
-      "id": "team-native-mobile-5",
-      "label": "Team Native + 5 Mobile",
-      "price": 224,
-      "period": "year",
-      "description": "Team Native with 5 mobile devices",
-      "features": [
-        "All Team Native features",
-        "10 Native desktop licenses",
-        "5 mobile device licenses",
-        "OAuth auto-login everywhere"
-      ],
-      "badge": "👥⚡📱",
-      "cta": "Buy Bundle",
-      "section": "team-native-bundles"
-    },
-    {
-      "id": "team-native-mobile-10",
-      "label": "Team Native + 10 Mobile",
-      "price": 249,
-      "period": "year",
-      "description": "Team Native with 10 mobile devices",
-      "features": [
-        "All Team Native features",
-        "10 Native desktop licenses",
-        "10 mobile device licenses",
-        "OAuth auto-login everywhere"
-      ],
-      "badge": "👥⚡📱",
-      "cta": "Buy Bundle",
-      "section": "team-native-bundles"
-    },
-    {
-      "id": "team-native-mobile-15",
-      "label": "Team Native + 15 Mobile",
-      "price": 274,
-      "period": "year",
-      "description": "Team Native with 15 mobile devices",
-      "features": [
-        "All Team Native features",
-        "10 Native desktop licenses",
-        "15 mobile device licenses",
-        "OAuth auto-login everywhere"
-      ],
-      "badge": "👥⚡📱",
-      "cta": "Buy Bundle",
-      "section": "team-native-bundles"
-    },
-    {
-      "id": "team-native-mobile-20",
-      "label": "Team Native + 20 Mobile",
-      "price": 299,
-      "period": "year",
-      "description": "Team Native with 20 mobile devices",
-      "features": [
-        "All Team Native features",
-        "10 Native desktop licenses",
-        "20 mobile device licenses",
-        "OAuth auto-login everywhere"
-      ],
-      "badge": "👥⚡📱",
-      "cta": "Buy Bundle",
-      "section": "team-native-bundles"
+      "cta": "Buy Enterprise",
+      "section": "enterprise",
+      "comingSoon": true,
+      "comingSoonNote": "Azure AD features launching Q1 2025",
+      "pricingExamples": [
+        "76 users: $907/year",
+        "100 users: $1,099/year",
+        "150 users: $1,499/year",
+        "500 users: $4,299/year"
+      ]
     }
   ],
   "checkout": {
     "free": "trial.html",
     "foundation": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
-    "foundation-mobile-1": "https://buy.stripe.com/6oUcN54V40nvb0ocGHgYU0g",
-    "foundation-mobile-2": "https://buy.stripe.com/aFacN587g4DL4C0eOPgYU0f",
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
-    "native-mobile-1": "https://buy.stripe.com/4gM14n73cfip6K86ijgYU0e",
     "bundle": "https://buy.stripe.com/4gMaEX2MWb292tSeOPgYU0u",
-    "team": "https://buy.stripe.com/6oU28r9bkeel9WkayzgYU0m",
-    "team-mobile-5": "https://buy.stripe.com/dRmdR9afo6LT2tSgWXgYU0t",
-    "team-mobile-10": "https://buy.stripe.com/28E14ncnw0nvfgEayzgYU0s",
-    "team-mobile-15": "https://buy.stripe.com/cNiaEX4V48U18Sg223gYU0r",
-    "team-mobile-20": "https://buy.stripe.com/3cIaEXafo3zHfgEayzgYU0q",
-    "team-native": "https://buy.stripe.com/4gM3cvcnw1rz0lK7mngYU0k",
-    "team-native-mobile-5": "https://buy.stripe.com/cNi7sL87gc6d7OcfSTgYU0p",
-    "team-native-mobile-10": "https://buy.stripe.com/5kQ28r2MW7PX6K85efgYU0o",
-    "team-native-mobile-15": "https://buy.stripe.com/fZu14nbjs3zH3xWayzgYU0n",
-    "team-native-mobile-20": "https://buy.stripe.com/6oU28r4V45HPecA223gYU03",
-    "enterprise": "https://buy.stripe.com/3cI5kDbjs4DLfgE367gYU00",
-    "enterprise-native": "https://buy.stripe.com/14A28rgDMc6dgkI223gYU0j",
-    "enterprise-mobile": "https://buy.stripe.com/dRm3cv3R0b29fgEgWXgYU0i",
-    "enterprise-ultimate": "https://buy.stripe.com/dRm7sL2MW5HP4C00XZgYU0h"
+    "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
+    "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
+    "business": "https://buy.stripe.com/28E6oHevE1rz4C00XZgYU0y",
+    "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z"
   }
 }
