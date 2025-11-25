@@ -178,10 +178,10 @@ flatpak run io.github.ytech.m365native</code></pre>
 
     <div class="card">
       <h2>🔴 Method 5: RPM Package (Red Hat/Fedora/CentOS)</h2>
-      <p><strong>Best for:</strong> Red Hat-based distributions</p>
+      <p><strong>Best for:</strong> Red Hat-based distributions (Fedora, RHEL, CentOS, openSUSE)</p>
       <div style="margin: 1.5rem 0;">
-        <a href="https://github.com/ayadlin/m365-compiled/releases" class="btn btn-primary" target="_blank" style="opacity: 0.6; cursor: not-allowed;" onclick="alert('RPM packages coming soon! Wails v3 adds RPM support.'); return false;">
-          📥 Download m365-native RPM (Coming Soon)
+        <a href="https://github.com/ayadlin/m365-compiled/releases/latest" class="btn btn-primary" target="_blank">
+          📥 Download Latest RPM Package
         </a>
       </div>
       <pre><code># Install with dnf (Fedora)
@@ -190,18 +190,20 @@ sudo dnf install m365-native-*.rpm
 # Or with yum (RHEL/CentOS)
 sudo yum install m365-native-*.rpm
 
+# Or with zypper (openSUSE)
+sudo zypper install m365-native-*.rpm
+
 # Launch
 m365-native</code></pre>
-      <p style="margin-top: 1rem;"><strong>Updates:</strong> Download and install new .rpm when available</p>
-      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted);">Note: RPM builds supported by Wails v3 - coming soon</p>
+      <p style="margin-top: 1rem;"><strong>Updates:</strong> Download and install new .rpm when available, or <code>sudo dnf upgrade</code></p>
     </div>
 
     <div class="card">
       <h2>🐧 Method 6: Arch Linux Package</h2>
-      <p><strong>Best for:</strong> Arch Linux and Manjaro users</p>
+      <p><strong>Best for:</strong> Arch Linux, Manjaro, and EndeavourOS users</p>
       <div style="margin: 1.5rem 0;">
-        <a href="https://github.com/ayadlin/m365-compiled/releases" class="btn btn-primary" target="_blank" style="opacity: 0.6; cursor: not-allowed;" onclick="alert('Arch packages coming soon! Wails v3 adds Arch support.'); return false;">
-          📥 Download Arch Package (Coming Soon)
+        <a href="https://github.com/ayadlin/m365-compiled/releases/latest" class="btn btn-primary" target="_blank">
+          📥 Download Latest Arch Package
         </a>
       </div>
       <pre><code># Install with pacman
@@ -209,8 +211,8 @@ sudo pacman -U m365-native-*.pkg.tar.zst
 
 # Launch
 m365-native</code></pre>
-      <p style="margin-top: 1rem;"><strong>Updates:</strong> Download and install new package when available</p>
-      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted);">Note: Arch Linux builds supported by Wails v3 - coming soon</p>
+      <p style="margin-top: 1rem;"><strong>Updates:</strong> Download and install new package when available, or <code>sudo pacman -Syu</code></p>
+      <p style="margin-top: 0.5rem; font-size: 0.9rem; color: var(--muted);">Note: AUR package submission coming soon for easier installation</p>
     </div>
 
     <div class="card">
