@@ -212,14 +212,182 @@ sudo systemctl restart m365-license-server
 
 ---
 
+## Part 5: Configure Conditional Access (Optional but Recommended)
+
+Conditional access policies provide an additional security layer by enforcing access controls based on conditions.
+
+### Why Use Conditional Access?
+
+- **Enhanced Security**: Require MFA for M365 WebApps access
+- **Location-Based Access**: Block or require MFA from untrusted locations
+- **Device Compliance**: Require compliant or managed devices
+- **Risk-Based Protection**: Block or challenge high-risk sign-ins
+
+### Step 1: Create Conditional Access Policy
+
+1. Navigate to **Azure Active Directory** > **Security** > **Conditional Access**
+2. Click **+ New policy**
+3. Name: **M365 WebApps - Require MFA**
+
+### Step 2: Configure Assignments
+
+**Users**:
+- Include: Select **All users** or specific groups
+- Exclude: Consider excluding emergency access accounts
+
+**Cloud apps**:
+- Select apps: Choose **M365 WebApps**
+
+**Conditions** (configure as needed):
+- Sign-in risk: Medium and high
+- Device platforms: All or specific (iOS, Android, Windows, macOS)
+- Locations: All locations or exclude trusted locations
+- Client apps: Browser, Mobile apps and desktop clients
+
+### Step 3: Configure Access Controls
+
+**Grant**:
+- Select **Grant access**
+- Check **Require multi-factor authentication**
+- Optionally add:
+  - Require device to be marked as compliant
+  - Require Hybrid Azure AD joined device
+  - Require approved client app
+
+**Session**:
+- Sign-in frequency: Set to 7 days (or as required)
+- Persistent browser session: Don't persist
+
+### Step 4: Enable Policy
+
+1. Set **Enable policy** to **Report-only** first (recommended for testing)
+2. Click **Create**
+3. Monitor sign-ins for 24-48 hours
+4. Review sign-ins in **Sign-ins** > **Conditional Access** insights
+5. Once verified, change policy to **On**
+
+### Example Policies
+
+**Policy 1: Require MFA for all users**
+```
+Users: All users
+Cloud apps: M365 WebApps
+Conditions: Any
+Grant: Require MFA
+```
+
+**Policy 2: Block access from untrusted locations**
+```
+Users: All users
+Cloud apps: M365 WebApps
+Locations: All locations (exclude corporate network)
+Grant: Require MFA OR Block access
+```
+
+**Policy 3: Require compliant device**
+```
+Users: All users
+Cloud apps: M365 WebApps
+Device platforms: All
+Grant: Require MFA AND Require compliant device
+```
+
+---
+
+## Part 6: Configure Provisioning Notifications
+
+Stay informed about provisioning activities and failures with email notifications.
+
+### Step 1: Enable Notification Emails
+
+1. In your enterprise application, go to **Provisioning**
+2. Expand **Settings**
+3. Under **Notification**, configure:
+   - **Notification Email**: Enter email addresses (comma-separated for multiple)
+   - Check **Send an email notification when a failure occurs**
+
+4. Click **Save**
+
+### Step 2: Configure Azure Monitor Alerts (Advanced)
+
+For more comprehensive monitoring:
+
+1. Navigate to **Azure Active Directory** > **Monitoring** > **Diagnostic settings**
+2. Click **+ Add diagnostic setting**
+3. Name: **M365 WebApps Provisioning Monitoring**
+4. Select log categories:
+   - **ProvisioningLogs**
+   - **AuditLogs** (for SSO events)
+5. Destination: **Send to Log Analytics workspace**
+6. Click **Save**
+
+### Step 3: Create Alert Rules
+
+1. Go to **Azure Monitor** > **Alerts** > **+ Create** > **Alert rule**
+2. Select scope: Your Log Analytics workspace
+3. Condition: Create custom query:
+
+```kql
+// Alert on provisioning failures
+AuditLogs
+| where Category == "Provisioning"
+| where OperationName == "Export"
+| where ResultType == "Failure"
+| project TimeGenerated, OperationName, ResultDescription, TargetResources
+```
+
+4. Actions: Create action group
+   - Add email/SMS/webhook notifications
+   - Enter recipient details
+
+5. Alert details:
+   - Severity: 2 - Warning (for provisioning failures)
+   - Severity: 1 - Error (for authentication failures)
+
+6. Click **Create alert rule**
+
+### Step 4: Monitor M365 WebApps Portal
+
+The Enterprise Portal provides real-time monitoring:
+
+1. Sign in to: https://ytech.tools/portal/enterprise/dashboard
+2. **Dashboard** - Overview of provisioning statistics
+3. **Audit Logs** - Real-time authentication events
+4. **Provisioned Users** - User provisioning status
+
+### Notification Types You'll Receive
+
+**Provisioning Failures**:
+- User creation failures
+- Attribute mapping errors
+- SCIM token authentication issues
+- Quota exceeded errors
+
+**Authentication Events** (via Azure Monitor):
+- Failed sign-in attempts
+- Conditional access policy blocks
+- High-risk sign-ins detected
+
+### Best Practices for Notifications
+
+1. **Use distribution lists**: Send notifications to IT admin team, not individuals
+2. **Set up escalation**: Configure webhooks to ticketing systems
+3. **Regular review**: Check notification settings quarterly
+4. **Test notifications**: Generate test provisioning event to verify delivery
+5. **Document runbooks**: Create response procedures for common alerts
+
+---
+
 ## Security Best Practices
 
 1. **Rotate client secrets regularly**: Set a reminder to rotate before expiration
-2. **Use conditional access**: Configure Azure AD conditional access policies
+2. **Use conditional access**: Configure Azure AD conditional access policies (see Part 5)
 3. **Monitor audit logs**: Regularly review authentication and provisioning logs
 4. **Limit SCIM token access**: Only share tokens with authorized administrators
 5. **Enable MFA**: Require multi-factor authentication for all users
 6. **Review app permissions**: Periodically audit API permissions
+7. **Set up alerts**: Configure email notifications for provisioning failures (see Part 6)
+8. **Test disaster recovery**: Verify backup and restore procedures for user data
 
 ---
 
