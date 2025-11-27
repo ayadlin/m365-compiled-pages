@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SCIM Tokens - M365 WebApps</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/portal/enterprise/static/css/dashboard.css">
+  <style>
+    .tokens-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: var(--card-bg);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .tokens-table th,
+    .tokens-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .tokens-table th {
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 600;
+    }
+    .tokens-table tbody tr:hover {
+      background: var(--hover-bg, rgba(255, 107, 53, 0.1));
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+    .status-active {
+      background: rgba(34, 197, 94, 0.2);
+      color: rgb(34, 197, 94);
+    }
+    .status-inactive {
+      background: rgba(239, 68, 68, 0.2);
+      color: rgb(239, 68, 68);
+    }
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: center;
+    }
+    .filter-bar select {
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card-bg);
+      color: var(--fg);
+    }
+    .revoke-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(239, 68, 68, 0.2);
+      color: rgb(239, 68, 68);
+      border: 1px solid rgb(239, 68, 68);
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+    .revoke-btn:hover {
+      background: rgba(239, 68, 68, 0.3);
+    }
+    .revoke-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>SCIM Tokens</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">M365 WebApps by Ytech</p>
+  </header>
+
+  <div class="back-links">
+    <a href="/portal/enterprise/dashboard" class="back-link primary">← Dashboard</a>
+    <a href="/m365/" class="back-link">← M365 WebApps</a>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="welcome-section">
+      <h1>SCIM Bearer Tokens</h1>
+      <p style="color: var(--fg, #e5e7eb);">Manage SCIM provisioning tokens for tenant integration</p>
+    </div>
+
+    <div id="loadingState" class="loading">
+      <p>Loading tokens...</p>
+    </div>
+
+    <div id="errorState" style="display: none;">
+      <div class="error-message">
+        Failed to load tokens. Please try refreshing the page.
+      </div>
+    </div>
+
+    <div id="tokensContent" style="display: none;">
+      <div class="filter-bar">
+        <select id="tenantFilter">
+          <option value="">All Tenants</option>
+        </select>
+        <select id="statusFilter">
+          <option value="">All Statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+      </div>
+
+      <table class="tokens-table">
+        <thead>
+          <tr>
+            <th>Token ID</th>
+            <th>Tenant</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Last Used</th>
+            <th>Expires</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tokensTableBody">
+          <tr><td colspan="7" style="text-align: center; padding: 2rem;">Loading...</td></tr>
+        </tbody>
+      </table>
+
+      <div id="noResults" style="display: none; text-align: center; padding: 3rem; color: var(--fg);">
+        <p>No tokens found matching your filters.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/portal/enterprise/static/js/tokens.js"></script>
+  <script>
+    // Set logo based on theme
+    function updateLogo() {
+      const logo = document.getElementById('logo');
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      logo.src = isDark ? '/logo-dark.svg' : '/logo-light.svg';
+    }
+    updateLogo();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+  </script>
+</body>
+</html>

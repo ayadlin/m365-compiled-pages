@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tenant Overview - M365 WebApps</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="stylesheet" href="/portal/enterprise/static/css/dashboard.css">
+  <style>
+    .tenants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    .tenant-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .tenant-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .tenant-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .tenant-icon {
+      font-size: 2rem;
+    }
+    .tenant-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin: 0;
+    }
+    .tenant-domain {
+      font-size: 0.875rem;
+      color: var(--fg, #9ca3af);
+      margin: 0;
+    }
+    .tenant-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .stat-item {
+      background: var(--bg);
+      padding: 0.75rem;
+      border-radius: 6px;
+    }
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--fg, #9ca3af);
+      margin-bottom: 0.25rem;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+    .last-activity {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.875rem;
+      color: var(--fg, #9ca3af);
+    }
+    .view-details-btn {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      width: 100%;
+    }
+    .view-details-btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 WebApps Logo" style="cursor: pointer;">
+    </a>
+    <h1>Tenant Overview</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">M365 WebApps by Ytech</p>
+  </header>
+
+  <div class="back-links">
+    <a href="/portal/enterprise/dashboard" class="back-link primary">← Dashboard</a>
+    <a href="/m365/" class="back-link">← M365 WebApps</a>
+  </div>
+
+  <div class="dashboard-container">
+    <div class="welcome-section">
+      <h1>Tenant Overview</h1>
+      <p style="color: var(--fg, #e5e7eb);">View statistics and activity for all tenants</p>
+    </div>
+
+    <div id="loadingState" class="loading">
+      <p>Loading tenants...</p>
+    </div>
+
+    <div id="errorState" style="display: none;">
+      <div class="error-message">
+        Failed to load tenants. Please try refreshing the page.
+      </div>
+    </div>
+
+    <div id="tenantsContent" style="display: none;">
+      <div class="tenants-grid" id="tenantsGrid">
+        <!-- Tenant cards will be inserted here -->
+      </div>
+
+      <div id="noResults" style="display: none; text-align: center; padding: 3rem; color: var(--fg);">
+        <p>No tenants found.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="/portal/enterprise/static/js/tenants.js"></script>
+  <script>
+    // Set logo based on theme
+    function updateLogo() {
+      const logo = document.getElementById('logo');
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      logo.src = isDark ? '/logo-dark.svg' : '/logo-light.svg';
+    }
+    updateLogo();
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLogo);
+  </script>
+</body>
+</html>
