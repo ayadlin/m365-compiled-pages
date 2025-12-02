@@ -24,7 +24,7 @@
       "period": "year",
       "description": "Linux desktop with Chromium - Perfect to get started",
       "features": [
-        "All 7 Microsoft apps",
+        "All 8 Microsoft apps",
         "Chromium-based desktop launcher",
         "Dedicated browser profiles",
         "1 device license",
@@ -114,25 +114,23 @@
     {
       "id": "business",
       "label": "Business",
-      "price": 899,
+      "price": 799,
       "period": "year",
-      "description": "Up to 75 users with Azure AD SSO and SCIM provisioning",
+      "description": "Up to 50 users with Azure AD SSO and SCIM provisioning",
       "features": [
-        "Up to 75 users (flat rate)",
+        "Up to 50 users (flat rate)",
         "Native tier for all users",
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
-        "📱 Mobile apps included",
+        "📱 Mobile apps (coming Q2 2026)",
         "📊 Company admin portal",
         "🛡️ Audit logging",
         "⚡ Priority support (24h response)"
       ],
       "badge": "🏢",
       "cta": "Buy Business",
-      "section": "enterprise",
-      "comingSoon": true,
-      "comingSoonNote": "Azure AD features launching Q1 2025"
+      "section": "enterprise"
     },
     {
       "id": "enterprise",
@@ -147,16 +145,14 @@
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
-        "📱 Mobile apps included",
-        "🎨 Custom branding (white-label)",
-        "✅ SLA guarantees (99.9% uptime)",
+        "📱 Mobile apps (coming Q2 2026)",
+        "🎨 White-label branding (coming Q2 2026)",
+        "🏗️ Self-hosting option (coming Q1 2026)",
         "⭐ Priority feature requests"
       ],
       "badge": "🌟",
       "cta": "Buy Enterprise",
       "section": "enterprise",
-      "comingSoon": true,
-      "comingSoonNote": "Azure AD features launching Q1 2025",
       "pricingExamples": [
         "76 users: $907/year",
         "100 users: $1,099/year",
@@ -172,7 +168,7 @@
     "bundle": "https://buy.stripe.com/4gMaEX2MWb292tSeOPgYU0u",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
     "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
-    "business": "https://buy.stripe.com/28E6oHevE1rz4C00XZgYU0y",
+    "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",
     "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z"
   }
 }
