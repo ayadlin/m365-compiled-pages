@@ -86,48 +86,6 @@ fetch('config.json').then(r => r.json()).then(config => {
     grid.appendChild(renderPlanCard(plan));
   });
 
-  // Render Foundation + Mobile bundles section
-  if (foundationBundles.length > 0) {
-    const section = document.createElement('div');
-    section.className = 'bundle-section';
-    section.innerHTML = '<h2 class="bundle-title">Foundation + Mobile Bundles</h2><div class="bundle-grid" id="foundation-bundles-grid"></div>';
-    grid.parentNode.insertBefore(section, grid.nextSibling);
-
-    const bundleGrid = document.getElementById('foundation-bundles-grid');
-    foundationBundles.forEach(plan => {
-      bundleGrid.appendChild(renderPlanCard(plan));
-    });
-  }
-
-  // Render Team + Mobile bundles section
-  if (teamBundles.length > 0) {
-    const section = document.createElement('div');
-    section.className = 'bundle-section';
-    section.innerHTML = '<h2 class="bundle-title">Team + Mobile Bundles</h2><div class="bundle-grid" id="team-bundles-grid"></div>';
-
-    const lastSection = document.querySelector('.bundle-section:last-of-type') || grid;
-    lastSection.parentNode.insertBefore(section, lastSection.nextSibling);
-
-    const bundleGrid = document.getElementById('team-bundles-grid');
-    teamBundles.forEach(plan => {
-      bundleGrid.appendChild(renderPlanCard(plan));
-    });
-  }
-
-  // Render Team Native + Mobile bundles section
-  if (teamNativeBundles.length > 0) {
-    const section = document.createElement('div');
-    section.className = 'bundle-section';
-    section.innerHTML = '<h2 class="bundle-title">Team Native + Mobile Bundles</h2><div class="bundle-grid" id="team-native-bundles-grid"></div>';
-
-    const lastSection = document.querySelector('.bundle-section:last-of-type') || grid;
-    lastSection.parentNode.insertBefore(section, lastSection.nextSibling);
-
-    const bundleGrid = document.getElementById('team-native-bundles-grid');
-    teamNativeBundles.forEach(plan => {
-      bundleGrid.appendChild(renderPlanCard(plan));
-    });
-  }
 });
 
 // Billing portal handler
