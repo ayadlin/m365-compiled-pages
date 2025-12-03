@@ -18,9 +18,7 @@ fetch('config.json').then(r => r.json()).then(config => {
 
   // Separate free trial from paid plans
   const freeTrial = config.plans.find(plan => plan.id === 'free');
-  const individualPlans = config.plans.filter(plan => plan.id !== 'free' && !plan.section);
-  const teamPlans = config.plans.filter(plan => plan.section === 'team');
-  const enterprisePlans = config.plans.filter(plan => plan.section === 'enterprise');
+  const paidPlans = config.plans.filter(plan => plan.id !== 'free');
 
   // Render free trial as hero bar if it exists
   if (freeTrial) {
@@ -97,34 +95,10 @@ fetch('config.json').then(r => r.json()).then(config => {
     return card;
   }
 
-  // Render individual plans
-  individualPlans.forEach(plan => {
+  // Render all paid plans in a clean grid (no section headers)
+  paidPlans.forEach(plan => {
     grid.appendChild(renderPlanCard(plan));
   });
-
-  // Render team plans section if exists
-  if (teamPlans.length > 0) {
-    const teamHeader = document.createElement('div');
-    teamHeader.className = 'pricing-section-header';
-    teamHeader.innerHTML = '<h2>Team Plans</h2><p>Perfect for small to medium teams</p>';
-    grid.appendChild(teamHeader);
-
-    teamPlans.forEach(plan => {
-      grid.appendChild(renderPlanCard(plan));
-    });
-  }
-
-  // Render enterprise plans section if exists
-  if (enterprisePlans.length > 0) {
-    const enterpriseHeader = document.createElement('div');
-    enterpriseHeader.className = 'pricing-section-header';
-    enterpriseHeader.innerHTML = '<h2>Enterprise Plans</h2><p>For larger organizations with advanced needs</p>';
-    grid.appendChild(enterpriseHeader);
-
-    enterprisePlans.forEach(plan => {
-      grid.appendChild(renderPlanCard(plan));
-    });
-  }
 
 });
 

@@ -1,5 +1,13 @@
 // Tenants Overview Page JavaScript
 
+// Show admin link for logged-in admin users
+(function checkAdminAccess() {
+  const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
+  if (hasAdminAccess) {
+    document.getElementById('admin-link').style.display = 'block';
+  }
+})();
+
 // Load tenants on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadTenants();

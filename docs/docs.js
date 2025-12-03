@@ -1,3 +1,11 @@
+// Show admin link for logged-in admin users
+(function checkAdminAccess() {
+  const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
+  if (hasAdminAccess) {
+    document.getElementById('admin-link').style.display = 'block';
+  }
+})();
+
 // Documentation loader
 async function loadMarkdown(mdPath) {
   const contentEl = document.getElementById('markdown-content');

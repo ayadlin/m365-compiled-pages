@@ -1,6 +1,14 @@
 // API base URL - use api.ytech.tools for production, or same domain for local/direct access
 const API_BASE = window.location.hostname === 'ytech.tools' ? 'https://api.ytech.tools' : '';
 
+// Show admin link for logged-in admin users
+(function checkAdminAccess() {
+  const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
+  if (hasAdminAccess) {
+    document.getElementById('admin-link').style.display = 'block';
+  }
+})();
+
 // Load brand logo
 fetch('/brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');

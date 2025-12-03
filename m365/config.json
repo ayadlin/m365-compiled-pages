@@ -30,11 +30,10 @@
         "1 device license",
         "File picker integration",
         "Auto-share links",
-        "Email support"
+        "Documentation & community support"
       ],
       "badge": "🖥️",
-      "cta": "Buy Foundation",
-      "popular": true
+      "cta": "Buy Foundation"
     },
     {
       "id": "native",
@@ -50,11 +49,11 @@
         "System tray & notifications",
         "Native file picker & clipboard",
         "1 device license",
-        "Priority email support"
+        "Documentation & community support"
       ],
       "badge": "⚡",
       "cta": "Buy Native",
-      "popular": false
+      "popular": true
     },
     {
       "id": "team-foundation",
@@ -68,11 +67,10 @@
         "Shared team license management portal",
         "Multi-profile support",
         "Bulk license assignment",
-        "Priority email support"
+        "Documentation & community support"
       ],
       "badge": "👥",
-      "cta": "Buy Team Foundation",
-      "section": "team"
+      "cta": "Buy Team Foundation"
     },
     {
       "id": "team-native",
@@ -86,12 +84,10 @@
         "OAuth auto-login for all devices",
         "Shared team license management portal",
         "Bulk license assignment",
-        "Priority support with 24h response"
+        "Documentation & community support"
       ],
       "badge": "👥⚡",
-      "cta": "Buy Team Native",
-      "section": "team",
-      "popular": true
+      "cta": "Buy Team Native"
     },
     {
       "id": "business",
@@ -107,11 +103,10 @@
         "👥 Group-based license assignment",
         "📊 Company admin portal",
         "🛡️ Audit logging",
-        "⚡ Priority support (24h response)"
+        "Documentation & community support"
       ],
       "badge": "🏢",
-      "cta": "Buy Business",
-      "section": "enterprise"
+      "cta": "Buy Business"
     },
     {
       "id": "enterprise",
@@ -128,11 +123,10 @@
         "👥 Group-based license assignment",
         "🎨 White-label branding (coming Q2 2026)",
         "🏗️ Self-hosting option (coming Q1 2026)",
-        "⭐ Priority feature requests"
+        "Documentation & community support"
       ],
       "badge": "🌟",
       "cta": "Buy Enterprise",
-      "section": "enterprise",
       "pricingExamples": [
         "76 users: $907/year",
         "100 users: $1,099/year",

@@ -24,17 +24,16 @@
       "period": "year",
       "description": "Linux desktop with Chromium - Perfect to get started",
       "features": [
-        "All 7 Microsoft apps",
+        "All 8 Microsoft apps",
         "Chromium-based desktop launcher",
         "Dedicated browser profiles",
         "1 device license",
         "File picker integration",
         "Auto-share links",
-        "Email support"
+        "Documentation & community support"
       ],
       "badge": "🖥️",
-      "cta": "Buy Foundation",
-      "popular": true
+      "cta": "Buy Foundation"
     },
     {
       "id": "native",
@@ -50,11 +49,11 @@
         "System tray & notifications",
         "Native file picker & clipboard",
         "1 device license",
-        "Priority email support"
+        "Documentation & community support"
       ],
       "badge": "⚡",
       "cta": "Buy Native",
-      "popular": false
+      "popular": true
     },
     {
       "id": "team-foundation",
@@ -68,11 +67,10 @@
         "Shared team license management portal",
         "Multi-profile support",
         "Bulk license assignment",
-        "Priority email support"
+        "Documentation & community support"
       ],
       "badge": "👥",
-      "cta": "Buy Team Foundation",
-      "section": "team"
+      "cta": "Buy Team Foundation"
     },
     {
       "id": "team-native",
@@ -86,34 +84,29 @@
         "OAuth auto-login for all devices",
         "Shared team license management portal",
         "Bulk license assignment",
-        "Priority support with 24h response"
+        "Documentation & community support"
       ],
       "badge": "👥⚡",
-      "cta": "Buy Team Native",
-      "section": "team",
-      "popular": true
+      "cta": "Buy Team Native"
     },
     {
       "id": "business",
       "label": "Business",
-      "price": 899,
+      "price": 799,
       "period": "year",
-      "description": "Up to 75 users with Azure AD SSO and SCIM provisioning",
+      "description": "Up to 50 users with Azure AD SSO and SCIM provisioning",
       "features": [
-        "Up to 75 users (flat rate)",
+        "Up to 50 users (flat rate)",
         "Native tier for all users",
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
         "📊 Company admin portal",
         "🛡️ Audit logging",
-        "⚡ Priority support (24h response)"
+        "Documentation & community support"
       ],
       "badge": "🏢",
-      "cta": "Buy Business",
-      "section": "enterprise",
-      "comingSoon": true,
-      "comingSoonNote": "Azure AD features launching Q1 2025"
+      "cta": "Buy Business"
     },
     {
       "id": "enterprise",
@@ -128,15 +121,12 @@
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
-        "🎨 Custom branding (white-label)",
-        "✅ SLA guarantees (99.9% uptime)",
-        "⭐ Priority feature requests"
+        "🎨 White-label branding (coming Q2 2026)",
+        "🏗️ Self-hosting option (coming Q1 2026)",
+        "Documentation & community support"
       ],
       "badge": "🌟",
       "cta": "Buy Enterprise",
-      "section": "enterprise",
-      "comingSoon": true,
-      "comingSoonNote": "Azure AD features launching Q1 2025",
       "pricingExamples": [
         "76 users: $907/year",
         "100 users: $1,099/year",
@@ -151,7 +141,7 @@
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
     "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
-    "business": "https://buy.stripe.com/28E6oHevE1rz4C00XZgYU0y",
+    "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",
     "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z"
   }
 }
