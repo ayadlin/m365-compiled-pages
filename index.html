@@ -200,26 +200,8 @@
     }
 
     .admin-link {
-      position: fixed;
-      top: 1rem;
       right: 27rem;
-      background: rgba(var(--accent-rgb), 0.1);
-      border: 1px solid rgba(var(--accent-rgb), 0.3);
-      color: var(--accent);
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.85rem;
-      transition: all 0.3s ease;
-      z-index: 1000;
       display: none;
-    }
-
-    .admin-link:hover {
-      background: rgba(var(--accent-rgb), 0.2);
-      border-color: var(--accent);
-      transform: translateY(-2px);
     }
 
     @media (max-width: 1024px) {
@@ -240,7 +222,7 @@
   </style>
 </head>
 <body>
-  <a href="/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="portal-link admin-link" id="admin-link">🔧 Admin Dashboard</a>
   <a href="/portal/enterprise/dashboard" class="portal-link enterprise-link">🏢 Enterprise Portal</a>
   <a href="/portal/" class="portal-link">👤 Customer Portal</a>
 
