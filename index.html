@@ -200,12 +200,28 @@
     }
 
     .admin-link {
-      right: 27rem;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
+      color: white;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
+      z-index: 1000;
+      transition: all 0.3s ease;
       display: none;
     }
 
+    .admin-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.7);
+      text-decoration: none;
+    }
+
     @media (max-width: 1024px) {
-      .portal-link, .admin-link {
+      .portal-link {
         position: static;
         display: inline-block;
         margin: 0.5rem;
@@ -214,15 +230,11 @@
       .enterprise-link {
         right: auto;
       }
-
-      .admin-link {
-        right: auto;
-      }
     }
   </style>
 </head>
 <body>
-  <a href="https://api.ytech.tools/admin/dashboard" class="portal-link admin-link" id="admin-link">🔧 Admin Dashboard</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
   <a href="/portal/enterprise/dashboard" class="portal-link enterprise-link">🏢 Enterprise Portal</a>
   <a href="/portal/" class="portal-link">👤 Customer Portal</a>
 
