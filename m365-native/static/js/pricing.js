@@ -18,10 +18,9 @@ fetch('config.json').then(r => r.json()).then(config => {
 
   // Separate free trial from paid plans
   const freeTrial = config.plans.find(plan => plan.id === 'free');
-  const mainPlans = config.plans.filter(plan => plan.id !== 'free' && !plan.section);
-  const foundationBundles = config.plans.filter(plan => plan.section === 'foundation-bundles');
-  const teamBundles = config.plans.filter(plan => plan.section === 'team-bundles');
-  const teamNativeBundles = config.plans.filter(plan => plan.section === 'team-native-bundles');
+  const individualPlans = config.plans.filter(plan => plan.id !== 'free' && !plan.section);
+  const teamPlans = config.plans.filter(plan => plan.section === 'team');
+  const enterprisePlans = config.plans.filter(plan => plan.section === 'enterprise');
 
   // Render free trial as hero bar if it exists
   if (freeTrial) {
@@ -61,8 +60,24 @@ fetch('config.json').then(r => r.json()).then(config => {
     }
 
     const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
-    const priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span></div>`;
+
+    // Handle price display with optional price note
+    let priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span>`;
+    if (plan.priceNote) {
+      priceDisplay += `<div class="price-note">${plan.priceNote}</div>`;
+    }
+    priceDisplay += `</div>`;
+
     const features = plan.features.map(f => `<li>${f}</li>`).join('');
+
+    // Add pricing examples if they exist (for Enterprise tier)
+    let pricingExamples = '';
+    if (plan.pricingExamples && plan.pricingExamples.length > 0) {
+      pricingExamples = '<div class="pricing-examples"><strong>Examples:</strong><ul>' +
+        plan.pricingExamples.map(ex => `<li>${ex}</li>`).join('') +
+        '</ul></div>';
+    }
+
     const checkoutUrl = config.checkout[plan.id] || '#';
     const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
 
@@ -75,16 +90,41 @@ fetch('config.json').then(r => r.json()).then(config => {
       <ul class="plan-features">
         ${features}
       </ul>
+      ${pricingExamples}
       <a href="${checkoutUrl}" class="plan-cta" ${trackingCode}>${plan.cta || 'Get Started'}</a>
     `;
 
     return card;
   }
 
-  // Render main plans in the grid
-  mainPlans.forEach(plan => {
+  // Render individual plans
+  individualPlans.forEach(plan => {
     grid.appendChild(renderPlanCard(plan));
   });
+
+  // Render team plans section if exists
+  if (teamPlans.length > 0) {
+    const teamHeader = document.createElement('div');
+    teamHeader.className = 'pricing-section-header';
+    teamHeader.innerHTML = '<h2>Team Plans</h2><p>Perfect for small to medium teams</p>';
+    grid.appendChild(teamHeader);
+
+    teamPlans.forEach(plan => {
+      grid.appendChild(renderPlanCard(plan));
+    });
+  }
+
+  // Render enterprise plans section if exists
+  if (enterprisePlans.length > 0) {
+    const enterpriseHeader = document.createElement('div');
+    enterpriseHeader.className = 'pricing-section-header';
+    enterpriseHeader.innerHTML = '<h2>Enterprise Plans</h2><p>For larger organizations with advanced needs</p>';
+    grid.appendChild(enterpriseHeader);
+
+    enterprisePlans.forEach(plan => {
+      grid.appendChild(renderPlanCard(plan));
+    });
+  }
 
 });
 
