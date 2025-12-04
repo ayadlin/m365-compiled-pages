@@ -3,6 +3,7 @@
 // Load dashboard data on page load
 document.addEventListener('DOMContentLoaded', () => {
   loadDashboardData();
+  setupLicenseManagement();
 });
 
 async function loadDashboardData() {
@@ -114,4 +115,75 @@ function formatTimeAgo(date) {
   }
 
   return 'just now';
+}
+
+// Setup license management functionality
+function setupLicenseManagement() {
+  const addButton = document.getElementById('addLicensesBtn');
+  if (!addButton) return;
+
+  addButton.addEventListener('click', async () => {
+    const email = document.getElementById('licenseEmail').value.trim();
+    const additionalSeats = parseInt(document.getElementById('additionalSeats').value);
+    const resultDiv = document.getElementById('licenseResult');
+
+    // Validate inputs
+    if (!email || !additionalSeats || additionalSeats <= 0) {
+      showLicenseResult('error', 'Please enter a valid email and number of seats');
+      return;
+    }
+
+    // Disable button during request
+    addButton.disabled = true;
+    addButton.textContent = 'Adding Licenses...';
+
+    try {
+      const response = await fetch('/api/enterprise/licenses/add', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          additional_seats: additionalSeats
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        showLicenseResult('success',
+          `Successfully added ${data.additional_seats} seat(s)! ` +
+          `Previous: ${data.previous_seats} → New: ${data.new_seats} seats. ` +
+          `${data.proration}`
+        );
+
+        // Clear form
+        document.getElementById('licenseEmail').value = '';
+        document.getElementById('additionalSeats').value = '';
+      } else {
+        showLicenseResult('error', data.message || 'Failed to add licenses');
+      }
+
+    } catch (error) {
+      console.error('Error adding licenses:', error);
+      showLicenseResult('error', 'An error occurred while adding licenses');
+    } finally {
+      // Re-enable button
+      addButton.disabled = false;
+      addButton.textContent = 'Add Licenses';
+    }
+  });
+}
+
+function showLicenseResult(type, message) {
+  const resultDiv = document.getElementById('licenseResult');
+  resultDiv.style.display = 'block';
+  resultDiv.className = type === 'success' ? 'success-message' : 'error-message';
+  resultDiv.textContent = message;
+
+  // Auto-hide after 10 seconds
+  setTimeout(() => {
+    resultDiv.style.display = 'none';
+  }, 10000);
 }

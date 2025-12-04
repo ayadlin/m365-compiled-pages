@@ -76,6 +76,28 @@
         </div>
       </div>
 
+      <!-- License Management -->
+      <div class="dashboard-card license-management">
+        <h2>📦 License Management</h2>
+        <p style="color: var(--fg, #e5e7eb); margin-bottom: 1.5rem;">Add seats to your subscription with automatic pro-rated billing</p>
+
+        <div class="license-form">
+          <div class="form-group">
+            <label for="licenseEmail">License Email</label>
+            <input type="email" id="licenseEmail" placeholder="user@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="additionalSeats">Additional Seats</label>
+            <input type="number" id="additionalSeats" min="1" placeholder="Number of seats to add" required>
+          </div>
+
+          <button id="addLicensesBtn" class="btn-primary">Add Licenses</button>
+        </div>
+
+        <div id="licenseResult" style="display: none; margin-top: 1rem;"></div>
+      </div>
+
       <!-- Navigation Cards -->
       <div class="nav-grid">
         <a href="/portal/enterprise/users" class="nav-card">
