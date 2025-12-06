@@ -117,7 +117,7 @@ async function loadDashboard() {
   }
 }
 
-// Download license files
+// Download license files (as ZIP archive)
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   try {
     const response = await fetch(`${API_BASE}/api/portal/download-license`, {
@@ -129,27 +129,28 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
       throw new Error('Failed to download license');
     }
 
-    const data = await response.json();
+    // Get ZIP file as blob
+    const blob = await response.blob();
 
-    // Create license.json file
-    const licenseBlob = new Blob([data.license_json], { type: 'application/json' });
-    const licenseUrl = URL.createObjectURL(licenseBlob);
-    const licenseLink = document.createElement('a');
-    licenseLink.href = licenseUrl;
-    licenseLink.download = 'license.json';
-    licenseLink.click();
-    URL.revokeObjectURL(licenseUrl);
+    // Extract filename from Content-Disposition header or use default
+    const contentDisposition = response.headers.get('Content-Disposition');
+    let filename = 'm365-license.zip';
+    if (contentDisposition) {
+      const matches = /filename="([^"]+)"/.exec(contentDisposition);
+      if (matches && matches[1]) {
+        filename = matches[1];
+      }
+    }
 
-    // Create license.sig file
-    const sigBlob = new Blob([data.signature], { type: 'text/plain' });
-    const sigUrl = URL.createObjectURL(sigBlob);
-    const sigLink = document.createElement('a');
-    sigLink.href = sigUrl;
-    sigLink.download = 'license.sig';
-    sigLink.click();
-    URL.revokeObjectURL(sigUrl);
+    // Create download link
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.click();
+    URL.revokeObjectURL(url);
 
-    alert('License files downloaded! Check your Downloads folder for license.json and license.sig');
+    alert('License ZIP file downloaded! Extract it to get license.json and license.sig files.');
 
   } catch (error) {
     console.error('Download error:', error);
