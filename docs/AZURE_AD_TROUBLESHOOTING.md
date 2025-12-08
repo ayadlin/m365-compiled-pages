@@ -2,6 +2,8 @@
 
 **Solutions for common Azure AD SSO and SCIM issues**
 
+**Last Updated:** 2025-12-08
+
 ---
 
 ## Table of Contents

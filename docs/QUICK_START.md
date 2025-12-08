@@ -214,4 +214,4 @@ Contact support@ytech.tools to switch between Free Trial, Pro, Team, or Enterpri
 
 **Full Documentation:** `docs/USER_GUIDE.md`
 
-**Version:** 1.0.0 | **Updated:** 2025-01-30
+**Version:** 1.0.1 | **Updated:** 2025-12-08

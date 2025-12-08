@@ -2,6 +2,8 @@
 
 **Configure Azure AD SSO and SCIM provisioning for M365 WebApps**
 
+**Last Updated:** 2025-12-08
+
 ---
 
 ## Overview

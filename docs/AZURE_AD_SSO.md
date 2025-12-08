@@ -2,6 +2,8 @@
 
 **Sign in to M365 WebApps with your work account**
 
+**Last Updated:** 2025-12-08
+
 ---
 
 ## Overview

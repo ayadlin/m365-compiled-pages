@@ -2,7 +2,7 @@
 
 **Run Microsoft Office on Linux with Native Desktop Integration**
 
-**Last Updated:** 2025-01-30
+**Last Updated:** 2025-12-08
 
 ---
 
@@ -1333,5 +1333,5 @@ If you want to reinstall later, **do NOT** delete `~/.config/m365_webapps/`. Thi
 For questions or support: support@ytech.tools
 Website: https://ytech.tools/m365/
 
-*Document Version: 1.0.0*
-*Last Updated: 2025-01-30*
+*Document Version: 1.1.0*
+*Last Updated: 2025-12-08*
