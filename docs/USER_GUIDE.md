@@ -212,6 +212,40 @@ sudo apt update
 sudo apt install microsoft-edge-stable
 ```
 
+### 3.5 Upgrading M365 WebApps
+
+When you upgrade M365 WebApps via `apt upgrade`, the package binaries are updated automatically. However, you need to regenerate your desktop launchers to ensure proper icon association and integration with your desktop environment.
+
+**After upgrading, run:**
+
+```bash
+m365ctl -mode install
+```
+
+This command will:
+- Regenerate desktop entry files in `~/.local/share/applications/`
+- Update the desktop database
+- Ensure icons are properly associated with running apps
+
+**Why is this necessary?**
+
+Desktop entry files are user-specific (stored in your home directory), so apt/dpkg cannot automatically update them when upgrading the package. Running `m365ctl -mode install` after upgrades ensures your desktop integration stays current.
+
+**Complete upgrade process:**
+
+```bash
+# Update package lists
+sudo apt update
+
+# Upgrade M365 WebApps
+sudo apt upgrade m365-compiled
+
+# Regenerate desktop files (important!)
+m365ctl -mode install
+```
+
+**Note:** If you skip running `m365ctl -mode install`, your apps will still work but may not show proper icons in your taskbar or application switcher.
+
 ---
 
 ## 4. Getting Your License
