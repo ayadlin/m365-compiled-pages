@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download M365 Foundation - All Linux Distributions</title>
+  <link rel="stylesheet" href="/theme.css">
+  <style>
+    .download-hero {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+    }
+    .download-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    .distro-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .distro-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    .distro-logo {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .distro-name {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+    .distro-desc {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+    }
+    .download-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0.25rem;
+      transition: background 0.2s;
+    }
+    .download-btn:hover {
+      background: var(--accent);
+    }
+    .install-code {
+      background: var(--surface-dark);
+      padding: 1rem;
+      border-radius: 6px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .tier-badge {
+      display: inline-block;
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="home-link">← Home</a>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
+  <header>
+    <a href="/m365-foundation/" style="text-decoration: none; color: inherit; display: inline-block;">
+      <img id="logo" height="48" alt="M365 Foundation Logo" style="cursor: pointer;">
+    </a>
+    <h1>Download M365 Foundation</h1>
+    <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">Chromium-Based • $19.99/year</p>
+  </header>
+
+  <div class="download-hero">
+    <h1>📦 Multi-Distribution Support</h1>
+    <p style="font-size: 1.1rem; margin-top: 1rem;">Choose your Linux distribution below</p>
+    <div style="margin-top: 1rem;">
+      <span class="tier-badge">Free</span>
+      <span class="tier-badge">Trial</span>
+      <span class="tier-badge">Foundation</span>
+      <span class="tier-badge">Team</span>
+      <span class="tier-badge">Professional</span>
+      <span class="tier-badge">Business</span>
+      <span class="tier-badge">Enterprise</span>
+      <span class="tier-badge">Unlimited</span>
+      <span class="tier-badge">Self-Hosted</span>
+    </div>
+    <p style="font-size: 0.9rem; margin-top: 0.5rem; opacity: 0.9;">All packages support ALL tiers • License validation at runtime</p>
+  </div>
+
+  <div class="download-grid">
+    <!-- Debian/Ubuntu -->
+    <div class="distro-card">
+      <div class="distro-logo">🟠</div>
+      <div class="distro-name">Debian / Ubuntu</div>
+      <div class="distro-desc">Also supports Linux Mint, Pop!_OS, elementary OS</div>
+
+      <a href="https://github.com/ayadlin/m365-compiled/releases/latest/download/m365-foundation_1.0.2_amd64.deb" class="download-btn">
+        Download .deb
+      </a>
+
+      <div class="install-code">
+wget https://github.com/ayadlin/m365-compiled/releases/latest/download/m365-foundation_1.0.2_amd64.deb
+sudo dpkg -i m365-foundation_1.0.2_amd64.deb
+sudo apt-get install -f
+      </div>
+    </div>
+
+    <!-- Fedora/RHEL -->
+    <div class="distro-card">
+      <div class="distro-logo">🔵</div>
+      <div class="distro-name">Fedora / RHEL / CentOS</div>
+      <div class="distro-desc">Also supports AlmaLinux, Rocky Linux, openSUSE</div>
+
+      <a href="https://github.com/ayadlin/m365-compiled/releases/latest/download/m365-foundation-1.0.2-1.x86_64.rpm" class="download-btn">
+        Download .rpm
+      </a>
+
+      <div class="install-code">
+sudo rpm -ivh m365-foundation-1.0.2-1.x86_64.rpm
+# OR
+sudo dnf install m365-foundation-1.0.2-1.x86_64.rpm
+      </div>
+    </div>
+
+    <!-- Arch Linux -->
+    <div class="distro-card">
+      <div class="distro-logo">⚫</div>
+      <div class="distro-name">Arch Linux</div>
+      <div class="distro-desc">Also supports Manjaro, EndeavourOS, Garuda</div>
+
+      <a href="https://github.com/ayadlin/m365-compiled/releases/latest/download/m365-foundation-1.0.2-arch.tar.gz" class="download-btn">
+        Download PKGBUILD
+      </a>
+
+      <div class="install-code">
+tar -xzf m365-foundation-1.0.2-arch.tar.gz
+cd m365-foundation-1.0.2-arch
+makepkg -si
+      </div>
+    </div>
+
+    <!-- AppImage -->
+    <div class="distro-card">
+      <div class="distro-logo">🌐</div>
+      <div class="distro-name">AppImage (Universal)</div>
+      <div class="distro-desc">Works on ANY Linux distribution</div>
+
+      <a href="https://github.com/ayadlin/m365-compiled/releases/latest/download/M365-Foundation-1.0.2-x86_64.AppImage" class="download-btn">
+        Download AppImage
+      </a>
+
+      <div class="install-code">
+chmod +x M365-Foundation-1.0.2-x86_64.AppImage
+./M365-Foundation-1.0.2-x86_64.AppImage
+      </div>
+    </div>
+
+    <!-- Flatpak -->
+    <div class="distro-card">
+      <div class="distro-logo">📦</div>
+      <div class="distro-name">Flatpak (Sandboxed)</div>
+      <div class="distro-desc">Sandboxed, works on all distributions</div>
+
+      <div class="install-code">
+flatpak install https://github.com/ayadlin/m365-compiled/releases/latest/download/m365-foundation.flatpak
+flatpak run io.github.ayadlin.m365_foundation
+      </div>
+    </div>
+
+    <!-- Snap -->
+    <div class="distro-card">
+      <div class="distro-logo">🟢</div>
+      <div class="distro-name">Snap (Ubuntu)</div>
+      <div class="distro-desc">Auto-updates, works cross-distro</div>
+
+      <div class="install-code">
+sudo snap install m365-foundation --dangerous
+# OR download from Snap Store (coming soon)
+      </div>
+    </div>
+  </div>
+
+  <!-- What's Included -->
+  <section style="margin: 3rem 0;">
+    <h2 style="text-align: center; margin-bottom: 2rem;">📋 What's Included</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🖥️</div>
+        <h3>All Binaries</h3>
+        <p>m365-gui, m365ctl, m365-pro, m365-launch, m365-sign, m365-reg, m365-revoke, m365-keygen, m365-ageenc, m365-agedec</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎨</div>
+        <h3>App Icons</h3>
+        <p>Desktop icons for Word, Excel, PowerPoint, Outlook, Teams, OneDrive, OneNote, and more</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>Systemd Services</h3>
+        <p>Automatic license validation timer and service for periodic checks</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>Auto-Install</h3>
+        <p>Desktop launchers automatically installed for ALL users (uid >= 1000)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Post-Installation -->
+  <section style="margin: 3rem 0; background: var(--surface); padding: 2rem; border-radius: 8px;">
+    <h2>🚀 After Installation</h2>
+
+    <h3>1. Verify Installation</h3>
+    <div class="install-code">
+m365-pro --version
+m365ctl --help
+    </div>
+
+    <h3>2. Activate License</h3>
+    <p>Download your <code>license.json</code> and <code>license.sig</code> from the <a href="/portal/">Customer Portal</a></p>
+    <div class="install-code">
+mkdir -p ~/.config/m365_webapps
+cp license.json ~/.config/m365_webapps/
+cp license.sig ~/.config/m365_webapps/
+
+# Verify
+m365-pro -feature picker \
+  -license ~/.config/m365_webapps/license.json \
+  -sig ~/.config/m365_webapps/license.sig
+    </div>
+
+    <h3>3. Launch Apps</h3>
+    <p>Desktop launchers are automatically created! Look for:</p>
+    <ul>
+      <li>📝 Microsoft Word</li>
+      <li>📊 Microsoft Excel</li>
+      <li>📈 Microsoft PowerPoint</li>
+      <li>📧 Microsoft Outlook</li>
+      <li>💬 Microsoft Teams</li>
+      <li>📔 Microsoft OneNote</li>
+      <li>☁️ Microsoft OneDrive</li>
+    </ul>
+  </section>
+
+  <!-- Support -->
+  <section style="margin: 3rem 0; text-align: center;">
+    <h2>Need Help?</h2>
+    <div class="cta-buttons">
+      <a href="/m365-foundation/docs.html" class="btn btn-primary">📖 Documentation</a>
+      <a href="mailto:support@ytech.tools" class="btn btn-secondary">✉️ Support</a>
+      <a href="https://github.com/ayadlin/m365-compiled/issues" class="btn btn-secondary">🐛 Report Issue</a>
+    </div>
+  </section>
+
+  <script src="static/js/logo.js"></script>
+</body>
+</html>
