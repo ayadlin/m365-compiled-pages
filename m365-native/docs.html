@@ -32,28 +32,53 @@
     <p>Complete guide for installing, activating, and using Microsoft Office apps on Linux.</p>
 
     <h2>📦 Installation</h2>
+    <p>M365 Native supports ALL major Linux distributions. Choose your platform below:</p>
 
-    <h3>Method 1: APT Repository (Recommended)</h3>
-    <p>For Debian/Ubuntu-based systems:</p>
-    <pre><code># Add the repository
-echo "deb [trusted=yes] https://ytech.tools stable main" \\
-  | sudo tee /etc/apt/sources.list.d/m365-compiled.list
+    <h3>🟠 Debian / Ubuntu / Linux Mint / Pop!_OS</h3>
+    <p>Download the <code>.deb</code> package:</p>
+    <pre><code># Visit product download page:
+# https://ytech.tools/m365-native/download.html
 
-# Update and install
-sudo apt update
-sudo apt install m365-compiled
+# Install with dpkg:
+sudo dpkg -i m365-native_*.deb
 
 # Install desktop launchers
 m365ctl -mode install</code></pre>
 
-    <h3>Method 2: Download .deb Package</h3>
-    <p>For manual installation, download the latest <code>.deb</code> package:</p>
-    <pre><code># Download from APT repository
-wget https://ytech.tools/pool/main/m365-compiled_latest_amd64.deb
+    <h3>🔵 Fedora / RHEL / CentOS / AlmaLinux / Rocky Linux</h3>
+    <p>Download the <code>.rpm</code> package:</p>
+    <pre><code># Install with rpm:
+sudo rpm -ivh m365-native-*.rpm
+# Or with dnf:
+sudo dnf install m365-native-*.rpm
 
-# Install
-sudo dpkg -i m365-compiled_latest_amd64.deb
+# Install desktop launchers
 m365ctl -mode install</code></pre>
+
+    <h3>⚫ Arch Linux / Manjaro / EndeavourOS</h3>
+    <p>Download the Arch package:</p>
+    <pre><code># Extract and build:
+tar -xzf m365-native-*-arch.tar.gz
+cd m365-native-*-arch
+makepkg -si
+
+# Install desktop launchers
+m365ctl -mode install</code></pre>
+
+    <h3>🌐 AppImage (Universal - Works on ANY Distribution)</h3>
+    <p>The easiest way to run on any Linux distribution:</p>
+    <pre><code># Download AppImage from product page
+# Make it executable:
+chmod +x M365-Native-*.AppImage
+
+# Run directly:
+./M365-Native-*.AppImage
+
+# Optional: Integrate with system:
+./M365-Native-*.AppImage --appimage-integrate</code></pre>
+
+    <h3>📦 Flatpak (Sandboxed)</h3>
+    <p>Coming soon - sandboxed installation for enhanced security</p>
 
     <h2>🔑 License Activation</h2>
     <p>After purchasing a license, you'll receive two files:</p>
