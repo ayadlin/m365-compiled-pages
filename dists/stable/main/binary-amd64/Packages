@@ -1,14 +1,14 @@
 Package: m365-compiled
 Architecture: amd64
-Version: 1.1.1-cleanup-test
+Version: 1.1.1
 Priority: optional
 Section: utils
 Maintainer: You <you@example.com>
-Filename: pool/main/m365-compiled_1.1.1-cleanup-test_amd64.deb
-Size: 27592292
-MD5sum: cb2eaadfa5b714a16f0b51306c6c1681
-SHA1: 41544e5b9c97cb884f8280b6a2c776d3f8883507
-SHA256: d720dc0ea3f6c9ecce55984ddeb1fefb28b144f39dcba429413e26daadc781d9
-SHA512: 44b30ced17397afa83184e610847e3832a252ff99f0df660ed35537d39c74dcb7d359597b1bc625c2af683ba03f5372efa48a7160ed1ced5c11f01cd829cf472
+Filename: pool/main/m365-compiled_1.1.1_amd64.deb
+Size: 27591800
+MD5sum: 45d17420200e0faadef488138f8051d9
+SHA1: 0f1aaaeb249cede5fa89e3806d3636057f3cc738
+SHA256: 8b4de0ab6f53a8264ac813f7de26d9665b928d307291ef35199c8740794a1f77
+SHA512: 4fb0744a551dff50f3d964226123c9236b9b61874c418b8cbf0015906e42b8c7a7c3cbce68d671dbf0bc5012a90f9bd1310524541d56ed5485fe6194c69f4c62
 Description: Compiled M365 WebApps wrappers with offline licensing
 
