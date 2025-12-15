@@ -267,3 +267,8 @@ body {
   background: var(--accent);
   color: white;
 }
+
+/* Hide admin-link on documentation pages (header nav provides dashboard access) */
+.admin-link {
+  display: none !important;
+}
