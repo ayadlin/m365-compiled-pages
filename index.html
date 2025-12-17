@@ -231,91 +231,6 @@
         right: auto;
       }
     }
-
-    .quality-section {
-      max-width: 1200px;
-      margin: 5rem auto 4rem;
-      padding: 0 2rem;
-      text-align: center;
-    }
-
-    .quality-section h2 {
-      color: var(--accent);
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .quality-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    @media (max-width: 968px) {
-      .quality-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .quality-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .quality-item {
-      background: var(--card-bg);
-      border: 2px solid rgba(var(--accent-rgb), 0.2);
-      border-radius: 12px;
-      padding: 2rem 1.5rem;
-      transition: all 0.3s ease;
-    }
-
-    .quality-item:hover {
-      border-color: var(--accent);
-      transform: translateY(-4px);
-      box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.2);
-    }
-
-    @media (prefers-color-scheme: light) {
-      .quality-item {
-        background: linear-gradient(135deg, #fff7ed, #fed7aa);
-        border-color: rgba(255, 107, 53, 0.3);
-      }
-
-      .quality-item:hover {
-        border-color: rgba(255, 107, 53, 0.6);
-      }
-
-      .quality-item p {
-        color: #1a1a1a;
-      }
-
-      .quality-item .quality-title {
-        color: #ff6b35;
-      }
-    }
-
-    .quality-item .quality-icon {
-      font-size: 2.5rem;
-      display: block;
-      margin-bottom: 1rem;
-    }
-
-    .quality-item .quality-title {
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-
-    .quality-item p {
-      font-size: 0.95rem;
-      color: var(--fg);
-      line-height: 1.6;
-      margin: 0;
-    }
   </style>
 </head>
 <body>
@@ -334,38 +249,42 @@
     <p>Bridging platforms and ecosystems with seamless integration tools. From bringing Microsoft Office to Linux, to connecting Apple and Android families — we make incompatible systems work together.</p>
   </div>
 
-  <!-- Production-Ready Quality Highlights -->
-  <div style="max-width: 1100px; margin: 0 auto 4rem; padding: 2rem; background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(255, 140, 90, 0.05)); border-radius: 16px; border: 2px solid rgba(255, 107, 53, 0.2);">
-    <h2 style="text-align: center; color: var(--accent); font-size: 2rem; margin-bottom: 1.5rem;">Production-Ready Quality</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; text-align: center;">
-      <div style="padding: 1rem;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">✅</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.2rem;">86.6% Test Coverage</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0;">Unit, integration, and E2E tests</p>
+  <!-- Quality You Can Trust -->
+  <div style="max-width: 1100px; margin: 0 auto 4rem; padding: 2.5rem; background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(255, 140, 90, 0.04)); border-radius: 16px; border: 2px solid rgba(255, 107, 53, 0.15); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
+    <h2 style="text-align: center; color: var(--accent); font-size: 2.2rem; margin-bottom: 2rem; font-weight: 700;">Quality You Can Trust</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
+      <!-- Row 1 -->
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">✅</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Rigorously Tested</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Automated testing and continuous integration ensure every release works flawlessly</p>
       </div>
-      <div style="padding: 1rem;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐧</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.2rem;">5 Linux Distributions</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0;">Ubuntu 20.04/22.04/24.04, Fedora, Arch</p>
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🐧</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Works on Your Linux</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Compatible with Ubuntu, Fedora, Arch, and more - whatever distribution you prefer</p>
       </div>
-      <div style="padding: 1rem;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📦</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.2rem;">Multi-Format Packages</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0;">DEB, RPM, PKGBUILD, AppImage, Flatpak</p>
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">📦</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Install Your Way</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Choose from DEB, RPM, AppImage, Flatpak, or direct download - whatever fits your workflow</p>
       </div>
-      <div style="padding: 1rem;">
-        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔄</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.2rem;">CI/CD Automation</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0;">Docker-based E2E testing in every build</p>
+      <!-- Row 2 -->
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔒</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Secure Licensing</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Cryptographic offline verification means your license works without constant internet checks</p>
       </div>
-    </div>
-    <div style="text-align: center; margin-top: 1.5rem;">
-      <p style="color: var(--fg); font-size: 0.9rem; margin: 0;">
-        <strong>Distribution-Specific Compliance:</strong>
-        <span style="margin: 0 0.5rem;">✅ Ubuntu 24.04 PEP 668</span>
-        <span style="margin: 0 0.5rem;">✅ Arch Linux fuse2</span>
-        <span style="margin: 0 0.5rem;">✅ Fedora DNF</span>
-      </p>
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">💻</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">True Desktop Experience</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Native Linux desktop integration with proper windows, launchers, and file dialogs</p>
+      </div>
+      <div style="text-align: center; padding: 1.5rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🚀</div>
+        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Always Current</h3>
+        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Microsoft's latest Office features are automatically available - no waiting for updates</p>
+      </div>
     </div>
   </div>
 
@@ -375,7 +294,7 @@
       <h2>M365 WebApps Foundation</h2>
       <p>Linux desktop with Chromium - Perfect to get started with Microsoft Office on Linux.</p>
       <ul class="features">
-        <li>All 7 core Microsoft apps</li>
+        <li>All 7 Microsoft apps</li>
         <li>Chromium-based desktop launcher</li>
         <li>Dedicated browser profiles</li>
         <li>File picker integration</li>
@@ -410,47 +329,6 @@
         <li>No private iMessage/FaceTime protocols</li>
       </ul>
       <a href="#" class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</a>
-    </div>
-  </div>
-
-  <div class="quality-section">
-    <h2>Production-Ready Quality</h2>
-    <div class="quality-grid">
-      <div class="quality-item">
-        <span class="quality-icon">✅</span>
-        <div class="quality-title">86.6% Test Coverage</div>
-        <p>Unit, integration, and E2E tests</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">🐧</span>
-        <div class="quality-title">5 Linux Distributions</div>
-        <p>Ubuntu 20.04/22.04/24.04, Fedora, Arch</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">📦</span>
-        <div class="quality-title">Multi-Format Packages</div>
-        <p>DEB, RPM, PKGBUILD, AppImage, Flatpak</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">🔄</span>
-        <div class="quality-title">CI/CD Automation</div>
-        <p>Docker-based E2E testing in every build</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">✅</span>
-        <div class="quality-title">Ubuntu 24.04 PEP 668</div>
-        <p>Compliant with Python packaging standards</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">✅</span>
-        <div class="quality-title">Arch Linux fuse2</div>
-        <p>Native fuse2 support for AppImage</p>
-      </div>
-      <div class="quality-item">
-        <span class="quality-icon">✅</span>
-        <div class="quality-title">Fedora DNF</div>
-        <p>DNF package manager integration</p>
-      </div>
     </div>
   </div>
 
