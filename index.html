@@ -231,6 +231,91 @@
         right: auto;
       }
     }
+
+    .quality-section {
+      max-width: 1200px;
+      margin: 5rem auto 4rem;
+      padding: 0 2rem;
+      text-align: center;
+    }
+
+    .quality-section h2 {
+      color: var(--accent);
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .quality-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 968px) {
+      .quality-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .quality-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .quality-item {
+      background: var(--card-bg);
+      border: 2px solid rgba(var(--accent-rgb), 0.2);
+      border-radius: 12px;
+      padding: 2rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .quality-item:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.2);
+    }
+
+    @media (prefers-color-scheme: light) {
+      .quality-item {
+        background: linear-gradient(135deg, #fff7ed, #fed7aa);
+        border-color: rgba(255, 107, 53, 0.3);
+      }
+
+      .quality-item:hover {
+        border-color: rgba(255, 107, 53, 0.6);
+      }
+
+      .quality-item p {
+        color: #1a1a1a;
+      }
+
+      .quality-item .quality-title {
+        color: #ff6b35;
+      }
+    }
+
+    .quality-item .quality-icon {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .quality-item .quality-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+
+    .quality-item p {
+      font-size: 0.95rem;
+      color: var(--fg);
+      line-height: 1.6;
+      margin: 0;
+    }
   </style>
 </head>
 <body>
@@ -290,7 +375,7 @@
       <h2>M365 WebApps Foundation</h2>
       <p>Linux desktop with Chromium - Perfect to get started with Microsoft Office on Linux.</p>
       <ul class="features">
-        <li>All 7 Microsoft apps</li>
+        <li>All 7 core Microsoft apps</li>
         <li>Chromium-based desktop launcher</li>
         <li>Dedicated browser profiles</li>
         <li>File picker integration</li>
@@ -325,6 +410,47 @@
         <li>No private iMessage/FaceTime protocols</li>
       </ul>
       <a href="#" class="btn btn-primary" style="opacity: 0.5; cursor: not-allowed;">Coming Soon</a>
+    </div>
+  </div>
+
+  <div class="quality-section">
+    <h2>Production-Ready Quality</h2>
+    <div class="quality-grid">
+      <div class="quality-item">
+        <span class="quality-icon">✅</span>
+        <div class="quality-title">86.6% Test Coverage</div>
+        <p>Unit, integration, and E2E tests</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">🐧</span>
+        <div class="quality-title">5 Linux Distributions</div>
+        <p>Ubuntu 20.04/22.04/24.04, Fedora, Arch</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">📦</span>
+        <div class="quality-title">Multi-Format Packages</div>
+        <p>DEB, RPM, PKGBUILD, AppImage, Flatpak</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">🔄</span>
+        <div class="quality-title">CI/CD Automation</div>
+        <p>Docker-based E2E testing in every build</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">✅</span>
+        <div class="quality-title">Ubuntu 24.04 PEP 668</div>
+        <p>Compliant with Python packaging standards</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">✅</span>
+        <div class="quality-title">Arch Linux fuse2</div>
+        <p>Native fuse2 support for AppImage</p>
+      </div>
+      <div class="quality-item">
+        <span class="quality-icon">✅</span>
+        <div class="quality-title">Fedora DNF</div>
+        <p>DNF package manager integration</p>
+      </div>
     </div>
   </div>
 
