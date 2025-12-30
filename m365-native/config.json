@@ -24,7 +24,7 @@
       "period": "year",
       "description": "Linux desktop with Chromium - Perfect to get started",
       "features": [
-        "All 8 Microsoft apps",
+        "7 core Microsoft 365 apps (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive)",
         "Chromium-based desktop launcher",
         "Dedicated browser profiles",
         "1 device license",
@@ -42,7 +42,7 @@
       "period": "year",
       "description": "Premium Linux native experience with OAuth auto-login",
       "features": [
-        "All Foundation features",
+        "7 core Microsoft 365 apps",
         "Embedded WebKitGTK (lighter & faster)",
         "OAuth 2.0 auto-login (no manual login!)",
         "System theme integration",
@@ -52,8 +52,66 @@
         "Documentation & community support"
       ],
       "badge": "⚡",
-      "cta": "Buy Native",
-      "popular": true
+      "cta": "Buy Native"
+    },
+    {
+      "id": "native-pro",
+      "label": "Native Pro",
+      "price": 69.99,
+      "period": "year",
+      "description": "All 13 apps with WebKitGTK + OAuth - Ultimate Linux experience",
+      "features": [
+        "All 7 Native apps PLUS",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
+        "Embedded WebKitGTK (lighter & faster)",
+        "OAuth 2.0 auto-login (no manual login!)",
+        "System theme integration",
+        "1 device license",
+        "Documentation & community support"
+      ],
+      "badge": "🚀",
+      "popular": true,
+      "cta": "Buy Native Pro"
+    },
+    {
+      "id": "native-acrobat",
+      "label": "Native + Acrobat",
+      "price": 49.99,
+      "period": "year",
+      "description": "Native bundle with Adobe Acrobat PDF tools",
+      "features": [
+        "All 7 Native apps",
+        "📄 Adobe Acrobat (PDF tools)",
+        "Embedded WebKitGTK (lighter & faster)",
+        "OAuth 2.0 auto-login",
+        "System theme integration",
+        "1 device license",
+        "Documentation & community support"
+      ],
+      "badge": "📄⚡",
+      "cta": "Buy Native + Acrobat"
+    },
+    {
+      "id": "acrobat-native",
+      "label": "Acrobat Native",
+      "price": 24.99,
+      "period": "year",
+      "description": "Adobe Acrobat with WebKitGTK - Premium PDF experience",
+      "features": [
+        "📄 Adobe Acrobat (PDF reader, editor, converter)",
+        "Embedded WebKitGTK (lighter & faster)",
+        "1 device license",
+        "PDF creation & editing",
+        "Form filling & signatures",
+        "Documentation & community support"
+      ],
+      "badge": "📄⚡",
+      "cta": "Buy Acrobat Native"
     },
     {
       "id": "team-foundation",
@@ -122,7 +180,7 @@
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
         "🎨 White-label branding (coming Q2 2026)",
-        "🏗️ Self-hosting option (coming Q1 2026)",
+        "🏗️ Self-hosting option (available now)",
         "Documentation & community support"
       ],
       "badge": "🌟",
@@ -139,6 +197,9 @@
     "free": "trial.html",
     "foundation": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
+    "native-pro": "https://buy.stripe.com/00wdR973cgmt2tS9uvgYU0E",
+    "native-acrobat": "https://buy.stripe.com/5kQfZh87geelb0o6ijgYU0G",
+    "acrobat-native": "https://buy.stripe.com/8x24gzdrA6LTc4s7mngYU0I",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
     "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
     "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",

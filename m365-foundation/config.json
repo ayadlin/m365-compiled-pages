@@ -24,7 +24,7 @@
       "period": "year",
       "description": "Linux desktop with Chromium - Perfect to get started",
       "features": [
-        "All 8 Microsoft apps",
+        "7 core Microsoft 365 apps (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive)",
         "Chromium-based desktop launcher",
         "Dedicated browser profiles",
         "1 device license",
@@ -34,6 +34,63 @@
       ],
       "badge": "🖥️",
       "cta": "Buy Foundation"
+    },
+    {
+      "id": "foundation-pro",
+      "label": "Foundation Pro",
+      "price": 44.99,
+      "period": "year",
+      "description": "All 13 apps including Copilot, SharePoint, and Acrobat - Maximum value",
+      "features": [
+        "All 7 Foundation apps PLUS",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
+        "Chromium-based desktop launcher",
+        "1 device license",
+        "Documentation & community support"
+      ],
+      "badge": "🚀",
+      "popular": true,
+      "cta": "Buy Foundation Pro"
+    },
+    {
+      "id": "foundation-acrobat",
+      "label": "Foundation + Acrobat",
+      "price": 29.99,
+      "period": "year",
+      "description": "Foundation bundle with Adobe Acrobat PDF tools",
+      "features": [
+        "All 7 Foundation apps",
+        "📄 Adobe Acrobat (PDF tools)",
+        "Chromium-based desktop launcher",
+        "1 device license",
+        "File picker integration",
+        "Auto-share links",
+        "Documentation & community support"
+      ],
+      "badge": "📄",
+      "cta": "Buy Foundation + Acrobat"
+    },
+    {
+      "id": "acrobat-foundation",
+      "label": "Acrobat Foundation",
+      "price": 15.99,
+      "period": "year",
+      "description": "Adobe Acrobat PDF tools only - Perfect for PDF workflows",
+      "features": [
+        "📄 Adobe Acrobat (PDF reader, editor, converter)",
+        "Chromium-based desktop launcher",
+        "1 device license",
+        "PDF creation & editing",
+        "Form filling & signatures",
+        "Documentation & community support"
+      ],
+      "badge": "📄",
+      "cta": "Buy Acrobat Foundation"
     },
     {
       "id": "native",
@@ -122,7 +179,7 @@
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
         "🎨 White-label branding (coming Q2 2026)",
-        "🏗️ Self-hosting option (coming Q1 2026)",
+        "🏗️ Self-hosting option (available now)",
         "Documentation & community support"
       ],
       "badge": "🌟",
@@ -138,6 +195,9 @@
   "checkout": {
     "free": "trial.html",
     "foundation": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
+    "foundation-pro": "https://buy.stripe.com/5kQfZhgDM5HP4C08qrgYU0D",
+    "foundation-acrobat": "https://buy.stripe.com/4gMbJ1gDM4DL8SggWXgYU0F",
+    "acrobat-foundation": "https://buy.stripe.com/6oUbJ1evE4DL5G4bCDgYU0H",
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
     "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",

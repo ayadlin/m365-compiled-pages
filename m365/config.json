@@ -19,41 +19,140 @@
     },
     {
       "id": "foundation",
-      "label": "Foundation",
+      "label": "Foundation (Base)",
       "price": 19.99,
       "period": "year",
-      "description": "Linux desktop with Chromium - Perfect to get started",
+      "description": "7 core Microsoft 365 apps with Chromium launcher",
       "features": [
-        "All 8 Microsoft apps",
+        "7 core Microsoft 365 apps (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive)",
         "Chromium-based desktop launcher",
         "Dedicated browser profiles",
         "1 device license",
         "File picker integration",
-        "Auto-share links",
         "Documentation & community support"
       ],
       "badge": "🖥️",
       "cta": "Buy Foundation"
     },
     {
+      "id": "foundation-pro",
+      "label": "Foundation Pro",
+      "price": 44.99,
+      "period": "year",
+      "description": "All 13 apps including Copilot, SharePoint, and Acrobat",
+      "features": [
+        "All 7 Foundation apps PLUS:",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
+        "Chromium-based desktop launcher",
+        "1 device license"
+      ],
+      "badge": "🚀",
+      "popular": true,
+      "cta": "Buy Foundation Pro"
+    },
+    {
+      "id": "foundation-acrobat",
+      "label": "Foundation + Acrobat",
+      "price": 29.99,
+      "period": "year",
+      "description": "7 core apps + Adobe Acrobat PDF tools",
+      "features": [
+        "All 7 Foundation apps",
+        "📄 Adobe Acrobat (PDF tools)",
+        "Chromium-based desktop launcher",
+        "1 device license"
+      ],
+      "badge": "📄",
+      "cta": "Buy Foundation + Acrobat"
+    },
+    {
+      "id": "acrobat-foundation",
+      "label": "Acrobat Only (Foundation)",
+      "price": 15.99,
+      "period": "year",
+      "description": "Adobe Acrobat PDF tools only with Chromium",
+      "features": [
+        "📄 Adobe Acrobat (PDF reader, editor, converter)",
+        "Chromium-based desktop launcher",
+        "1 device license",
+        "PDF creation & editing"
+      ],
+      "badge": "📄",
+      "cta": "Buy Acrobat"
+    },
+    {
       "id": "native",
-      "label": "Native",
+      "label": "Native (Base)",
       "price": 39.99,
       "period": "year",
-      "description": "Premium Linux native experience with OAuth auto-login",
+      "description": "7 core apps with WebKitGTK + OAuth auto-login",
       "features": [
-        "All Foundation features",
+        "7 core Microsoft 365 apps",
         "Embedded WebKitGTK (lighter & faster)",
         "OAuth 2.0 auto-login (no manual login!)",
         "System theme integration",
-        "System tray & notifications",
         "Native file picker & clipboard",
-        "1 device license",
-        "Documentation & community support"
+        "1 device license"
       ],
       "badge": "⚡",
-      "cta": "Buy Native",
-      "popular": true
+      "cta": "Buy Native"
+    },
+    {
+      "id": "native-pro",
+      "label": "Native Pro",
+      "price": 69.99,
+      "period": "year",
+      "description": "All 13 apps with WebKitGTK + OAuth - Ultimate experience",
+      "features": [
+        "All 7 Native apps PLUS:",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
+        "OAuth 2.0 auto-login",
+        "System theme integration",
+        "1 device license"
+      ],
+      "badge": "🚀⚡",
+      "popular": true,
+      "cta": "Buy Native Pro"
+    },
+    {
+      "id": "native-acrobat",
+      "label": "Native + Acrobat",
+      "price": 49.99,
+      "period": "year",
+      "description": "7 core apps + Acrobat with WebKitGTK",
+      "features": [
+        "All 7 Native apps",
+        "📄 Adobe Acrobat",
+        "OAuth 2.0 auto-login",
+        "System theme integration",
+        "1 device license"
+      ],
+      "badge": "📄⚡",
+      "cta": "Buy Native + Acrobat"
+    },
+    {
+      "id": "acrobat-native",
+      "label": "Acrobat Only (Native)",
+      "price": 24.99,
+      "period": "year",
+      "description": "Adobe Acrobat only with WebKitGTK",
+      "features": [
+        "📄 Adobe Acrobat",
+        "Embedded WebKitGTK",
+        "1 device license"
+      ],
+      "badge": "📄⚡",
+      "cta": "Buy Acrobat"
     },
     {
       "id": "team-foundation",
@@ -90,14 +189,88 @@
       "cta": "Buy Team Native"
     },
     {
+      "id": "team-foundation-pro",
+      "label": "Team Foundation Pro",
+      "price": 499,
+      "period": "year",
+      "description": "All 13 apps for teams - 25 devices",
+      "features": [
+        "25 Foundation Pro device licenses",
+        "All 13 apps per device (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive, Copilot, SharePoint, Acrobat, Planner, Forms, Stream)",
+        "Chromium-based desktop launcher",
+        "Shared team license management portal",
+        "Multi-profile support",
+        "Bulk license assignment",
+        "Documentation & community support"
+      ],
+      "badge": "👥🚀",
+      "cta": "Buy Team Foundation Pro"
+    },
+    {
+      "id": "team-native-pro",
+      "label": "Team Native Pro",
+      "price": 899,
+      "period": "year",
+      "description": "Ultimate team experience - All 13 apps + OAuth - 25 devices",
+      "features": [
+        "25 Native Pro device licenses",
+        "All 13 apps per device",
+        "OAuth 2.0 auto-login for all devices",
+        "Embedded WebKitGTK (lighter & faster)",
+        "System theme integration",
+        "Shared team license management portal",
+        "Bulk license assignment",
+        "Documentation & community support"
+      ],
+      "badge": "👥⚡🚀",
+      "popular": true,
+      "cta": "Buy Team Native Pro"
+    },
+    {
+      "id": "team-foundation-acrobat",
+      "label": "Team Foundation + Acrobat",
+      "price": 349,
+      "period": "year",
+      "description": "Foundation with Acrobat for teams - 25 devices",
+      "features": [
+        "25 Foundation + Acrobat device licenses",
+        "All 7 Foundation apps + Adobe Acrobat",
+        "Chromium-based desktop launcher",
+        "Shared team license management portal",
+        "Multi-profile support",
+        "Bulk license assignment",
+        "Documentation & community support"
+      ],
+      "badge": "👥📄",
+      "cta": "Buy Team Foundation + Acrobat"
+    },
+    {
+      "id": "team-native-acrobat",
+      "label": "Team Native + Acrobat",
+      "price": 649,
+      "period": "year",
+      "description": "Native with Acrobat for teams - 25 devices",
+      "features": [
+        "25 Native + Acrobat device licenses",
+        "All 7 Native apps + Adobe Acrobat",
+        "OAuth 2.0 auto-login for all devices",
+        "Embedded WebKitGTK (lighter & faster)",
+        "Shared team license management portal",
+        "Bulk license assignment",
+        "Documentation & community support"
+      ],
+      "badge": "👥⚡📄",
+      "cta": "Buy Team Native + Acrobat"
+    },
+    {
       "id": "business",
-      "label": "Business",
+      "label": "Business (Base)",
       "price": 799,
       "period": "year",
       "description": "Up to 50 users with Azure AD SSO and SCIM provisioning",
       "features": [
         "Up to 50 users (flat rate)",
-        "Native tier for all users",
+        "Native tier for all users (7 core apps)",
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
@@ -109,39 +282,132 @@
       "cta": "Buy Business"
     },
     {
-      "id": "enterprise",
-      "label": "Enterprise",
-      "price": "899",
-      "priceNote": "+ $8/user over 75",
+      "id": "business-pro",
+      "label": "Business Pro",
+      "price": 1299,
       "period": "year",
-      "description": "Unlimited users with usage-based pricing",
+      "description": "Up to 50 users with all 13 apps, Azure AD SSO and SCIM",
       "features": [
-        "Unlimited users ($8/user over 75)",
-        "Native tier for all users",
+        "Up to 50 users (flat rate)",
+        "Native Pro tier for all users (all 13 apps)",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📊 Company admin portal",
+        "🛡️ Audit logging",
+        "Documentation & community support"
+      ],
+      "badge": "🏢🚀",
+      "popular": true,
+      "cta": "Buy Business Pro"
+    },
+    {
+      "id": "business-acrobat",
+      "label": "Business + Acrobat",
+      "price": 999,
+      "period": "year",
+      "description": "Up to 50 users with Native + Acrobat, Azure AD SSO and SCIM",
+      "features": [
+        "Up to 50 users (flat rate)",
+        "Native + Acrobat tier for all users (7 core apps + Adobe Acrobat)",
+        "📄 Adobe Acrobat PDF tools",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📊 Company admin portal",
+        "🛡️ Audit logging",
+        "Documentation & community support"
+      ],
+      "badge": "🏢📄",
+      "cta": "Buy Business + Acrobat"
+    },
+    {
+      "id": "enterprise-pro",
+      "label": "Enterprise Pro",
+      "price": "1499",
+      "priceNote": "+ $12/user over 75",
+      "period": "year",
+      "description": "Unlimited users with all 13 apps and usage-based pricing",
+      "features": [
+        "Unlimited users ($12/user over 75)",
+        "Native Pro tier for all users (all 13 apps)",
+        "🤖 Microsoft Copilot",
+        "🔗 SharePoint",
+        "📄 Adobe Acrobat",
+        "📋 Planner",
+        "📝 Forms",
+        "🎥 Stream",
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
         "🎨 White-label branding (coming Q2 2026)",
-        "🏗️ Self-hosting option (coming Q1 2026)",
+        "🏗️ Self-hosting option (available now)",
         "Documentation & community support"
       ],
-      "badge": "🌟",
-      "cta": "Buy Enterprise",
+      "badge": "🌟🚀",
+      "popular": true,
+      "cta": "Buy Enterprise Pro",
       "pricingExamples": [
-        "76 users: $907/year",
-        "100 users: $1,099/year",
-        "150 users: $1,499/year",
-        "500 users: $4,299/year"
+        "76 users: $1,511/year",
+        "100 users: $1,799/year",
+        "150 users: $2,399/year",
+        "500 users: $6,599/year"
+      ]
+    },
+    {
+      "id": "enterprise-acrobat",
+      "label": "Enterprise + Acrobat",
+      "price": "1199",
+      "priceNote": "+ $10/user over 75",
+      "period": "year",
+      "description": "Unlimited users with Native + Acrobat and usage-based pricing",
+      "features": [
+        "Unlimited users ($10/user over 75)",
+        "Native + Acrobat tier for all users (7 core apps + Adobe Acrobat)",
+        "📄 Adobe Acrobat PDF tools",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "🎨 White-label branding (coming Q2 2026)",
+        "🏗️ Self-hosting option (available now)",
+        "Documentation & community support"
+      ],
+      "badge": "🌟📄",
+      "cta": "Buy Enterprise + Acrobat",
+      "pricingExamples": [
+        "76 users: $1,209/year",
+        "100 users: $1,449/year",
+        "150 users: $1,949/year",
+        "500 users: $5,449/year"
       ]
     }
   ],
   "checkout": {
     "free": "trial.html",
     "foundation": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
+    "foundation-pro": "https://buy.stripe.com/5kQfZhgDM5HP4C08qrgYU0D",
+    "foundation-acrobat": "https://buy.stripe.com/4gMbJ1gDM4DL8SggWXgYU0F",
+    "acrobat-foundation": "https://buy.stripe.com/6oUbJ1evE4DL5G4bCDgYU0H",
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
+    "native-pro": "https://buy.stripe.com/00wdR973cgmt2tS9uvgYU0E",
+    "native-acrobat": "https://buy.stripe.com/5kQfZh87geelb0o6ijgYU0G",
+    "acrobat-native": "https://buy.stripe.com/8x24gzdrA6LTc4s7mngYU0I",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
+    "team-foundation-pro": "https://buy.stripe.com/eVqbJ10EO3zH4C0cGHgYU0J",
+    "team-foundation-acrobat": "https://buy.stripe.com/bJebJ13R09Y5gkIdKLgYU0L",
     "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
+    "team-native-pro": "https://buy.stripe.com/bJe8wPcnwgmt3xWcGHgYU0K",
+    "team-native-acrobat": "https://buy.stripe.com/7sYaEX1IS1rz1pObCDgYU0M",
     "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",
-    "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z"
+    "business-pro": "https://buy.stripe.com/bJe3cv73ceel5G40XZgYU0N",
+    "business-acrobat": "https://buy.stripe.com/dRmfZh2MWdah0lKdKLgYU0O",
+    "enterprise-pro": "https://buy.stripe.com/7sY7sL1ISfipfgEgWXgYU0P",
+    "enterprise-acrobat": "https://buy.stripe.com/bJe3cv2MW9Y59Wk223gYU0Q"
   }
 }
