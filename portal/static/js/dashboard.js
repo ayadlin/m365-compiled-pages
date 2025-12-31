@@ -397,6 +397,158 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
   }
 });
 
+// Add-on management functions
+let availableAddons = [];
+let selectedAddons = new Set();
+
+async function loadAddons(plan) {
+  // Only show add-ons for Foundation and Native tiers
+  const eligiblePlans = ['foundation', 'native', 'foundation-annual', 'native-annual'];
+  if (!eligiblePlans.some(p => plan.toLowerCase().includes(p))) {
+    return; // Not a Foundation/Native user
+  }
+
+  // Show add-ons card
+  document.getElementById('addonsCard').style.display = 'block';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/portal/addons/available`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to load add-ons');
+    }
+
+    const data = await response.json();
+    availableAddons = data.available_addons || [];
+
+    // Hide loading, show content
+    document.getElementById('addonsLoading').style.display = 'none';
+
+    if (availableAddons.length === 0) {
+      document.getElementById('addonsContent').style.display = 'none';
+      document.getElementById('addonsError').style.display = 'block';
+      document.querySelector('#addonsError p').textContent = 'All Pro apps are already included in your license!';
+      document.querySelector('#addonsError p').style.color = 'var(--accent)';
+      return;
+    }
+
+    document.getElementById('addonsContent').style.display = 'block';
+    renderAddons();
+  } catch (error) {
+    console.error('Error loading add-ons:', error);
+    document.getElementById('addonsLoading').style.display = 'none';
+    document.getElementById('addonsError').style.display = 'block';
+  }
+}
+
+function renderAddons() {
+  const addonsList = document.getElementById('addonsList');
+  addonsList.innerHTML = '';
+
+  availableAddons.forEach(addon => {
+    const card = document.createElement('div');
+    card.style.cssText = 'padding: 1rem; border: 2px solid rgba(255, 107, 53, 0.2); border-radius: 8px; margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 1rem;';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.id = `addon-${addon.id}`;
+    checkbox.value = addon.id;
+    checkbox.style.cssText = 'width: 20px; height: 20px; margin-top: 0.25rem; cursor: pointer;';
+    checkbox.addEventListener('change', handleAddonToggle);
+
+    const label = document.createElement('label');
+    label.htmlFor = `addon-${addon.id}`;
+    label.style.cssText = 'flex: 1; cursor: pointer;';
+    label.innerHTML = `
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+        <span style="font-size: 1.5rem;">${addon.icon}</span>
+        <span style="font-size: 1.1rem; font-weight: 600; color: var(--accent);">${addon.name}</span>
+        <span style="font-size: 1rem; color: var(--accent); font-weight: 600; margin-left: auto;">
+          $${addon.prorated_price.toFixed(2)}
+        </span>
+      </div>
+      <div style="color: var(--muted); font-size: 0.9rem;">${addon.description}</div>
+    `;
+
+    card.appendChild(checkbox);
+    card.appendChild(label);
+    addonsList.appendChild(card);
+  });
+}
+
+function handleAddonToggle(event) {
+  const addonId = event.target.value;
+
+  if (event.target.checked) {
+    selectedAddons.add(addonId);
+  } else {
+    selectedAddons.delete(addonId);
+  }
+
+  updateAddonSummary();
+}
+
+function updateAddonSummary() {
+  const selectedCount = selectedAddons.size;
+  const totalPrice = availableAddons
+    .filter(addon => selectedAddons.has(addon.id))
+    .reduce((sum, addon) => sum + addon.prorated_price, 0);
+
+  document.getElementById('selectedCount').textContent = selectedCount;
+  document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+
+  const purchaseBtn = document.getElementById('purchaseAddonsBtn');
+  purchaseBtn.disabled = selectedCount === 0;
+}
+
+// Purchase add-ons handler
+document.getElementById('purchaseAddonsBtn').addEventListener('click', async () => {
+  if (selectedAddons.size === 0) {
+    alert('Please select at least one add-on to purchase');
+    return;
+  }
+
+  const btn = document.getElementById('purchaseAddonsBtn');
+  btn.disabled = true;
+  btn.textContent = 'Creating checkout...';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/portal/addons/checkout`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        addon_ids: Array.from(selectedAddons),
+      }),
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      throw new Error(data.error || 'Failed to create checkout session');
+    }
+
+    const data = await response.json();
+
+    // Redirect to Stripe checkout
+    window.location.href = data.checkout_url;
+
+  } catch (error) {
+    console.error('Checkout error:', error);
+    alert('Failed to create checkout session: ' + error.message);
+    btn.disabled = false;
+    btn.textContent = '💳 Purchase Add-ons';
+  }
+});
+
 // Load dashboard on page load
-loadDashboard();
+loadDashboard().then(() => {
+  // After loading license info, check if we should load add-ons
+  const plan = document.getElementById('licensePlan').textContent;
+  if (plan && plan !== '-') {
+    loadAddons(plan);
+  }
+});
 loadTeamInfo();
