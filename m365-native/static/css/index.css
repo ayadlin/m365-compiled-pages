@@ -226,13 +226,3 @@
       transform: scale(1.05);
       box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
-
-    .enterprise-link {
-      right: 14rem;
-    }
-
-    @media (max-width: 1024px) {
-      .enterprise-link {
-        right: auto;
-      }
-    }

@@ -127,6 +127,19 @@ a:hover {
   box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.3);
 }
 
+/* Enterprise Portal - Position to left of Customer Portal */
+.enterprise-link {
+  right: 14rem;
+}
+
+/* Responsive: Stack buttons vertically on smaller screens */
+@media (max-width: 768px) {
+  .enterprise-link {
+    right: 1rem;
+    top: 4.5rem;
+  }
+}
+
 .admin-link {
   background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
