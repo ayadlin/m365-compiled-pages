@@ -1,25 +1,58 @@
-/* M365 WebApps - Universal Theme (Light & Dark Mode) */
+/* ============================================
+   M365 WebApps - Universal Theme
+   ============================================
 
-/* Color palette - Dark mode (default) */
+   This is the master theme file for all M365 WebApps pages.
+   It provides:
+   - Automatic dark/light mode support
+   - CSS variables for consistent theming
+   - Reusable component styles (buttons, cards, links)
+   - Responsive design utilities
+
+   USAGE: Import this in all HTML pages:
+   <link rel="stylesheet" href="/theme.css">
+
+   DO NOT duplicate styles from this file in other CSS files.
+   All global styles should be defined here for consistency.
+   ============================================ */
+
+/* ============================================
+   COLOR PALETTE
+   ============================================ */
+
+/* Dark mode (default) */
 :root {
-  --bg: #0a1628;        /* Very dark blue background */
-  --card-bg: #0D3B66;   /* Dark blue cards */
-  --fg: #e5e7eb;        /* Light gray/white text */
-  --accent: #FF6B35;    /* Orange - primary accent */
-  --muted: #0ea5e9;     /* Blue - secondary accent */
-  --success: #10b981;   /* Green - success messages */
-  --error: #ef4444;     /* Red - error messages */
-  --warning: #fbbf24;   /* Yellow - warnings */
+  /* Backgrounds */
+  --bg: #0a1628;           /* Very dark blue - page background */
+  --card-bg: #0D3B66;      /* Dark blue - card/panel backgrounds */
+
+  /* Text colors */
+  --fg: #e5e7eb;           /* Light gray/white - primary text */
+
+  /* Brand colors */
+  --accent: #FF6B35;       /* Orange - primary brand color, CTAs */
+  --muted: #0ea5e9;        /* Blue - secondary accent, links */
+
+  /* Status colors */
+  --success: #10b981;      /* Green - success states */
+  --error: #ef4444;        /* Red - error states */
+  --warning: #fbbf24;      /* Yellow - warning states */
+
+  /* Gradient colors */
   --header-grad-1: #0D3B66;
   --header-grad-2: #1a5a8f;
-  --accent-rgb: 255, 107, 53;     /* RGB for rgba() usage */
-  --muted-rgb: 14, 165, 233;      /* RGB for rgba() usage */
-  --success-rgb: 16, 185, 129;    /* RGB for rgba() usage */
-  --error-rgb: 239, 68, 68;       /* RGB for rgba() usage */
-  --warning-rgb: 251, 191, 36;    /* RGB for rgba() usage */
+
+  /* RGB values (for rgba() transparency) */
+  --accent-rgb: 255, 107, 53;
+  --muted-rgb: 14, 165, 233;
+  --success-rgb: 16, 185, 129;
+  --error-rgb: 239, 68, 68;
+  --warning-rgb: 251, 191, 36;
 }
 
-/* Light mode overrides - Inverse colors */
+/* Light mode overrides - Inverse colors
+   In light mode, accent and muted colors are swapped for better contrast.
+   Dark mode uses orange as primary (accent), light mode uses blue as primary. */
 @media (prefers-color-scheme: light) {
   :root {
     --bg: #f8fafc;        /* Very light blue-gray background */
@@ -34,7 +67,11 @@
   }
 }
 
-/* Base styles */
+/* ============================================
+   BASE STYLES
+   ============================================
+   Global element styles and layout containers. */
+
 * {
   box-sizing: border-box;
 }
@@ -56,12 +93,14 @@ header h1 {
   color: white;
 }
 
+/* Content container - Centers content with max width */
 .wrap {
   max-width: 960px;
   margin: 0 auto;
   padding: 24px;
 }
 
+/* Card component - Elevated panel for grouping related content */
 .card {
   background: var(--card-bg);
   border-radius: 16px;
@@ -70,11 +109,16 @@ header h1 {
   border: 1px solid rgba(var(--accent-rgb), 0.1);
 }
 
-/* Typography */
+/* ============================================
+   TYPOGRAPHY
+   ============================================
+   Text styling for headings, links, and code blocks. */
+
 h1, h2, h3, h4, h5, h6 {
   color: var(--accent);
 }
 
+/* Inline code - Small code snippets within text */
 code {
   background: rgba(var(--accent-rgb), 0.1);
   padding: 0.2rem 0.4rem;
@@ -83,6 +127,7 @@ code {
   color: var(--fg);
 }
 
+/* Code blocks - Multi-line code with horizontal scroll */
 pre {
   background: rgba(var(--accent-rgb), 0.1);
   padding: 1rem;
@@ -95,6 +140,7 @@ pre code {
   padding: 0;
 }
 
+/* Links - Default text links */
 a {
   color: var(--accent);
   text-decoration: none;
@@ -104,9 +150,12 @@ a:hover {
   text-decoration: underline;
 }
 
-/* ===== Unified Styles for Consistency ===== */
+/* ============================================
+   NAVIGATION COMPONENTS
+   ============================================
+   Fixed-position buttons and links for navigation. */
 
-/* Portal & Admin Links - Fixed position buttons */
+/* Portal & Admin Links - Fixed position buttons in top-right corner */
 .portal-link,
 .admin-link {
   position: fixed;
@@ -121,18 +170,19 @@ a:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* Customer Portal Link - Top right corner */
 .portal-link {
   background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
   box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.3);
 }
 
-/* Enterprise Portal - Position to left of Customer Portal */
+/* Enterprise Portal Link - Positioned left of Customer Portal button */
 .enterprise-link {
   right: 14rem;
 }
 
-/* Responsive: Stack buttons vertically on smaller screens */
+/* Responsive: Stack portal buttons vertically on smaller screens */
 @media (max-width: 768px) {
   .enterprise-link {
     right: 1rem;
@@ -140,13 +190,14 @@ a:hover {
   }
 }
 
+/* Admin Link - Bottom right corner, hidden by default */
 .admin-link {
   background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
   box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.3);
   top: auto;
   bottom: 1rem;
-  display: none; /* Hidden by default */
+  display: none; /* Hidden by default, shown via JavaScript when needed */
 }
 
 .portal-link:hover,
@@ -156,7 +207,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* Home link - Top left corner */
+/* Home Link - Top left corner, returns to homepage */
 .home-link {
   position: fixed;
   top: 1rem;
@@ -182,7 +233,7 @@ a:hover {
   text-decoration: none;
 }
 
-/* Inline link styling */
+/* Inline Links - Styled text links within paragraphs */
 .inline-link {
   color: var(--accent);
   text-decoration: none;
@@ -195,7 +246,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Back links container - Centered */
+/* Back Links Container - Centered navigation links, typically at page bottom */
 .back-links {
   display: flex;
   gap: 1rem;
@@ -203,9 +254,10 @@ a:hover {
   flex-wrap: wrap;
   max-width: 1200px;
   padding: 0 1rem;
-  justify-content: center; /* Center the links */
+  justify-content: center;
 }
 
+/* Back Link - Individual navigation button */
 .back-link {
   display: inline-block;
   background: rgba(var(--muted-rgb), 0.1);
@@ -225,6 +277,7 @@ a:hover {
   text-decoration: none;
 }
 
+/* Primary Back Link - More prominent variant with gradient */
 .back-link.primary {
   background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
@@ -236,7 +289,12 @@ a:hover {
   box-shadow: 0 4px 16px rgba(var(--muted-rgb), 0.5);
 }
 
-/* Unified Button Styles */
+/* ============================================
+   BUTTON COMPONENTS
+   ============================================
+   Reusable button styles for CTAs and actions. */
+
+/* Base Button - Common styles for all button types */
 .btn {
   display: inline-block;
   padding: 1rem 2rem;
@@ -247,6 +305,7 @@ a:hover {
   border: 2px solid transparent;
 }
 
+/* Primary Button - Main call-to-action button with gradient */
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
   color: white;
@@ -259,6 +318,7 @@ a:hover {
   text-decoration: none;
 }
 
+/* Secondary Button - Less prominent alternative action */
 .btn-secondary {
   background: rgba(var(--muted-rgb), 0.1);
   color: var(--accent);
@@ -271,7 +331,11 @@ a:hover {
   text-decoration: none;
 }
 
-/* Footer */
+/* ============================================
+   FOOTER
+   ============================================
+   Site-wide footer styles. */
+
 .site-footer {
   text-align: center;
   padding: 2rem 1rem 1.5rem;
