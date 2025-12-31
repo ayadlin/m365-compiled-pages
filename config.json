@@ -5,75 +5,80 @@
       "id": "free",
       "label": "Free Trial",
       "price": 0,
-      "period": "30 days",
+      "period": "15 days",
       "description": "Try M365 WebApps risk-free",
       "features": [
         "Word, Excel, PowerPoint",
         "1 device",
-        "30-day trial period",
+        "15-day trial period",
         "Community support"
       ],
       "badge": "🆓",
       "cta": "Start Free Trial"
     },
     {
-      "id": "pro",
-      "label": "Pro",
-      "price": 18,
+      "id": "base-annual",
+      "label": "Foundation",
+      "price": 19.99,
       "period": "year",
-      "description": "Perfect for individuals and freelancers",
+      "description": "Core Microsoft 365 apps for individuals",
       "features": [
-        "All 7 Microsoft apps",
+        "7 core Microsoft apps",
         "Word, Excel, PowerPoint, Outlook",
         "OneNote, Teams, OneDrive",
+        "Chromium-based launcher",
         "1 device license",
-        "File picker integration",
-        "Auto-share links",
+        "Annual billing",
         "Email support"
       ],
       "badge": "💼",
-      "cta": "Buy Pro",
+      "cta": "Buy Foundation",
+      "popular": false
+    },
+    {
+      "id": "plus-annual",
+      "label": "Native",
+      "price": 39.99,
+      "period": "year",
+      "description": "Enhanced experience with OAuth auto-login",
+      "features": [
+        "All Foundation features",
+        "WebKitGTK native integration",
+        "OAuth auto-login (no passwords!)",
+        "Better desktop integration",
+        "1 device license",
+        "Annual billing",
+        "Priority email support"
+      ],
+      "badge": "⚡",
+      "cta": "Buy Native",
       "popular": true
     },
     {
-      "id": "team",
-      "label": "Team",
-      "price": 59,
+      "id": "pro-annual",
+      "label": "Pro",
+      "price": 69.99,
       "period": "year",
-      "description": "Ideal for small teams and startups",
+      "description": "Complete suite with all 13 apps",
       "features": [
-        "All Pro features",
-        "Up to 10 devices",
-        "Shared team license",
-        "Multi-profile support",
-        "Priority email support",
-        "Device management tools"
+        "All Native features",
+        "All 13 apps (12 Microsoft + Adobe)",
+        "Microsoft Copilot (AI assistant)",
+        "SharePoint, Planner, Forms, Stream",
+        "Adobe Acrobat PDF tools",
+        "WebKitGTK + OAuth auto-login",
+        "1 device license",
+        "Annual billing",
+        "Priority support"
       ],
-      "badge": "👥",
-      "cta": "Buy Team"
-    },
-    {
-      "id": "enterprise",
-      "label": "Enterprise",
-      "price": 299,
-      "period": "year",
-      "description": "For large organizations",
-      "features": [
-        "All Team features",
-        "Unlimited devices",
-        "Custom branding options",
-        "Dedicated support channel",
-        "Custom contract terms",
-        "Extended licenses available"
-      ],
-      "badge": "🏢",
-      "cta": "Buy Enterprise"
+      "badge": "🚀",
+      "cta": "Buy Pro"
     }
   ],
   "checkout": {
     "free": "trial.html",
-    "pro": "https://buy.stripe.com/7sY5kDcnw0nvc4s4abgYU02",
-    "team": "https://buy.stripe.com/3cIbJ12MW6LT2tS7mngYU01",
-    "enterprise": "https://buy.stripe.com/3cI5kDbjs4DLfgE367gYU00"
+    "base-annual": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
+    "plus-annual": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
+    "pro-annual": "https://buy.stripe.com/4gMaEX2MWb292tSeOPgYU0u"
   }
 }
