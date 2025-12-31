@@ -17,7 +17,7 @@
     .hero h1 {
       font-size: 3.5rem;
       margin-bottom: 1rem;
-      background: linear-gradient(135deg, #DC2626, #EF4444);
+      background: linear-gradient(135deg, #3B82F6, #FF6B35);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -41,14 +41,14 @@
 
     .feature-card {
       background: var(--card-bg);
-      border: 2px solid rgba(220, 38, 38, 0.2);
+      border: 2px solid rgba(147, 197, 253, 0.2);
       border-radius: 12px;
       padding: 2rem;
       transition: all 0.3s ease;
     }
 
     .feature-card:hover {
-      border-color: rgba(220, 38, 38, 0.4);
+      border-color: rgba(59, 130, 246, 0.4);
       transform: translateY(-4px);
     }
 
@@ -58,7 +58,7 @@
     }
 
     .feature-card h3 {
-      color: #DC2626;
+      color: var(--accent);
       margin-bottom: 1rem;
       font-size: 1.5rem;
     }
@@ -67,14 +67,14 @@
       max-width: 900px;
       margin: 4rem auto;
       padding: 2rem;
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.08), rgba(239, 68, 68, 0.04));
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(255, 107, 53, 0.04));
       border-radius: 16px;
-      border: 2px solid rgba(220, 38, 38, 0.2);
+      border: 2px solid rgba(147, 197, 253, 0.2);
     }
 
     .tier-comparison h2 {
       text-align: center;
-      color: #DC2626;
+      color: var(--accent);
       font-size: 2rem;
       margin-bottom: 2rem;
     }
@@ -101,8 +101,8 @@
     }
 
     .pro-highlight {
-      border: 2px solid rgba(220, 38, 38, 0.4);
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(239, 68, 68, 0.05));
+      border: 2px solid rgba(59, 130, 246, 0.4);
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(255, 107, 53, 0.05));
     }
 
     .cta-section {
@@ -110,13 +110,13 @@
       max-width: 800px;
       margin: 4rem auto;
       padding: 3rem 2rem;
-      background: linear-gradient(135deg, rgba(220, 38, 38, 0.15), rgba(239, 68, 68, 0.08));
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 107, 53, 0.08));
       border-radius: 16px;
-      border: 2px solid rgba(220, 38, 38, 0.3);
+      border: 2px solid rgba(147, 197, 253, 0.3);
     }
 
     .cta-section h2 {
-      color: #DC2626;
+      color: var(--accent);
       font-size: 2.5rem;
       margin-bottom: 1rem;
     }
@@ -133,13 +133,13 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, #DC2626, #EF4444);
+      background: linear-gradient(135deg, #FF6B35, #ff8c5a);
       color: white;
     }
 
     .btn-primary:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 16px rgba(220, 38, 38, 0.5);
+      box-shadow: 0 4px 16px rgba(255, 107, 53, 0.5);
     }
 
     .btn-secondary {
@@ -241,7 +241,7 @@
 
     <div class="tier-row pro-highlight">
       <div>
-        <div class="tier-name" style="color: #DC2626; font-size: 1.4rem;">🚀 Pro</div>
+        <div class="tier-name" style="color: var(--accent); font-size: 1.4rem;">🚀 Pro</div>
         <div style="color: var(--fg); font-size: 1rem; font-weight: 600;">$69.99/year • 13 Apps • WebKitGTK + OAuth</div>
         <div style="color: var(--muted); font-size: 0.9rem; margin-top: 0.5rem;">Includes Adobe Acrobat + Microsoft Copilot + SharePoint + Planner + Forms + Stream</div>
       </div>
@@ -249,33 +249,33 @@
     </div>
   </div>
 
-  <div style="max-width: 900px; margin: 4rem auto; padding: 2.5rem; background: linear-gradient(135deg, rgba(220, 38, 38, 0.12), rgba(239, 68, 68, 0.06)); border-radius: 16px; border: 2px solid rgba(220, 38, 38, 0.3);">
-    <h2 style="color: #DC2626; font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">📄 Standalone Adobe Acrobat Access</h2>
+  <div style="max-width: 900px; margin: 4rem auto; padding: 2.5rem; background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(255, 107, 53, 0.06)); border-radius: 16px; border: 2px solid rgba(147, 197, 253, 0.3);">
+    <h2 style="color: var(--accent); font-size: 2rem; margin-bottom: 1.5rem; text-align: center;">📄 Standalone Adobe Acrobat Access</h2>
     <p style="font-size: 1.1rem; color: var(--fg); line-height: 1.7; margin-bottom: 2rem; text-align: center;">
       Already have an Adobe subscription? Access Adobe Acrobat directly on Linux:
     </p>
 
     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
-      <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(220, 38, 38, 0.2);">
+      <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(147, 197, 253, 0.2);">
         <div style="font-size: 2rem; margin-bottom: 0.75rem;">🌐</div>
-        <h3 style="color: #DC2626; margin-bottom: 0.75rem; font-size: 1.3rem;">Via Web Browser</h3>
+        <h3 style="color: var(--accent); margin-bottom: 0.75rem; font-size: 1.3rem;">Via Web Browser</h3>
         <p style="color: var(--fg); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
           Visit <strong>acrobat.adobe.com</strong> directly in any browser (Chrome, Firefox, Edge) and sign in with your Adobe account.
         </p>
-        <a href="https://acrobat.adobe.com" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.5rem 1rem; background: rgba(220, 38, 38, 0.15); color: #DC2626; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Open Acrobat Web →</a>
+        <a href="https://acrobat.adobe.com" target="_blank" rel="noopener noreferrer" style="display: inline-block; padding: 0.5rem 1rem; background: rgba(255, 107, 53, 0.15); color: var(--accent); border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">Open Acrobat Web →</a>
       </div>
 
-      <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(220, 38, 38, 0.2);">
+      <div style="background: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(147, 197, 253, 0.2);">
         <div style="font-size: 2rem; margin-bottom: 0.75rem;">🚀</div>
-        <h3 style="color: #DC2626; margin-bottom: 0.75rem; font-size: 1.3rem;">Via M365 WebApps Pro</h3>
+        <h3 style="color: var(--accent); margin-bottom: 0.75rem; font-size: 1.3rem;">Via M365 WebApps Pro</h3>
         <p style="color: var(--fg); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
           Get native desktop integration with OAuth auto-login, WebKitGTK rendering, and seamless experience alongside 12 Microsoft apps.
         </p>
-        <a href="/m365/pricing.html" style="display: inline-block; padding: 0.5rem 1rem; background: rgba(220, 38, 38, 0.15); color: #DC2626; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Pro Tier →</a>
+        <a href="/m365/pricing.html" style="display: inline-block; padding: 0.5rem 1rem; background: rgba(255, 107, 53, 0.15); color: var(--accent); border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 0.9rem;">View Pro Tier →</a>
       </div>
     </div>
 
-    <div style="margin-top: 2rem; padding: 1.25rem; background: var(--card-bg); border-radius: 8px; border-left: 4px solid #DC2626;">
+    <div style="margin-top: 2rem; padding: 1.25rem; background: var(--card-bg); border-radius: 8px; border-left: 4px solid var(--accent);">
       <p style="color: var(--fg); font-size: 0.95rem; line-height: 1.6; margin: 0;">
         <strong>Note:</strong> Adobe Acrobat web access requires an active Adobe subscription (Creative Cloud, Acrobat Standard, or Acrobat Pro DC). M365 WebApps Pro provides the desktop wrapper but does not include the Adobe subscription itself.
       </p>
