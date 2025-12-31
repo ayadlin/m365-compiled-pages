@@ -462,12 +462,18 @@ function renderAddons() {
     const label = document.createElement('label');
     label.htmlFor = `addon-${addon.id}`;
     label.style.cssText = 'flex: 1; cursor: pointer;';
+
+    // Show device breakdown if more than 1 device
+    const priceDisplay = addon.devices_included > 1
+      ? `$${addon.prorated_price_total.toFixed(2)} <span style="font-size: 0.85rem; color: var(--muted);">(${addon.devices_included} devices × $${addon.prorated_price_per_device.toFixed(2)})</span>`
+      : `$${addon.prorated_price_total.toFixed(2)}`;
+
     label.innerHTML = `
       <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
         <span style="font-size: 1.5rem;">${addon.icon}</span>
         <span style="font-size: 1.1rem; font-weight: 600; color: var(--accent);">${addon.name}</span>
         <span style="font-size: 1rem; color: var(--accent); font-weight: 600; margin-left: auto;">
-          $${addon.prorated_price.toFixed(2)}
+          ${priceDisplay}
         </span>
       </div>
       <div style="color: var(--muted); font-size: 0.9rem;">${addon.description}</div>
@@ -495,7 +501,7 @@ function updateAddonSummary() {
   const selectedCount = selectedAddons.size;
   const totalPrice = availableAddons
     .filter(addon => selectedAddons.has(addon.id))
-    .reduce((sum, addon) => sum + addon.prorated_price, 0);
+    .reduce((sum, addon) => sum + addon.prorated_price_total, 0);
 
   document.getElementById('selectedCount').textContent = selectedCount;
   document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
