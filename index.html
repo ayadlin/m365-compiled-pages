@@ -35,9 +35,15 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      max-width: 1200px;
+      max-width: 1400px;
       margin: 4rem auto;
       padding: 0 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 768px) {
@@ -318,6 +324,21 @@
         <li>Starting at $39.99/year</li>
       </ul>
       <a href="/m365-native/" class="btn btn-primary">Learn More</a>
+    </div>
+
+    <div class="product-card" style="background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 90, 0.08)); border: 2px solid rgba(255, 107, 53, 0.4);">
+      <span class="product-icon">🚀</span>
+      <h2>M365 WebApps Pro</h2>
+      <p>Complete Microsoft 365 suite with all 13 apps including Copilot and Adobe Acrobat.</p>
+      <ul class="features">
+        <li>All 13 apps (12 Microsoft + Adobe)</li>
+        <li>Microsoft Copilot (AI assistant)</li>
+        <li>SharePoint, Planner, Forms, Stream</li>
+        <li>Adobe Acrobat PDF tools</li>
+        <li>WebKitGTK + OAuth auto-login</li>
+        <li>Starting at $69.99/year</li>
+      </ul>
+      <a href="/m365/" class="btn btn-primary">Learn More</a>
     </div>
 
     <div class="product-card coming-soon">

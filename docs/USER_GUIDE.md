@@ -327,15 +327,15 @@ Within 2-3 minutes, you'll receive an email with:
 - Update billing information
 
 **Subscription Renewal:**
-- Paid subscriptions auto-renew monthly
-- Your license expiration is automatically extended
+- Paid subscriptions auto-renew annually
+- Your license expiration is automatically extended for another year
 - You'll receive an email confirmation
 - No action needed on your part
 
 **Cancellation:**
 - You can cancel anytime
-- Access continues until the end of your paid period
-- No refunds for partial months
+- Access continues until the end of your paid annual period
+- No refunds for partial years
 - You can resubscribe at any time
 
 ---
@@ -1036,13 +1036,13 @@ A: We use Stripe for payments, which accepts:
 - Debit cards
 - Some regional payment methods
 
-**Q: Can I pay annually?**
+**Q: Do you offer monthly billing?**
 
-A: Currently only monthly subscriptions are available. Contact support@ytech.tools if you'd like to discuss annual pricing.
+A: All subscriptions are billed annually. We currently do not offer monthly billing options. Annual billing provides better value and ensures uninterrupted access to your Microsoft 365 apps.
 
 **Q: Do you offer refunds?**
 
-A: We do not offer refunds for partial months. Please try the free trial before purchasing. If you experience technical issues, contact support - we're happy to help troubleshoot.
+A: We do not offer refunds for partial years. Please try the free 15-day trial before purchasing. If you experience technical issues, contact support - we're happy to help troubleshoot.
 
 **Q: Will prices increase?**
 
