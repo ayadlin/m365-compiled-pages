@@ -328,6 +328,32 @@
       "cta": "Buy Business + Acrobat"
     },
     {
+      "id": "enterprise",
+      "label": "Enterprise (Base)",
+      "price": "899",
+      "priceNote": "+ $8/user over 75",
+      "period": "year",
+      "description": "Unlimited users with 7 core apps and usage-based pricing",
+      "features": [
+        "Unlimited users ($8/user over 75)",
+        "Native tier for all users (7 core apps)",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "🎨 White-label branding (available now)",
+        "🏗️ Self-hosting option (available now)",
+        "Documentation & community support"
+      ],
+      "badge": "🌟",
+      "cta": "Buy Enterprise",
+      "pricingExamples": [
+        "76 users: $907/year",
+        "100 users: $1,099/year",
+        "150 users: $1,299/year",
+        "500 users: $4,299/year"
+      ]
+    },
+    {
       "id": "enterprise-pro",
       "label": "Enterprise Pro",
       "price": "1499",
@@ -346,7 +372,7 @@
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
-        "🎨 White-label branding (coming Q2 2026)",
+        "🎨 White-label branding (available now)",
         "🏗️ Self-hosting option (available now)",
         "Documentation & community support"
       ],
@@ -374,7 +400,7 @@
         "🔐 Azure AD SSO (single sign-on)",
         "🔄 SCIM provisioning (auto user sync)",
         "👥 Group-based license assignment",
-        "🎨 White-label branding (coming Q2 2026)",
+        "🎨 White-label branding (available now)",
         "🏗️ Self-hosting option (available now)",
         "Documentation & community support"
       ],
@@ -407,6 +433,7 @@
     "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",
     "business-pro": "https://buy.stripe.com/bJe3cv73ceel5G40XZgYU0N",
     "business-acrobat": "https://buy.stripe.com/dRmfZh2MWdah0lKdKLgYU0O",
+    "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z",
     "enterprise-pro": "https://buy.stripe.com/7sY7sL1ISfipfgEgWXgYU0P",
     "enterprise-acrobat": "https://buy.stripe.com/bJe3cv2MW9Y59Wk223gYU0Q"
   }

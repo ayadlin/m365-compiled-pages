@@ -145,51 +145,6 @@
       ],
       "badge": "👥⚡",
       "cta": "Buy Team Native"
-    },
-    {
-      "id": "business",
-      "label": "Business",
-      "price": 799,
-      "period": "year",
-      "description": "Up to 50 users with Azure AD SSO and SCIM provisioning",
-      "features": [
-        "Up to 50 users (flat rate)",
-        "Native tier for all users",
-        "🔐 Azure AD SSO (single sign-on)",
-        "🔄 SCIM provisioning (auto user sync)",
-        "👥 Group-based license assignment",
-        "📊 Company admin portal",
-        "🛡️ Audit logging",
-        "Documentation & community support"
-      ],
-      "badge": "🏢",
-      "cta": "Buy Business"
-    },
-    {
-      "id": "enterprise",
-      "label": "Enterprise",
-      "price": "899",
-      "priceNote": "+ $8/user over 75",
-      "period": "year",
-      "description": "Unlimited users with usage-based pricing",
-      "features": [
-        "Unlimited users ($8/user over 75)",
-        "Native tier for all users",
-        "🔐 Azure AD SSO (single sign-on)",
-        "🔄 SCIM provisioning (auto user sync)",
-        "👥 Group-based license assignment",
-        "🎨 White-label branding (coming Q2 2026)",
-        "🏗️ Self-hosting option (available now)",
-        "Documentation & community support"
-      ],
-      "badge": "🌟",
-      "cta": "Buy Enterprise",
-      "pricingExamples": [
-        "76 users: $907/year",
-        "100 users: $1,099/year",
-        "150 users: $1,499/year",
-        "500 users: $4,299/year"
-      ]
     }
   ],
   "checkout": {
@@ -200,8 +155,6 @@
     "acrobat-foundation": "https://buy.stripe.com/6oUbJ1evE4DL5G4bCDgYU0H",
     "native": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
     "team-foundation": "https://buy.stripe.com/6oU9AT5Z89Y5gkIfSTgYU0w",
-    "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x",
-    "business": "https://buy.stripe.com/cNi3cvfzIfipfgEeOPgYU0A",
-    "enterprise": "https://buy.stripe.com/fZubJ13R02vD5G4cGHgYU0z"
+    "team-native": "https://buy.stripe.com/14AfZh4V4eel8SgbCDgYU0x"
   }
 }
