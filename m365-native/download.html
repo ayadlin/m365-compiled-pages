@@ -335,8 +335,9 @@ chmod +x M365-Native-1.2.0-x86_64.AppImage
             <div class="distro-name">Flatpak (Sandboxed)</div>
             <div class="distro-desc">Sandboxed, works on all distributions</div>
 
-            <div class="install-code">
-flatpak install https://packages.ytech.tools/latest/m365-native.flatpak
+            <div class="install-code" id="flatpak-install">
+wget https://packages.ytech.tools/latest/m365-native_1.2.0_amd64.flatpak
+flatpak install m365-native_1.2.0_amd64.flatpak
 flatpak run io.github.ayadlin.m365_native
             </div>
         </div>
@@ -347,9 +348,9 @@ flatpak run io.github.ayadlin.m365_native
             <div class="distro-name">Snap (Ubuntu)</div>
             <div class="distro-desc">Auto-updates, works cross-distro</div>
 
-            <div class="install-code">
-sudo snap install m365-native --dangerous
-# OR download from Snap Store (coming soon)
+            <div class="install-code" id="snap-install">
+wget https://packages.ytech.tools/latest/m365-native_1.2.0_amd64.snap
+sudo snap install m365-native_1.2.0_amd64.snap --dangerous
             </div>
         </div>
     </div>
@@ -494,13 +495,25 @@ m365-native
 
             // Update Arch
             document.getElementById('arch-link').href =
-                `${baseUrl}/m365-native-${version}-arch.tar.gz`;
+                `${baseUrl}/m365-native-${version}-${rpmArch}-arch.tar.gz`;
 
             // Update AppImage
             document.getElementById('appimage-link').href =
                 `${baseUrl}/M365-Native-${version}-${appimageArch}.AppImage`;
             document.getElementById('appimage-install').textContent =
                 `chmod +x M365-Native-${version}-${appimageArch}.AppImage\n./M365-Native-${version}-${appimageArch}.AppImage`;
+
+            // Update Flatpak
+            const flatpakInstall = document.getElementById('flatpak-install');
+            if (flatpakInstall) {
+                flatpakInstall.textContent = `wget ${baseUrl}/m365-native_${version}_${debArch}.flatpak\nflatpak install m365-native_${version}_${debArch}.flatpak\nflatpak run io.github.ayadlin.m365_native`;
+            }
+
+            // Update Snap
+            const snapInstall = document.getElementById('snap-install');
+            if (snapInstall) {
+                snapInstall.textContent = `wget ${baseUrl}/m365-native_${version}_${debArch}.snap\nsudo snap install m365-native_${version}_${debArch}.snap --dangerous`;
+            }
         }
 
         // Copy command to clipboard
