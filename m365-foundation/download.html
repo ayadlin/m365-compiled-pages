@@ -6,6 +6,106 @@
   <title>Download M365 Foundation - All Linux Distributions</title>
   <link rel="stylesheet" href="/theme.css">
   <style>
+    /* Architecture Selector Styles */
+    .arch-selector {
+      background: var(--surface);
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    .arch-selector label {
+      display: block;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: var(--text-primary, #333);
+      font-size: 1.1rem;
+    }
+    .arch-buttons {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .arch-button {
+      flex: 1;
+      min-width: 250px;
+      padding: 15px 20px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: left;
+    }
+    .arch-button:hover {
+      border-color: var(--primary);
+      background: var(--surface);
+    }
+    .arch-button.active {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+    .arch-button .arch-name {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 5px;
+      font-size: 1.1rem;
+    }
+    .arch-button .arch-desc {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+    .arch-button.active .arch-desc {
+      opacity: 1;
+    }
+    .detected-badge {
+      display: inline-block;
+      background: #4caf50;
+      color: white;
+      padding: 3px 10px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      margin-left: 8px;
+    }
+
+    /* Smart Installer Section */
+    .smart-install {
+      background: var(--surface);
+      border: 2px solid var(--primary);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    .smart-install h2 {
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+    .smart-install p {
+      margin-bottom: 15px;
+    }
+    .install-cmd-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .copy-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+      white-space: nowrap;
+    }
+    .copy-btn:hover {
+      background: var(--accent);
+    }
+
+    /* Original Styles */
     .download-hero {
       background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
       color: white;
@@ -94,6 +194,36 @@
     <p style="margin: 0; font-size: 0.9rem; color: var(--accent); font-weight: 600;">Chromium-Based • $19.99/year</p>
   </header>
 
+  <!-- Architecture Selector -->
+  <div class="arch-selector">
+    <label>🖥️ Select Architecture:</label>
+    <div class="arch-buttons">
+      <div class="arch-button" data-arch="amd64" onclick="selectArch('amd64')">
+        <span class="arch-name">Intel/AMD (x86_64) <span id="amd64-badge" class="detected-badge" style="display:none;">Detected</span></span>
+        <span class="arch-desc">For Intel and AMD processors</span>
+      </div>
+      <div class="arch-button" data-arch="arm64" onclick="selectArch('arm64')">
+        <span class="arch-name">ARM (aarch64) <span id="arm64-badge" class="detected-badge" style="display:none;">Detected</span></span>
+        <span class="arch-desc">For ARM processors (AWS Graviton, Oracle Ampere, Raspberry Pi)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Smart Installer -->
+  <div class="smart-install">
+    <h2>🚀 Quick Install (Recommended)</h2>
+    <p>One command to auto-detect your system and install:</p>
+    <div class="install-cmd-wrapper">
+      <div class="install-code" style="flex: 1; margin: 0;">
+        <code id="curl-cmd">curl -fsSL https://packages.ytech.tools/install.sh | bash</code>
+      </div>
+      <button class="copy-btn" onclick="copyCommand()">Copy</button>
+    </div>
+    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-top: 10px; margin-bottom: 0;">
+      ✨ Automatically detects architecture and package manager
+    </p>
+  </div>
+
   <div class="download-hero">
     <h1>📦 Multi-Distribution Support</h1>
     <p style="font-size: 1.1rem; margin-top: 1rem;">Choose your Linux distribution below</p>
@@ -118,11 +248,11 @@
       <div class="distro-name">Debian / Ubuntu</div>
       <div class="distro-desc">Tested on Ubuntu 20.04 LTS, 22.04 LTS, and 24.04 LTS. Also supports Linux Mint, Pop!_OS, elementary OS</div>
 
-      <a href="https://packages.ytech.tools/latest/m365-foundation_1.2.0_amd64.deb" class="download-btn">
+      <a href="#" id="deb-link" class="download-btn">
         Download .deb
       </a>
 
-      <div class="install-code">
+      <div class="install-code" id="deb-install">
 wget https://packages.ytech.tools/latest/m365-foundation_1.2.0_amd64.deb
 sudo dpkg -i m365-foundation_1.2.0_amd64.deb
 sudo apt-get install -f
@@ -135,11 +265,11 @@ sudo apt-get install -f
       <div class="distro-name">Fedora / RHEL / CentOS</div>
       <div class="distro-desc">Also supports AlmaLinux, Rocky Linux, openSUSE</div>
 
-      <a href="https://packages.ytech.tools/latest/m365-foundation-1.2.0-1.x86_64.rpm" class="download-btn">
+      <a href="#" id="rpm-link" class="download-btn">
         Download .rpm
       </a>
 
-      <div class="install-code">
+      <div class="install-code" id="rpm-install">
 sudo rpm -ivh m365-foundation-1.2.0-1.x86_64.rpm
 # OR
 sudo dnf install m365-foundation-1.2.0-1.x86_64.rpm
@@ -152,7 +282,7 @@ sudo dnf install m365-foundation-1.2.0-1.x86_64.rpm
       <div class="distro-name">Arch Linux</div>
       <div class="distro-desc">Also supports Manjaro, EndeavourOS, Garuda. Note: AppImage support via fuse2</div>
 
-      <a href="https://packages.ytech.tools/latest/m365-foundation-1.2.0-arch.tar.gz" class="download-btn">
+      <a href="#" id="arch-link" class="download-btn">
         Download PKGBUILD
       </a>
 
@@ -169,11 +299,11 @@ makepkg -si
       <div class="distro-name">AppImage (Universal)</div>
       <div class="distro-desc">Works on ANY Linux distribution</div>
 
-      <a href="https://packages.ytech.tools/latest/M365-Foundation-1.2.0-x86_64.AppImage" class="download-btn">
+      <a href="#" id="appimage-link" class="download-btn">
         Download AppImage
       </a>
 
-      <div class="install-code">
+      <div class="install-code" id="appimage-install">
 chmod +x M365-Foundation-1.2.0-x86_64.AppImage
 ./M365-Foundation-1.2.0-x86_64.AppImage
       </div>
@@ -279,5 +409,112 @@ m365-pro -feature picker \
 
   <script src="static/js/logo.js"></script>
   <script src="/static/js/version-fetcher.js"></script>
+  <script>
+    // Auto-detect architecture on page load
+    function detectArchitecture() {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const platform = navigator.platform.toLowerCase();
+
+      let detectedArch = 'amd64'; // default
+
+      // Detect ARM architecture
+      if (platform.includes('arm') ||
+          platform.includes('aarch64') ||
+          userAgent.includes('arm64') ||
+          userAgent.includes('aarch64')) {
+        detectedArch = 'arm64';
+      }
+
+      // Show detected badge
+      document.getElementById(detectedArch + '-badge').style.display = 'inline-block';
+
+      // Auto-select detected architecture
+      selectArch(detectedArch);
+
+      return detectedArch;
+    }
+
+    // Select architecture and update download links
+    function selectArch(arch) {
+      // Update button states
+      document.querySelectorAll('.arch-button').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      const selectedBtn = document.querySelector(`[data-arch="${arch}"]`);
+      if (selectedBtn) {
+        selectedBtn.classList.add('active');
+      }
+
+      // Update download links
+      updateDownloadLinks(arch);
+    }
+
+    // Update all download links for selected architecture
+    function updateDownloadLinks(arch) {
+      const baseUrl = 'https://packages.ytech.tools/latest';
+      const version = '1.2.0'; // Update this when releasing new versions
+
+      // Architecture-specific naming
+      const debArch = arch === 'arm64' ? 'arm64' : 'amd64';
+      const rpmArch = arch === 'arm64' ? 'aarch64' : 'x86_64';
+      const appimageArch = arch === 'arm64' ? 'aarch64' : 'x86_64';
+
+      // Update DEB
+      const debLink = document.getElementById('deb-link');
+      if (debLink) {
+        debLink.href = `${baseUrl}/m365-foundation_${version}_${debArch}.deb`;
+      }
+      const debInstall = document.getElementById('deb-install');
+      if (debInstall) {
+        debInstall.textContent = `wget ${baseUrl}/m365-foundation_${version}_${debArch}.deb\nsudo dpkg -i m365-foundation_${version}_${debArch}.deb\nsudo apt-get install -f`;
+      }
+
+      // Update RPM
+      const rpmLink = document.getElementById('rpm-link');
+      if (rpmLink) {
+        rpmLink.href = `${baseUrl}/m365-foundation-${version}-1.${rpmArch}.rpm`;
+      }
+      const rpmInstall = document.getElementById('rpm-install');
+      if (rpmInstall) {
+        rpmInstall.textContent = `sudo rpm -ivh m365-foundation-${version}-1.${rpmArch}.rpm\n# OR\nsudo dnf install m365-foundation-${version}-1.${rpmArch}.rpm`;
+      }
+
+      // Update Arch
+      const archLink = document.getElementById('arch-link');
+      if (archLink) {
+        archLink.href = `${baseUrl}/m365-foundation-${version}-arch.tar.gz`;
+      }
+
+      // Update AppImage
+      const appimageLink = document.getElementById('appimage-link');
+      if (appimageLink) {
+        appimageLink.href = `${baseUrl}/M365-Foundation-${version}-${appimageArch}.AppImage`;
+      }
+      const appimageInstall = document.getElementById('appimage-install');
+      if (appimageInstall) {
+        appimageInstall.textContent = `chmod +x M365-Foundation-${version}-${appimageArch}.AppImage\n./M365-Foundation-${version}-${appimageArch}.AppImage`;
+      }
+    }
+
+    // Copy command to clipboard
+    function copyCommand() {
+      const cmd = document.getElementById('curl-cmd').textContent;
+      navigator.clipboard.writeText(cmd).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        const originalText = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => {
+          btn.textContent = originalText;
+        }, 2000);
+      }).catch(err => {
+        console.error('Failed to copy:', err);
+      });
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      detectArchitecture();
+    });
+  </script>
 </body>
 </html>
