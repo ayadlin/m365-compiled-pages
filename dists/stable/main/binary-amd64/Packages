@@ -5,10 +5,10 @@ Priority: optional
 Section: utils
 Maintainer: You <you@example.com>
 Filename: pool/main/m365-compiled_1.3.0_amd64.deb
-Size: 26847944
-MD5sum: b461cfab2b771cd9128a9fce6027e8fb
-SHA1: 9b43e5f1dd139e0a02e1fd3e4007752dc26aa794
-SHA256: 95f3d7370727858d71e6fad64fbac04cf80baf70440049a8bde9b0203f18cdb6
-SHA512: ddb394d7962c38b2cfdde42c3b6232fb31458e423c2b33202ab97737311fb32307d385887a4adb6a819d59be4dff9d666b4dca860168bc10b591a07e730c6a0b
+Size: 26847798
+MD5sum: 64a85bb246becd859fa749b082ab6a3f
+SHA1: e38002cca45433e063c8eec32b95cefaf099e5a3
+SHA256: 171c3a911b11de2ba5fabb6b8f1ad427b18fd1e8b61cdc228db4c375d012ea48
+SHA512: 78cba6912d981cdd9393f83ad6ae2e197ffaf2cce8867be8703e2bd5aa914739403f37c3991766bd811ac46db6cbbc5403f2e7c1f604ba536dc4b64c6d572a84
 Description: Compiled M365 WebApps wrappers with offline licensing
 
