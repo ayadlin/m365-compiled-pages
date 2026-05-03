@@ -253,8 +253,8 @@
       </a>
 
       <div class="install-code" id="deb-install">
-wget https://packages.ytech.tools/latest/m365-foundation_1.2.0_amd64.deb
-sudo dpkg -i m365-foundation_1.2.0_amd64.deb
+wget https://packages.ytech.tools/latest/m365-foundation_1.3.0_amd64.deb
+sudo dpkg -i m365-foundation_1.3.0_amd64.deb
 sudo apt-get install -f
       </div>
     </div>
@@ -270,9 +270,9 @@ sudo apt-get install -f
       </a>
 
       <div class="install-code" id="rpm-install">
-sudo rpm -ivh m365-foundation-1.2.0-1.x86_64.rpm
+sudo rpm -ivh m365-foundation-1.3.0-1.x86_64.rpm
 # OR
-sudo dnf install m365-foundation-1.2.0-1.x86_64.rpm
+sudo dnf install m365-foundation-1.3.0-1.x86_64.rpm
       </div>
     </div>
 
@@ -287,8 +287,8 @@ sudo dnf install m365-foundation-1.2.0-1.x86_64.rpm
       </a>
 
       <div class="install-code">
-tar -xzf m365-foundation-1.2.0-arch.tar.gz
-cd m365-foundation-1.2.0-arch
+tar -xzf m365-foundation-1.3.0-arch.tar.gz
+cd m365-foundation-1.3.0-arch
 makepkg -si
       </div>
     </div>
@@ -304,8 +304,8 @@ makepkg -si
       </a>
 
       <div class="install-code" id="appimage-install">
-chmod +x M365-Foundation-1.2.0-x86_64.AppImage
-./M365-Foundation-1.2.0-x86_64.AppImage
+chmod +x M365-Foundation-1.3.0-x86_64.AppImage
+./M365-Foundation-1.3.0-x86_64.AppImage
       </div>
     </div>
 
@@ -316,8 +316,8 @@ chmod +x M365-Foundation-1.2.0-x86_64.AppImage
       <div class="distro-desc">Sandboxed, works on all distributions</div>
 
       <div class="install-code" id="flatpak-install">
-wget https://packages.ytech.tools/latest/m365-foundation_1.2.0_amd64.flatpak
-flatpak install m365-foundation_1.2.0_amd64.flatpak
+wget https://packages.ytech.tools/latest/m365-foundation_1.3.0_amd64.flatpak
+flatpak install m365-foundation_1.3.0_amd64.flatpak
 flatpak run io.github.ayadlin.m365_foundation
       </div>
     </div>
@@ -329,8 +329,8 @@ flatpak run io.github.ayadlin.m365_foundation
       <div class="distro-desc">Auto-updates, works cross-distro</div>
 
       <div class="install-code" id="snap-install">
-wget https://packages.ytech.tools/latest/m365-foundation_1.2.0_amd64.snap
-sudo snap install m365-foundation_1.2.0_amd64.snap --dangerous
+wget https://packages.ytech.tools/latest/m365-foundation_1.3.0_amd64.snap
+sudo snap install m365-foundation_1.3.0_amd64.snap --dangerous
       </div>
     </div>
   </div>
@@ -453,7 +453,7 @@ m365-pro -feature picker \
     // Update all download links for selected architecture
     function updateDownloadLinks(arch) {
       const baseUrl = 'https://packages.ytech.tools/latest';
-      const version = '1.2.0'; // Update this when releasing new versions
+      const version = '1.3.0'; // Update this when releasing new versions
 
       // Architecture-specific naming
       const debArch = arch === 'arm64' ? 'arm64' : 'amd64';

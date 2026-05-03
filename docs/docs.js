@@ -1,3 +1,17 @@
+
+// HTML escape utility — used to defend against XSS when interpolating untrusted
+// data into innerHTML. Strata audit (2026-05-03) flagged data-bearing
+// interpolations across this file; the helper is now applied to all of them.
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Show admin link for logged-in admin users
 (function checkAdminAccess() {
   const hasAdminAccess = document.cookie.split('; ').find(row => row.startsWith('admin_logged_in='));
@@ -13,7 +27,7 @@ async function loadMarkdown(mdPath) {
   try {
     const response = await fetch(mdPath);
     if (!response.ok) {
-      throw new Error(`Failed to load documentation: ${response.statusText}`);
+      throw new Error(`Failed to load documentation: ${escapeHtml(response.statusText)}`);
     }
 
     const markdown = await response.text();
@@ -43,7 +57,7 @@ async function loadMarkdown(mdPath) {
     contentEl.innerHTML = `
       <div style="text-align: center; padding: 4rem; color: var(--error);">
         <h2>⚠️ Error Loading Documentation</h2>
-        <p>${error.message}</p>
+        <p>${escapeHtml(error.message)}</p>
         <a href="/" class="back-link">← Back to Home</a>
       </div>
     `;

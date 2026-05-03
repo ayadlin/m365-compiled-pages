@@ -1,3 +1,17 @@
+
+// HTML escape utility — used to defend against XSS when interpolating untrusted
+// data into innerHTML. Strata audit (2026-05-03) flagged data-bearing
+// interpolations across this file; the helper is now applied to all of them.
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Enterprise Dashboard JavaScript
 
 // Load dashboard data on page load
@@ -16,7 +30,7 @@ async function loadDashboardData() {
     const response = await fetch('/api/enterprise/dashboard/stats');
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${escapeHtml(response.status)}`);
     }
 
     const stats = await response.json();
@@ -49,7 +63,7 @@ async function loadRecentActivity() {
     const response = await fetch('/api/enterprise/audit/logs?limit=5');
 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error(`HTTP error! status: ${escapeHtml(response.status)}`);
     }
 
     const events = await response.json();
@@ -67,12 +81,12 @@ async function loadRecentActivity() {
 
       return `
         <div class="activity-item">
-          <div class="activity-icon">${icon}</div>
+          <div class="activity-icon">${escapeHtml(icon)}</div>
           <div class="activity-content">
-            <div class="activity-title">${eventLabel}</div>
-            <div class="activity-meta">${event.user_email || 'Unknown user'} • ${event.tenant_name || event.tenant_id}</div>
+            <div class="activity-title">${escapeHtml(eventLabel)}</div>
+            <div class="activity-meta">${escapeHtml(event.user_email || 'Unknown user')} • ${escapeHtml(event.tenant_name || event.tenant_id)}</div>
           </div>
-          <div class="activity-time">${timeAgo}</div>
+          <div class="activity-time">${escapeHtml(timeAgo)}</div>
         </div>
       `;
     }).join('');
@@ -110,7 +124,7 @@ function formatTimeAgo(date) {
   for (const [unit, secondsInUnit] of Object.entries(intervals)) {
     const interval = Math.floor(seconds / secondsInUnit);
     if (interval >= 1) {
-      return interval === 1 ? `1 ${unit} ago` : `${interval} ${unit}s ago`;
+      return interval === 1 ? `1 ${escapeHtml(unit)} ago` : `${escapeHtml(interval)} ${escapeHtml(unit)}s ago`;
     }
   }
 
@@ -153,9 +167,9 @@ function setupLicenseManagement() {
 
       if (response.ok && data.success) {
         showLicenseResult('success',
-          `Successfully added ${data.additional_seats} seat(s)! ` +
-          `Previous: ${data.previous_seats} → New: ${data.new_seats} seats. ` +
-          `${data.proration}`
+          `Successfully added ${escapeHtml(data.additional_seats)} seat(s)! ` +
+          `Previous: ${escapeHtml(data.previous_seats)} → New: ${escapeHtml(data.new_seats)} seats. ` +
+          `${escapeHtml(data.proration)}`
         );
 
         // Clear form

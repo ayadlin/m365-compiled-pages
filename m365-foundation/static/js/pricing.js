@@ -1,3 +1,17 @@
+
+// HTML escape utility — used to defend against XSS when interpolating untrusted
+// data into innerHTML. Strata audit (2026-05-03) flagged data-bearing
+// interpolations across this file; the helper is now applied to all of them.
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Load branding
 fetch('../brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '../' + b.logo || 'branding/logo.svg';
@@ -25,23 +39,23 @@ fetch('config.json').then(r => r.json()).then(config => {
     const heroContainer = document.createElement('div');
     heroContainer.className = 'free-trial-hero';
 
-    const features = freeTrial.features.map(f => `<li>${f}</li>`).join('');
+    const features = freeTrial.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
     const checkoutUrl = config.checkout[freeTrial.id] || '#';
     const trackingCode = `onclick="if(window.trackTrialDownload) trackTrialDownload('pricing_free_plan');"`;
 
     heroContainer.innerHTML = `
       <div class="free-trial-content">
         <div class="free-trial-header">
-          <div class="free-trial-badge">${freeTrial.badge || '🆓'}</div>
+          <div class="free-trial-badge">${escapeHtml(freeTrial.badge || '🆓')}</div>
           <div class="free-trial-info">
-            <div class="free-trial-name">${freeTrial.label}</div>
-            <div class="free-trial-description">${freeTrial.description || ''}</div>
+            <div class="free-trial-name">${escapeHtml(freeTrial.label)}</div>
+            <div class="free-trial-description">${escapeHtml(freeTrial.description || '')}</div>
           </div>
         </div>
         <ul class="free-trial-features">
-          ${features}
+          ${escapeHtml(features)}
         </ul>
-        <a href="${checkoutUrl}" class="free-trial-cta" ${trackingCode}>${freeTrial.cta || 'Get Started'}</a>
+        <a href="${escapeHtml(checkoutUrl)}" class="free-trial-cta" ${escapeHtml(trackingCode)}>${escapeHtml(freeTrial.cta || 'Get Started')}</a>
       </div>
     `;
 
@@ -52,7 +66,7 @@ fetch('config.json').then(r => r.json()).then(config => {
   // Helper function to render a plan card
   function renderPlanCard(plan) {
     const card = document.createElement('div');
-    card.className = `pricing-card ${plan.id}`;
+    card.className = `pricing-card ${escapeHtml(plan.id)}`;
     if (plan.popular) {
       card.classList.add('popular');
     }
@@ -60,36 +74,36 @@ fetch('config.json').then(r => r.json()).then(config => {
     const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
 
     // Handle price display with optional price note
-    let priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${plan.price}<span class="period">/${plan.period}</span>`;
+    let priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
     if (plan.priceNote) {
-      priceDisplay += `<div class="price-note">${plan.priceNote}</div>`;
+      priceDisplay += `<div class="price-note">${escapeHtml(plan.priceNote)}</div>`;
     }
     priceDisplay += `</div>`;
 
-    const features = plan.features.map(f => `<li>${f}</li>`).join('');
+    const features = plan.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
 
     // Add pricing examples if they exist (for Enterprise tier)
     let pricingExamples = '';
     if (plan.pricingExamples && plan.pricingExamples.length > 0) {
       pricingExamples = '<div class="pricing-examples"><strong>Examples:</strong><ul>' +
-        plan.pricingExamples.map(ex => `<li>${ex}</li>`).join('') +
+        plan.pricingExamples.map(ex => `<li>${escapeHtml(ex)}</li>`).join('') +
         '</ul></div>';
     }
 
     const checkoutUrl = config.checkout[plan.id] || '#';
-    const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
+    const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}');"`;
 
     card.innerHTML = `
-      ${popularBadge}
-      <div class="plan-badge">${plan.badge || '📦'}</div>
-      <div class="plan-name">${plan.label}</div>
-      <div class="plan-description">${plan.description || ''}</div>
-      ${priceDisplay}
+      ${escapeHtml(popularBadge)}
+      <div class="plan-badge">${escapeHtml(plan.badge || '📦')}</div>
+      <div class="plan-name">${escapeHtml(plan.label)}</div>
+      <div class="plan-description">${escapeHtml(plan.description || '')}</div>
+      ${escapeHtml(priceDisplay)}
       <ul class="plan-features">
-        ${features}
+        ${escapeHtml(features)}
       </ul>
-      ${pricingExamples}
-      <a href="${checkoutUrl}" class="plan-cta" ${trackingCode}>${plan.cta || 'Get Started'}</a>
+      ${escapeHtml(pricingExamples)}
+      <a href="${escapeHtml(checkoutUrl)}" class="plan-cta" ${escapeHtml(trackingCode)}>${escapeHtml(plan.cta || 'Get Started')}</a>
     `;
 
     return card;
@@ -130,7 +144,7 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
   statusDiv.style.display = 'none';
 
   try {
-    const response = await fetch(`${API_URL}/api/create-portal-session`, {
+    const response = await fetch(`${escapeHtml(API_URL)}/api/create-portal-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -152,7 +166,7 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
       statusDiv.style.background = 'rgba(var(--muted-rgb), 0.1)';
       statusDiv.style.border = '2px solid var(--muted)';
       statusDiv.style.color = 'var(--muted)';
-      statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${data.message}<br><br>Scroll up to choose a plan above.`;
+      statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${escapeHtml(data.message)}<br><br>Scroll up to choose a plan above.`;
       btn.disabled = false;
       btn.textContent = 'Open Billing Portal';
     } else {

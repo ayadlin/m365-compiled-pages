@@ -1,3 +1,17 @@
+
+// HTML escape utility — used to defend against XSS when interpolating untrusted
+// data into innerHTML. Strata audit (2026-05-03) flagged data-bearing
+// interpolations across this file; the helper is now applied to all of them.
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // API base URL - use api.ytech.tools for production, or same domain for local/direct access
 const API_BASE = window.location.hostname === 'ytech.tools' ? 'https://api.ytech.tools' : '';
 
@@ -45,7 +59,7 @@ function showNoLicenseMessage() {
 // Load license information
 async function loadDashboard() {
   try {
-    const response = await fetch(`${API_BASE}/api/portal/license-info`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/license-info`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -66,7 +80,7 @@ async function loadDashboard() {
 
     // Update UI with license data
     document.getElementById('licenseStatus').innerHTML =
-      `<span class="status-badge status-${data.status}">${data.status.toUpperCase()}</span>`;
+      `<span class="status-badge status-${escapeHtml(data.status)}">${escapeHtml(data.status.toUpperCase())}</span>`;
     document.getElementById('licensePlan').textContent = data.plan;
     document.getElementById('licenseDevices').textContent = data.max_devices;
     document.getElementById('licenseEmail').textContent = data.email;
@@ -90,17 +104,17 @@ async function loadDashboard() {
 
     if (plan.includes('free') || plan.includes('trial')) {
       // Free trial user: can upgrade to Pro, Team, or Enterprise
-      upgradeBtn.href = `mailto:support@ytech.tools?subject=Upgrade from Free Trial&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps free trial to a paid plan.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Free Trial%0D%0A%0D%0AInterested in:%0D%0A[ ] Pro ($18/year - 1 device)%0D%0A[ ] Team ($150/year - 10 devices)%0D%0A[ ] Enterprise (Contact for pricing - unlimited devices)%0D%0A%0D%0AThank you!`;
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=Upgrade from Free Trial&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps free trial to a paid plan.%0D%0A%0D%0ACurrent License Email: ${escapeHtml(encodeURIComponent(data.email))}%0D%0ACurrent Plan: Free Trial%0D%0A%0D%0AInterested in:%0D%0A[ ] Pro ($18/year - 1 device)%0D%0A[ ] Team ($150/year - 10 devices)%0D%0A[ ] Enterprise (Contact for pricing - unlimited devices)%0D%0A%0D%0AThank you!`;
       upgradeBtn.textContent = '⬆️ Upgrade to Pro/Team/Enterprise';
       upgradeBtn.style.display = 'block';
     } else if (plan.includes('pro') && !plan.includes('enterprise')) {
       // Pro user: can upgrade to Team or Enterprise
-      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Pro&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Pro to a higher tier.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Pro%0D%0A%0D%0AInterested in:%0D%0A[ ] Team (up to 10 devices)%0D%0A[ ] Enterprise (unlimited devices)%0D%0A%0D%0AThank you!`;
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Pro&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Pro to a higher tier.%0D%0A%0D%0ACurrent License Email: ${escapeHtml(encodeURIComponent(data.email))}%0D%0ACurrent Plan: Pro%0D%0A%0D%0AInterested in:%0D%0A[ ] Team (up to 10 devices)%0D%0A[ ] Enterprise (unlimited devices)%0D%0A%0D%0AThank you!`;
       upgradeBtn.textContent = '⬆️ Upgrade to Team/Enterprise';
       upgradeBtn.style.display = 'block';
     } else if (plan.includes('team')) {
       // Team user: can upgrade to Enterprise
-      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Team&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Team to Enterprise.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Team%0D%0A%0D%0AThank you!`;
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=License Upgrade Request - Current Plan: Team&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps license from Team to Enterprise.%0D%0A%0D%0ACurrent License Email: ${escapeHtml(encodeURIComponent(data.email))}%0D%0ACurrent Plan: Team%0D%0A%0D%0AThank you!`;
       upgradeBtn.textContent = '⬆️ Upgrade to Enterprise';
       upgradeBtn.style.display = 'block';
     }
@@ -120,7 +134,7 @@ async function loadDashboard() {
 // Download license files (as ZIP archive)
 document.getElementById('downloadBtn').addEventListener('click', async () => {
   try {
-    const response = await fetch(`${API_BASE}/api/portal/download-license`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/download-license`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -165,7 +179,7 @@ document.getElementById('billingBtn').addEventListener('click', async () => {
   btn.textContent = 'Opening billing portal...';
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/billing-session`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/billing-session`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -190,7 +204,7 @@ document.getElementById('logoutLink').addEventListener('click', async (e) => {
   e.preventDefault();
 
   try {
-    await fetch(`${API_BASE}/api/portal/logout`, {
+    await fetch(`${escapeHtml(API_BASE)}/api/portal/logout`, {
       method: 'POST',
       credentials: 'include',
     });
@@ -207,7 +221,7 @@ let currentTeamData = null;
 
 async function loadTeamInfo() {
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/info`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/team/info`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -253,31 +267,31 @@ function renderTeamMembers() {
     card.className = 'member-card';
 
     const roleClass = member.role === 'admin' ? 'role-admin' : 'role-member';
-    const roleBadge = `<span class="role-badge ${roleClass}">${member.role.toUpperCase()}</span>`;
+    const roleBadge = `<span class="role-badge ${escapeHtml(roleClass)}">${escapeHtml(member.role.toUpperCase())}</span>`;
 
     const addedDate = new Date(member.added_at).toLocaleDateString();
     const lastLogin = member.last_login ? new Date(member.last_login).toLocaleDateString() : 'Never';
 
     card.innerHTML = `
       <div class="member-info">
-        <div class="member-email">${member.email}${roleBadge}</div>
-        <div class="member-meta">Added by ${member.added_by} on ${addedDate}</div>
-        <div class="member-meta">Last login: ${lastLogin}</div>
+        <div class="member-email">${escapeHtml(member.email)}${escapeHtml(roleBadge)}</div>
+        <div class="member-meta">Added by ${escapeHtml(member.added_by)} on ${escapeHtml(addedDate)}</div>
+        <div class="member-meta">Last login: ${escapeHtml(lastLogin)}</div>
       </div>
-      <div class="member-actions" id="actions-${member.email.replace('@', '-').replace('.', '-')}"></div>
+      <div class="member-actions" id="actions-${escapeHtml(member.email.replace('@', '-').replace('.', '-'))}"></div>
     `;
 
     membersList.appendChild(card);
 
     // Add action buttons for admins
     if (currentTeamData.is_admin && member.email !== currentTeamData.primary_admin) {
-      const actionsDiv = document.getElementById(`actions-${member.email.replace('@', '-').replace('.', '-')}`);
+      const actionsDiv = document.getElementById(`actions-${escapeHtml(member.email.replace('@', '-').replace('.', '-'))}`);
 
       // Toggle role button
       const newRole = member.role === 'admin' ? 'member' : 'admin';
       const roleBtn = document.createElement('button');
       roleBtn.className = 'btn-sm btn-role';
-      roleBtn.textContent = `Make ${newRole}`;
+      roleBtn.textContent = `Make ${escapeHtml(newRole)}`;
       roleBtn.onclick = () => updateMemberRole(member.email, newRole);
       actionsDiv.appendChild(roleBtn);
 
@@ -292,10 +306,10 @@ function renderTeamMembers() {
 }
 
 async function updateMemberRole(email, newRole) {
-  if (!confirm(`Change ${email} to ${newRole}?`)) return;
+  if (!confirm(`Change ${escapeHtml(email)} to ${escapeHtml(newRole)}?`)) return;
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/member/role`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/team/member/role`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -309,17 +323,17 @@ async function updateMemberRole(email, newRole) {
 
     // Reload team data
     await loadTeamInfo();
-    alert(`Successfully changed ${email} to ${newRole}`);
+    alert(`Successfully changed ${escapeHtml(email)} to ${escapeHtml(newRole)}`);
   } catch (error) {
     alert('Error updating role: ' + error.message);
   }
 }
 
 async function removeMember(email) {
-  if (!confirm(`Remove ${email} from the team?`)) return;
+  if (!confirm(`Remove ${escapeHtml(email)} from the team?`)) return;
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/member/remove`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/team/member/remove`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -333,7 +347,7 @@ async function removeMember(email) {
 
     // Reload team data
     await loadTeamInfo();
-    alert(`Successfully removed ${email} from the team`);
+    alert(`Successfully removed ${escapeHtml(email)} from the team`);
   } catch (error) {
     alert('Error removing member: ' + error.message);
   }
@@ -358,7 +372,7 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
   statusDiv.style.display = 'none';
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/member/add`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/team/member/add`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
@@ -378,7 +392,7 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
     // Show success
     statusDiv.className = 'success-message';
     statusDiv.style.display = 'block';
-    statusDiv.textContent = `Successfully added ${email} as ${role}`;
+    statusDiv.textContent = `Successfully added ${escapeHtml(email)} as ${escapeHtml(role)}`;
 
     // Reload team data
     await loadTeamInfo();
@@ -412,7 +426,7 @@ async function loadAddons(plan) {
   document.getElementById('addonsCard').style.display = 'block';
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/addons/available`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/addons/available`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -454,29 +468,29 @@ function renderAddons() {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.id = `addon-${addon.id}`;
+    checkbox.id = `addon-${escapeHtml(addon.id)}`;
     checkbox.value = addon.id;
     checkbox.style.cssText = 'width: 20px; height: 20px; margin-top: 0.25rem; cursor: pointer;';
     checkbox.addEventListener('change', handleAddonToggle);
 
     const label = document.createElement('label');
-    label.htmlFor = `addon-${addon.id}`;
+    label.htmlFor = `addon-${escapeHtml(addon.id)}`;
     label.style.cssText = 'flex: 1; cursor: pointer;';
 
     // Show device breakdown if more than 1 device
     const priceDisplay = addon.devices_included > 1
-      ? `$${addon.prorated_price_total.toFixed(2)} <span style="font-size: 0.85rem; color: var(--muted);">(${addon.devices_included} devices × $${addon.prorated_price_per_device.toFixed(2)})</span>`
+      ? `$${addon.prorated_price_total.toFixed(2)} <span style="font-size: 0.85rem; color: var(--muted);">(${escapeHtml(addon.devices_included)} devices × $${addon.prorated_price_per_device.toFixed(2)})</span>`
       : `$${addon.prorated_price_total.toFixed(2)}`;
 
     label.innerHTML = `
       <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
-        <span style="font-size: 1.5rem;">${addon.icon}</span>
-        <span style="font-size: 1.1rem; font-weight: 600; color: var(--accent);">${addon.name}</span>
+        <span style="font-size: 1.5rem;">${escapeHtml(addon.icon)}</span>
+        <span style="font-size: 1.1rem; font-weight: 600; color: var(--accent);">${escapeHtml(addon.name)}</span>
         <span style="font-size: 1rem; color: var(--accent); font-weight: 600; margin-left: auto;">
-          ${priceDisplay}
+          ${escapeHtml(priceDisplay)}
         </span>
       </div>
-      <div style="color: var(--muted); font-size: 0.9rem;">${addon.description}</div>
+      <div style="color: var(--muted); font-size: 0.9rem;">${escapeHtml(addon.description)}</div>
     `;
 
     card.appendChild(checkbox);
@@ -522,7 +536,7 @@ document.getElementById('purchaseAddonsBtn').addEventListener('click', async () 
   btn.textContent = 'Creating checkout...';
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/addons/checkout`, {
+    const response = await fetch(`${escapeHtml(API_BASE)}/api/portal/addons/checkout`, {
       method: 'POST',
       credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
