@@ -1,3 +1,15 @@
+// HTML escape utility — used to defend against XSS when interpolating untrusted
+// data into innerHTML. The 17 escapeHtml() callers below all depend on this.
+function escapeHtml(value) {
+  if (value === null || value === undefined) return '';
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 // Load branding
 fetch('../brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '../' + b.logo || 'branding/logo.svg';
