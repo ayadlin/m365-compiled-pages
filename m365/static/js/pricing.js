@@ -53,15 +53,17 @@ fetch('config.json').then(r => r.json()).then(config => {
           </div>
         </div>
         <ul class="free-trial-features">
-          ${escapeHtml(features)}
+          ${features}
         </ul>
-        <a href="${escapeHtml(checkoutUrl)}" class="free-trial-cta" ${escapeHtml(trackingCode)}>${escapeHtml(freeTrial.cta || 'Get Started')}</a>
+        <a href="${escapeHtml(checkoutUrl)}" class="free-trial-cta" ${trackingCode}>${escapeHtml(freeTrial.cta || 'Get Started')}</a>
       </div>
     `;
 
     // Insert before the pricing grid
     grid.parentNode.insertBefore(heroContainer, grid);
   }
+
+  const currencySym = config.currency === 'USD' ? '$' : config.currency;
 
   // Helper function to render a plan card
   function renderPlanCard(plan) {
@@ -73,12 +75,34 @@ fetch('config.json').then(r => r.json()).then(config => {
 
     const popularBadge = plan.popular ? '<div class="popular-badge">Most Popular</div>' : '';
 
-    // Handle price display with optional price note
-    let priceDisplay = `<div class="plan-price"><span class="currency">${config.currency === 'USD' ? '$' : config.currency}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
-    if (plan.priceNote) {
-      priceDisplay += `<div class="price-note">${escapeHtml(plan.priceNote)}</div>`;
+    let priceDisplay;
+    let ctaBlock;
+    if (typeof plan.priceMonthly === 'number' && typeof plan.priceAnnual === 'number') {
+      const savings = Math.round(100 - (plan.priceAnnual / (plan.priceMonthly * 12)) * 100);
+      priceDisplay = `
+        <div class="plan-price">
+          <div class="price-row price-annual">
+            <span class="currency">${currencySym}</span><span class="amount">${plan.priceAnnual}</span><span class="period">/year</span>
+            <span class="savings-badge">save ${savings}%</span>
+          </div>
+          <div class="price-row price-monthly">
+            <span class="muted">or ${currencySym}${plan.priceMonthly}/month</span>
+          </div>
+        </div>`;
+      const monthlyUrl = config.checkout[`${plan.id}_monthly`] || '#';
+      const annualUrl = config.checkout[`${plan.id}_annual`] || '#';
+      const track = (b) => `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}_${b}');"`;
+      ctaBlock = `
+        <a href="${escapeHtml(annualUrl)}" class="plan-cta plan-cta-primary" ${track('annual')}>${escapeHtml(plan.cta || 'Get Started')} — Annual</a>
+        <a href="${escapeHtml(monthlyUrl)}" class="plan-cta plan-cta-secondary" ${track('monthly')}>Subscribe Monthly</a>`;
+    } else {
+      priceDisplay = `<div class="plan-price"><span class="currency">${currencySym}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
+      if (plan.priceNote) priceDisplay += `<div class="price-note">${escapeHtml(plan.priceNote)}</div>`;
+      priceDisplay += `</div>`;
+      const checkoutUrl = config.checkout[plan.id] || '#';
+      const track = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}');"`;
+      ctaBlock = `<a href="${escapeHtml(checkoutUrl)}" class="plan-cta" ${track}>${escapeHtml(plan.cta || 'Get Started')}</a>`;
     }
-    priceDisplay += `</div>`;
 
     const features = plan.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
 
@@ -90,20 +114,17 @@ fetch('config.json').then(r => r.json()).then(config => {
         '</ul></div>';
     }
 
-    const checkoutUrl = config.checkout[plan.id] || '#';
-    const trackingCode = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}');"`;
-
     card.innerHTML = `
-      ${escapeHtml(popularBadge)}
+      ${popularBadge}
       <div class="plan-badge">${escapeHtml(plan.badge || '📦')}</div>
       <div class="plan-name">${escapeHtml(plan.label)}</div>
       <div class="plan-description">${escapeHtml(plan.description || '')}</div>
-      ${escapeHtml(priceDisplay)}
+      ${priceDisplay}
       <ul class="plan-features">
-        ${escapeHtml(features)}
+        ${features}
       </ul>
-      ${escapeHtml(pricingExamples)}
-      <a href="${escapeHtml(checkoutUrl)}" class="plan-cta" ${escapeHtml(trackingCode)}>${escapeHtml(plan.cta || 'Get Started')}</a>
+      ${pricingExamples}
+      ${ctaBlock}
     `;
 
     return card;
