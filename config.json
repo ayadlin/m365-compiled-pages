@@ -83,7 +83,7 @@
       "priceMonthly": 999,
       "priceAnnual": 10190,
       "period": "year",
-      "description": "Unlimited seats, dedicated support, white-label, Acrobat included",
+      "description": "Unlimited seats, white-label, Acrobat included",
       "features": [
         "All 13 M365 apps for every seat",
         "Unlimited seats",
@@ -93,8 +93,7 @@
         "📄 Adobe Acrobat INCLUDED for all seats",
         "🎨 White-label branding",
         "🏗️ Self-hosting option",
-        "🛡️ Audit logging + advanced compliance",
-        "📞 Dedicated support"
+        "🛡️ Audit logging + advanced compliance"
       ],
       "badge": "🌟",
       "cta": "Get Enterprise"
