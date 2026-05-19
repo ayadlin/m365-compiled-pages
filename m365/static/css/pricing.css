@@ -249,6 +249,31 @@
   background: linear-gradient(135deg, #8b5cf6, #7c3aed);
 }
 
+/* Dual-CTA layout (monthly + annual) — stack with spacing, prevent hover overlap */
+.plan-cta + .plan-cta {
+  margin-top: 0.6rem;
+}
+.plan-cta-secondary {
+  background: transparent !important;
+  color: var(--accent) !important;
+  border: 2px solid var(--accent);
+  padding: calc(1rem - 2px) calc(2rem - 2px);
+}
+.plan-cta-secondary:hover {
+  background: rgba(var(--accent-rgb), 0.1) !important;
+}
+
+/* Enterprise Portal positioning — left of Customer Portal (matches theme.css) */
+.enterprise-link {
+  right: 14rem !important;
+}
+@media (max-width: 768px) {
+  .enterprise-link {
+    right: 1rem !important;
+    top: 4.5rem !important;
+  }
+}
+
 .hero {
   text-align: center;
   padding: 3rem 1rem;

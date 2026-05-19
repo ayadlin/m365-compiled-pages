@@ -226,3 +226,14 @@
       transform: scale(1.05);
       box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
+
+    /* Enterprise Portal positioned left of Customer Portal (matches theme.css) */
+    .enterprise-link {
+      right: 14rem !important;
+    }
+    @media (max-width: 768px) {
+      .enterprise-link {
+        right: 1rem !important;
+        top: 4.5rem !important;
+      }
+    }
