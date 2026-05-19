@@ -1,5 +1,6 @@
 {
   "currency": "USD",
+  "billing_note": "Annual saves 15% vs monthly",
   "plans": [
     {
       "id": "free",
@@ -8,77 +9,106 @@
       "period": "15 days",
       "description": "Try M365 WebApps risk-free",
       "features": [
-        "Word, Excel, PowerPoint",
+        "All M365 apps included",
         "1 device",
         "15-day trial period",
-        "Community support"
+        "Community support",
+        "No payment required"
       ],
       "badge": "🆓",
       "cta": "Start Free Trial"
     },
     {
-      "id": "base-annual",
-      "label": "Foundation",
-      "price": 19.99,
+      "id": "personal",
+      "label": "M365 Personal",
+      "priceMonthly": 15,
+      "priceAnnual": 153,
       "period": "year",
-      "description": "Core Microsoft 365 apps for individuals",
+      "description": "M365 WebApps for individuals — all 13 apps, Native experience with OAuth auto-login",
       "features": [
-        "7 core Microsoft apps",
-        "Word, Excel, PowerPoint, Outlook",
-        "OneNote, Teams, OneDrive",
-        "Chromium-based launcher",
+        "All 13 Microsoft 365 apps (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive, Copilot, SharePoint, Planner, Forms, Stream)",
+        "Native experience with WebKitGTK + OAuth 2.0 auto-login",
+        "System theme integration",
+        "Native file picker & clipboard",
         "1 device license",
-        "Annual billing",
-        "Email support"
+        "Acrobat add-on available: +$8/mo or +$80/yr"
       ],
-      "badge": "💼",
-      "cta": "Buy Foundation",
-      "popular": false
+      "badge": "🖥️",
+      "cta": "Get Personal"
     },
     {
-      "id": "plus-annual",
-      "label": "Native",
-      "price": 39.99,
+      "id": "team",
+      "label": "M365 Team",
+      "priceMonthly": 99,
+      "priceAnnual": 1010,
       "period": "year",
-      "description": "Enhanced experience with OAuth auto-login",
+      "description": "M365 for small teams — 5 seats included, simple team management",
       "features": [
-        "All Foundation features",
-        "WebKitGTK native integration",
-        "OAuth auto-login (no passwords!)",
-        "Better desktop integration",
-        "1 device license",
-        "Annual billing",
-        "Priority email support"
+        "All 13 M365 apps for every seat",
+        "5 seats included",
+        "Additional seats: +$20/seat/mo",
+        "Team license management portal",
+        "OAuth auto-login for all seats",
+        "Bulk license assignment",
+        "Acrobat add-on available: +$25/mo or +$255/yr"
       ],
-      "badge": "⚡",
-      "cta": "Buy Native",
-      "popular": true
+      "badge": "👥",
+      "popular": true,
+      "cta": "Get Team"
     },
     {
-      "id": "pro-annual",
-      "label": "Pro",
-      "price": 69.99,
+      "id": "business",
+      "label": "M365 Business",
+      "priceMonthly": 499,
+      "priceAnnual": 5090,
       "period": "year",
-      "description": "Complete suite with all 13 apps",
+      "description": "For growing businesses — 25 seats, SCIM provisioning, Azure AD SSO, audit logs",
       "features": [
-        "All Native features",
-        "All 13 apps (12 Microsoft + Adobe)",
-        "Microsoft Copilot (AI assistant)",
-        "SharePoint, Planner, Forms, Stream",
-        "Adobe Acrobat PDF tools",
-        "WebKitGTK + OAuth auto-login",
-        "1 device license",
-        "Annual billing",
-        "Priority support"
+        "All 13 M365 apps for every seat",
+        "25 seats included",
+        "Additional seats: +$20/seat/mo",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📊 Company admin portal",
+        "🛡️ Audit logging",
+        "Acrobat add-on available: +$100/mo or +$1,020/yr"
       ],
-      "badge": "🚀",
-      "cta": "Buy Pro"
+      "badge": "🏢",
+      "cta": "Get Business"
+    },
+    {
+      "id": "enterprise",
+      "label": "M365 Enterprise",
+      "priceMonthly": 999,
+      "priceAnnual": 10190,
+      "period": "year",
+      "description": "Unlimited seats, dedicated support, white-label, Acrobat included",
+      "features": [
+        "All 13 M365 apps for every seat",
+        "Unlimited seats",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📄 Adobe Acrobat INCLUDED for all seats",
+        "🎨 White-label branding",
+        "🏗️ Self-hosting option",
+        "🛡️ Audit logging + advanced compliance",
+        "📞 Dedicated support"
+      ],
+      "badge": "🌟",
+      "cta": "Get Enterprise"
     }
   ],
   "checkout": {
     "free": "trial.html",
-    "base-annual": "https://buy.stripe.com/5kQcN5bjsfip2tS8qrgYU0l",
-    "plus-annual": "https://buy.stripe.com/28E4gz1ISdah0lKbCDgYU0v",
-    "pro-annual": "https://buy.stripe.com/4gMaEX2MWb292tSeOPgYU0u"
+    "personal_monthly":   "https://buy.stripe.com/00wbJ12MW5HP5G45efgYU0R",
+    "personal_annual":    "https://buy.stripe.com/bJedR9fzI6LTgkI223gYU0S",
+    "team_monthly":       "https://buy.stripe.com/eVq5kDcnw8U13xW367gYU0T",
+    "team_annual":        "https://buy.stripe.com/9B6eVddrA4DLfgEbCDgYU0U",
+    "business_monthly":   "https://buy.stripe.com/4gMfZhfzI0nv1pOdKLgYU0V",
+    "business_annual":    "https://buy.stripe.com/fZu4gzgDMfip8Sg5efgYU0W",
+    "enterprise_monthly": "https://buy.stripe.com/6oUfZhevEdah1pO5efgYU0X",
+    "enterprise_annual":  "https://buy.stripe.com/bJeeVdgDMeel4C07mngYU0Y"
   }
 }

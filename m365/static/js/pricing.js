@@ -1,17 +1,3 @@
-
-// HTML escape utility — used to defend against XSS when interpolating untrusted
-// data into innerHTML. Strata audit (2026-05-03) flagged data-bearing
-// interpolations across this file; the helper is now applied to all of them.
-function escapeHtml(value) {
-  if (value === null || value === undefined) return '';
-  return String(value)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
-
 // Load branding
 fetch('../brand.json').then(r => r.json()).then(b => {
   document.getElementById('logo').src = '../' + b.logo || 'branding/logo.svg';
@@ -40,22 +26,22 @@ fetch('config.json').then(r => r.json()).then(config => {
     heroContainer.className = 'free-trial-hero';
 
     const features = freeTrial.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
-    const checkoutUrl = config.checkout[freeTrial.id] || '#';
+    const checkoutUrl = escapeHtml(config.checkout[freeTrial.id] || '#');
     const trackingCode = `onclick="if(window.trackTrialDownload) trackTrialDownload('pricing_free_plan');"`;
 
     heroContainer.innerHTML = `
       <div class="free-trial-content">
         <div class="free-trial-header">
-          <div class="free-trial-badge">${escapeHtml(freeTrial.badge || '🆓')}</div>
+          <div class="free-trial-badge">${freeTrial.badge || '🆓'}</div>
           <div class="free-trial-info">
-            <div class="free-trial-name">${escapeHtml(freeTrial.label)}</div>
-            <div class="free-trial-description">${escapeHtml(freeTrial.description || '')}</div>
+            <div class="free-trial-name">${freeTrial.label}</div>
+            <div class="free-trial-description">${freeTrial.description || ''}</div>
           </div>
         </div>
         <ul class="free-trial-features">
           ${features}
         </ul>
-        <a href="${escapeHtml(checkoutUrl)}" class="free-trial-cta" ${trackingCode}>${escapeHtml(freeTrial.cta || 'Get Started')}</a>
+        <a href="${checkoutUrl}" class="free-trial-cta" ${trackingCode}>${escapeHtml(freeTrial.cta || 'Get Started')}</a>
       </div>
     `;
 
@@ -68,7 +54,7 @@ fetch('config.json').then(r => r.json()).then(config => {
   // Helper function to render a plan card
   function renderPlanCard(plan) {
     const card = document.createElement('div');
-    card.className = `pricing-card ${escapeHtml(plan.id)}`;
+    card.className = `pricing-card ${plan.id}`;
     if (plan.popular) {
       card.classList.add('popular');
     }
@@ -82,26 +68,26 @@ fetch('config.json').then(r => r.json()).then(config => {
       priceDisplay = `
         <div class="plan-price">
           <div class="price-row price-annual">
-            <span class="currency">${currencySym}</span><span class="amount">${plan.priceAnnual}</span><span class="period">/year</span>
+            <span class="currency">${escapeHtml(currencySym)}</span><span class="amount">${escapeHtml(plan.priceAnnual)}</span><span class="period">/year</span>
             <span class="savings-badge">save ${savings}%</span>
           </div>
           <div class="price-row price-monthly">
-            <span class="muted">or ${currencySym}${plan.priceMonthly}/month</span>
+            <span class="muted">or ${escapeHtml(currencySym)}${escapeHtml(plan.priceMonthly)}/month</span>
           </div>
         </div>`;
-      const monthlyUrl = config.checkout[`${plan.id}_monthly`] || '#';
-      const annualUrl = config.checkout[`${plan.id}_annual`] || '#';
-      const track = (b) => `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}_${b}');"`;
+      const monthlyUrl = escapeHtml(config.checkout[`${plan.id}_monthly`] || '#');
+      const annualUrl = escapeHtml(config.checkout[`${plan.id}_annual`] || '#');
+      const track = (b) => `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}_${b}');"`;
       ctaBlock = `
-        <a href="${escapeHtml(annualUrl)}" class="plan-cta plan-cta-primary" ${track('annual')}>${escapeHtml(plan.cta || 'Get Started')} — Annual</a>
-        <a href="${escapeHtml(monthlyUrl)}" class="plan-cta plan-cta-secondary" ${track('monthly')}>Subscribe Monthly</a>`;
+        <a href="${annualUrl}" class="plan-cta plan-cta-primary" ${track('annual')}>${escapeHtml(plan.cta || 'Get Started')} — Annual</a>
+        <a href="${monthlyUrl}" class="plan-cta plan-cta-secondary" ${track('monthly')}>Subscribe Monthly</a>`;
     } else {
-      priceDisplay = `<div class="plan-price"><span class="currency">${currencySym}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
+      priceDisplay = `<div class="plan-price"><span class="currency">${escapeHtml(currencySym)}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
       if (plan.priceNote) priceDisplay += `<div class="price-note">${escapeHtml(plan.priceNote)}</div>`;
       priceDisplay += `</div>`;
-      const checkoutUrl = config.checkout[plan.id] || '#';
-      const track = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${escapeHtml(plan.id)}');"`;
-      ctaBlock = `<a href="${escapeHtml(checkoutUrl)}" class="plan-cta" ${track}>${escapeHtml(plan.cta || 'Get Started')}</a>`;
+      const checkoutUrl = escapeHtml(config.checkout[plan.id] || '#');
+      const track = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
+      ctaBlock = `<a href="${checkoutUrl}" class="plan-cta" ${track}>${escapeHtml(plan.cta || 'Get Started')}</a>`;
     }
 
     const features = plan.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
@@ -165,7 +151,7 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
   statusDiv.style.display = 'none';
 
   try {
-    const response = await fetch(`${escapeHtml(API_URL)}/api/create-portal-session`, {
+    const response = await fetch(`${API_URL}/api/create-portal-session`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -187,7 +173,7 @@ document.getElementById('manage-billing-btn').addEventListener('click', async ()
       statusDiv.style.background = 'rgba(var(--muted-rgb), 0.1)';
       statusDiv.style.border = '2px solid var(--muted)';
       statusDiv.style.color = 'var(--muted)';
-      statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${escapeHtml(data.message)}<br><br>Scroll up to choose a plan above.`;
+      statusDiv.innerHTML = `<strong>✨ You have a free trial!</strong><br>${data.message}<br><br>Scroll up to choose a plan above.`;
       btn.disabled = false;
       btn.textContent = 'Open Billing Portal';
     } else {
