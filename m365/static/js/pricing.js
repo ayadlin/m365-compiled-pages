@@ -1,5 +1,5 @@
 // HTML escape utility — used to defend against XSS when interpolating untrusted
-// data into innerHTML. The 17 escapeHtml() callers below all depend on this.
+// data into innerHTML. The escapeHtml() callers below all depend on this.
 function escapeHtml(value) {
   if (value === null || value === undefined) return '';
   return String(value)
@@ -9,6 +9,36 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
 }
+
+function escapeJsString(value) {
+  return String(value).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+}
+
+function getAcrobatToggle(tier) {
+  const checkbox = document.getElementById(`add-acrobat-${tier}`);
+  return checkbox && checkbox.checked ? ['acrobat'] : [];
+}
+
+async function checkout(tier, interval, addons) {
+  try {
+    const response = await fetch('https://api.ytech.tools/api/checkout/create-session', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({tier, interval, addons: addons || []})
+    });
+    const data = await response.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert('Checkout error: ' + (data.error || 'unknown'));
+    }
+  } catch (error) {
+    alert('Checkout error: ' + (error.message || 'unknown'));
+  }
+}
+
+window.checkout = checkout;
+window.getAcrobatToggle = getAcrobatToggle;
 
 // Load branding
 fetch('../brand.json').then(r => r.json()).then(b => {
@@ -75,34 +105,48 @@ fetch('config.json').then(r => r.json()).then(config => {
 
     let priceDisplay;
     let ctaBlock;
+    let addonControl = '';
     if (typeof plan.priceMonthly === 'number' && typeof plan.priceAnnual === 'number') {
       const savings = Math.round(100 - (plan.priceAnnual / (plan.priceMonthly * 12)) * 100);
       priceDisplay = `
         <div class="plan-price">
           <div class="price-row price-annual">
-            <span class="currency">${escapeHtml(currencySym)}</span><span class="amount">${escapeHtml(plan.priceAnnual)}</span><span class="period">/year</span>
+            <span class="currency">${escapeHtml(currencySym)}</span><span class="amount">${escapeHtml(plan.priceAnnual)}</span><span class="period">/yr</span>
             <span class="savings-badge">save ${savings}%</span>
           </div>
           <div class="price-row price-monthly">
-            <span class="muted">or ${escapeHtml(currencySym)}${escapeHtml(plan.priceMonthly)}/month</span>
+            <span class="muted small">or ${escapeHtml(currencySym)}${escapeHtml(plan.priceMonthly)}/mo</span>
           </div>
         </div>`;
-      const monthlyUrl = escapeHtml(config.checkout[`${plan.id}_monthly`] || '#');
-      const annualUrl = escapeHtml(config.checkout[`${plan.id}_annual`] || '#');
-      const track = (b) => `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}_${b}');"`;
+      if (plan.id !== 'enterprise') {
+        addonControl = `
+          <label class="plan-addon">
+            <input type="checkbox" id="add-acrobat-${escapeHtml(plan.id)}" value="acrobat">
+            <span>Add Acrobat</span>
+          </label>`;
+      }
+      const tierArg = escapeJsString(plan.id);
+      const track = (b) => `if(window.trackPurchaseClick) trackPurchaseClick('${tierArg}_${b}');`;
       ctaBlock = `
-        <a href="${annualUrl}" class="plan-cta plan-cta-primary" ${track('annual')}>${escapeHtml(plan.cta || 'Get Started')} — Annual</a>
-        <a href="${monthlyUrl}" class="plan-cta plan-cta-secondary" ${track('monthly')}>Subscribe Monthly</a>`;
+        <div class="plan-cta-actions">
+          <button type="button" class="plan-cta plan-cta-primary" onclick="${escapeHtml(`${track('annual')} checkout('${tierArg}','annual', getAcrobatToggle('${tierArg}'));`)}">Subscribe Annual</button>
+          <button type="button" class="plan-cta plan-cta-secondary" onclick="${escapeHtml(`${track('monthly')} checkout('${tierArg}','monthly', getAcrobatToggle('${tierArg}'));`)}">Subscribe Monthly</button>
+        </div>`;
     } else {
       priceDisplay = `<div class="plan-price"><span class="currency">${escapeHtml(currencySym)}</span>${escapeHtml(plan.price)}<span class="period">/${escapeHtml(plan.period)}</span>`;
       if (plan.priceNote) priceDisplay += `<div class="price-note">${escapeHtml(plan.priceNote)}</div>`;
       priceDisplay += `</div>`;
       const checkoutUrl = escapeHtml(config.checkout[plan.id] || '#');
       const track = `onclick="if(window.trackPurchaseClick) trackPurchaseClick('${plan.id}');"`;
-      ctaBlock = `<a href="${checkoutUrl}" class="plan-cta" ${track}>${escapeHtml(plan.cta || 'Get Started')}</a>`;
+      ctaBlock = `<div class="plan-cta-actions"><a href="${checkoutUrl}" class="plan-cta" ${track}>${escapeHtml(plan.cta || 'Get Started')}</a></div>`;
     }
 
-    const features = plan.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
+    const visibleFeatures = plan.features.slice(0, 4);
+    const hiddenFeatureCount = plan.features.length - visibleFeatures.length;
+    const features = visibleFeatures.map(f => `<li><span>${escapeHtml(f)}</span></li>`).join('');
+    const moreFeatures = hiddenFeatureCount > 0
+      ? `<li class="more-features">+${escapeHtml(hiddenFeatureCount)} more</li>`
+      : '';
 
     // Add pricing examples if they exist (for Enterprise tier)
     let pricingExamples = '';
@@ -120,8 +164,10 @@ fetch('config.json').then(r => r.json()).then(config => {
       ${priceDisplay}
       <ul class="plan-features">
         ${features}
+        ${moreFeatures}
       </ul>
       ${pricingExamples}
+      ${addonControl}
       ${ctaBlock}
     `;
 

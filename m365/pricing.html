@@ -61,9 +61,10 @@
         <div style="color: var(--fg); margin-top: 0.25rem;">Included</div>
       </div>
     </div>
-    <p style="text-align: center; color: var(--muted); font-size: 0.95rem;">
-      After subscribing, email <a href="mailto:support@ytech.tools" style="color: var(--accent); font-weight: 600;">support@ytech.tools</a> to add Acrobat to your subscription.
-    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1rem;">
+      <button type="button" class="plan-cta plan-cta-primary" style="border: 0;" onclick="checkout('acrobat','annual', [])">Subscribe Acrobat Annual</button>
+      <button type="button" class="plan-cta plan-cta-secondary" style="border: 0;" onclick="checkout('acrobat','monthly', [])">Subscribe Acrobat Monthly</button>
+    </div>
   </div>
 
   <div class="wrap" style="margin-top: 4rem;">

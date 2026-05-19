@@ -100,14 +100,6 @@
     }
   ],
   "checkout": {
-    "free": "trial.html",
-    "personal_monthly":   "https://buy.stripe.com/00wbJ12MW5HP5G45efgYU0R",
-    "personal_annual":    "https://buy.stripe.com/bJedR9fzI6LTgkI223gYU0S",
-    "team_monthly":       "https://buy.stripe.com/eVq5kDcnw8U13xW367gYU0T",
-    "team_annual":        "https://buy.stripe.com/9B6eVddrA4DLfgEbCDgYU0U",
-    "business_monthly":   "https://buy.stripe.com/4gMfZhfzI0nv1pOdKLgYU0V",
-    "business_annual":    "https://buy.stripe.com/fZu4gzgDMfip8Sg5efgYU0W",
-    "enterprise_monthly": "https://buy.stripe.com/6oUfZhevEdah1pO5efgYU0X",
-    "enterprise_annual":  "https://buy.stripe.com/bJeeVdgDMeel4C07mngYU0Y"
+    "free": "trial.html"
   }
 }
