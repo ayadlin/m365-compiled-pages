@@ -58,12 +58,13 @@ M365 WebApps uses your installed Chromium-based browser (Chrome, Chromium, or Ed
 
 ### 1.4 Available Plans
 
-| Plan | Price | Devices | Best For |
-|------|-------|---------|----------|
-| **Free Trial** | $0 | 1 device, 30 days | Trying the product |
-| **Pro** | $9.99/month | 1 device | Individual users |
-| **Team** | $29.99/month | 10 devices | Small teams |
-| **Enterprise** | $99.99/month | Unlimited devices | Large organizations |
+| Plan | Price | Seats | Best For |
+|------|-------|-------|----------|
+| **Free Trial** | $0 | 1 seat, 15 days | Try the product risk-free |
+| **Personal** | $8/mo · $79/yr | 1 seat | Individual users |
+| **Team** | $59/mo · $599/yr | 5 seats | Small teams |
+| **Business** | $499/mo · $5,090/yr | 25 seats + SCIM/SSO/audit | Growing businesses |
+| **Enterprise** | $999/mo · $10,190/yr | Up to 500 seats + white-label + Acrobat included | Large organizations |
 
 *Prices subject to change. See https://ytech.tools/m365/ for current pricing.*
 

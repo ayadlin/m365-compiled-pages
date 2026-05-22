@@ -415,9 +415,9 @@ let selectedAddons = new Set();
 
 async function loadAddons(plan) {
   // Only show add-ons for paid M365 tiers
-  const eligiblePlans = ['personal_v2', 'team_v2', 'business_v2', 'enterprise_v2', 'foundation', 'native', 'foundation-annual', 'native-annual'];
+  const eligiblePlans = ['personal_v2', 'team_v2', 'business_v2', 'enterprise_v2'];
   if (!eligiblePlans.some(p => plan.toLowerCase().includes(p))) {
-    return; // Not a Foundation/Native user
+    return; // Plan does not support add-on apps
   }
 
   // Show add-ons card
