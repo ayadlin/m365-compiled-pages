@@ -97,7 +97,7 @@ async function loadDashboard() {
 
     if (plan.includes('free') || plan.includes('trial')) {
       // Free trial user: can upgrade to any v2 paid tier
-      upgradeBtn.href = `mailto:support@ytech.tools?subject=Upgrade from Free Trial&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps free trial to a paid v2 plan.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Free Trial%0D%0A%0D%0AInterested in:%0D%0A[ ] Personal ($8/month or $79/year - 1 seat)%0D%0A[ ] Team ($59/month or $599/year - 5 seats)%0D%0A[ ] Business ($499/month or $5090/year - 25 seats)%0D%0A[ ] Enterprise ($999/month or $10190/year - unlimited seats)%0D%0A%0D%0AThank you!`;
+      upgradeBtn.href = `mailto:support@ytech.tools?subject=Upgrade from Free Trial&body=Hi,%0D%0A%0D%0AI would like to upgrade my M365 WebApps free trial to a paid v2 plan.%0D%0A%0D%0ACurrent License Email: ${encodeURIComponent(data.email)}%0D%0ACurrent Plan: Free Trial%0D%0A%0D%0AInterested in:%0D%0A[ ] Personal ($15/month or $153/year - 1 seat)%0D%0A[ ] Team ($99/month or $1010/year - 5 seats)%0D%0A[ ] Business ($499/month or $5090/year - 25 seats)%0D%0A[ ] Enterprise ($999/month or $10190/year - unlimited seats)%0D%0A%0D%0AThank you!`;
       upgradeBtn.textContent = '⬆️ Upgrade to Personal/Team/Business/Enterprise';
       upgradeBtn.style.display = 'block';
     } else if (plan.includes('personal')) {
@@ -415,9 +415,9 @@ let selectedAddons = new Set();
 
 async function loadAddons(plan) {
   // Only show add-ons for paid M365 tiers
-  const eligiblePlans = ['personal_v2', 'team_v2', 'business_v2', 'enterprise_v2'];
+  const eligiblePlans = ['personal_v2', 'team_v2', 'business_v2', 'enterprise_v2', 'foundation', 'native', 'foundation-annual', 'native-annual'];
   if (!eligiblePlans.some(p => plan.toLowerCase().includes(p))) {
-    return; // Plan does not support add-on apps
+    return; // Not a Foundation/Native user
   }
 
   // Show add-ons card

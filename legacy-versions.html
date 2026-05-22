@@ -1,0 +1,610 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Legacy Versions - M365 WebApps</title>
+  <link rel="stylesheet" href="/theme.css">
+  <style>
+    .version-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .tier-section {
+      margin: 3rem 0;
+    }
+
+    .tier-header {
+      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
+      color: white;
+      padding: 1.5rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tier-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .tier-meta {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .release-card {
+      background: var(--card-bg);
+      border: 2px solid rgba(var(--accent-rgb), 0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .release-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.2);
+    }
+
+    .release-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .release-version {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 0;
+    }
+
+    .release-date {
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .release-badges {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.75rem 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-latest {
+      background: var(--success);
+      color: white;
+    }
+
+    .badge-prerelease {
+      background: var(--warning);
+      color: white;
+    }
+
+    .badge-stable {
+      background: rgba(var(--muted-rgb), 0.2);
+      color: var(--accent);
+      border: 1px solid var(--muted);
+    }
+
+    .release-notes {
+      color: var(--fg);
+      line-height: 1.6;
+      margin: 1rem 0;
+      padding: 1rem;
+      background: rgba(var(--accent-rgb), 0.05);
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+
+    .release-notes h3, .release-notes h4 {
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .release-notes ul, .release-notes ol {
+      margin: 0.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .release-notes li {
+      margin: 0.25rem 0;
+    }
+
+    .release-notes code {
+      background: rgba(var(--accent-rgb), 0.15);
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .release-assets {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(var(--accent-rgb), 0.2);
+    }
+
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .asset-item {
+      background: rgba(var(--muted-rgb), 0.1);
+      border: 1px solid rgba(var(--muted-rgb), 0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: var(--fg);
+    }
+
+    .asset-item:hover {
+      background: rgba(var(--muted-rgb), 0.2);
+      border-color: var(--accent);
+      transform: translateX(4px);
+      text-decoration: none;
+    }
+
+    .asset-name {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+
+    .asset-size {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-left: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .collapse-toggle {
+      background: rgba(var(--accent-rgb), 0.1);
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.3s ease;
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .collapse-toggle:hover {
+      background: var(--accent);
+      color: white;
+    }
+
+    .collapsed {
+      display: none;
+    }
+
+    .loading-spinner {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.2rem;
+      color: var(--muted);
+    }
+
+    .error-message {
+      background: rgba(var(--error-rgb), 0.1);
+      border: 2px solid var(--error);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--error);
+      font-weight: 600;
+    }
+
+    .filter-controls {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      border: 2px solid rgba(var(--muted-rgb), 0.3);
+      background: rgba(var(--muted-rgb), 0.1);
+      color: var(--accent);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover {
+      background: rgba(var(--muted-rgb), 0.2);
+      border-color: var(--accent);
+    }
+
+    .filter-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      padding: 1.5rem;
+      background: var(--card-bg);
+      border-radius: 12px;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="home-link">← Home</a>
+  <a href="/portal/enterprise/dashboard" class="portal-link enterprise-link">🏢 Enterprise Portal</a>
+  <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+
+  <header>
+    <h1>📦 Legacy Versions</h1>
+    <p style="margin: 0.5rem 0 0 0; font-size: 1rem; opacity: 0.9;">Complete release history for all M365 WebApps packages</p>
+  </header>
+
+  <div class="version-container">
+    <div style="margin: 0 0 1.5rem; padding: 1rem 1.25rem; background: rgba(var(--accent-rgb), 0.12); border: 1px solid rgba(var(--accent-rgb), 0.35); border-radius: 12px; color: var(--fg);">
+      Legacy package history is preserved here. Current M365 v2 plans and pricing are available at <a href="/m365/pricing.html" style="color: var(--accent); font-weight: 700;">/m365/pricing.html</a>.
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar" id="stats-bar">
+      <div class="stat-item">
+        <div class="stat-value" id="total-releases">-</div>
+        <div class="stat-label">Total Releases</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="foundation-count">-</div>
+        <div class="stat-label">Foundation</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="native-count">-</div>
+        <div class="stat-label">Native</div>
+      </div>
+    </div>
+
+    <!-- Filter Controls -->
+    <div class="filter-controls">
+      <button class="filter-btn active" data-filter="all">All Releases</button>
+      <button class="filter-btn" data-filter="foundation">Foundation Only</button>
+      <button class="filter-btn" data-filter="native">Native Only</button>
+      <button class="filter-btn" data-filter="stable">Stable Only</button>
+    </div>
+
+    <!-- Loading State -->
+    <div class="loading-spinner" id="loading">
+      <div>⏳ Loading release history from GitHub...</div>
+    </div>
+
+    <!-- Error State -->
+    <div class="error-message" id="error" style="display: none;">
+      <div>❌ Failed to load releases</div>
+      <div style="font-size: 0.9rem; margin-top: 0.5rem;">Please try again later or visit <a href="https://github.com/ayadlin/m365-compiled/releases" style="color: var(--error); text-decoration: underline;">GitHub Releases</a></div>
+    </div>
+
+    <!-- Foundation Tier Releases -->
+    <div class="tier-section" id="foundation-section" style="display: none;">
+      <div class="tier-header">
+        <div>
+          <div class="tier-title">🟠 Foundation Tier</div>
+          <div class="tier-meta">Legacy product info • Current plans at /m365</div>
+        </div>
+      </div>
+      <div id="foundation-releases"></div>
+    </div>
+
+    <!-- Native Tier Releases -->
+    <div class="tier-section" id="native-section" style="display: none;">
+      <div class="tier-header">
+        <div>
+          <div class="tier-title">⚡ Native Tier</div>
+          <div class="tier-meta">Legacy product info • Current plans at /m365</div>
+        </div>
+      </div>
+      <div id="native-releases"></div>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const GITHUB_REPO = 'ayadlin/m365-compiled';
+    const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/releases`;
+
+    let allReleases = [];
+    let currentFilter = 'all';
+
+    // Format file size
+    function formatSize(bytes) {
+      if (bytes === 0) return '0 B';
+      const k = 1024;
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    // Format date
+    function formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+
+    // Determine tier from tag name
+    function getTier(tagName) {
+      if (tagName.startsWith('native-v')) return 'native';
+      if (tagName.match(/^v\d+\.\d+\.\d+$/)) return 'foundation';
+      return 'unknown';
+    }
+
+    // Parse markdown to HTML (simple implementation)
+    function parseMarkdown(text) {
+      if (!text) return '<p><em>No release notes available</em></p>';
+
+      // Convert markdown to HTML
+      return text
+        .replace(/###\s+(.+)/g, '<h4>$1</h4>')
+        .replace(/##\s+(.+)/g, '<h3>$1</h3>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.+?)\*/g, '<em>$1</em>')
+        .replace(/`(.+?)`/g, '<code>$1</code>')
+        .replace(/^- (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(.+)$/gm, (match) => {
+          if (!match.startsWith('<')) return `<p>${match}</p>`;
+          return match;
+        });
+    }
+
+    // Create release card HTML
+    function createReleaseCard(release, isLatest, index, totalInTier) {
+      const tier = getTier(release.tag_name);
+      const tierLabel = tier === 'native' ? 'Native' : 'Foundation';
+
+      // Only collapse old releases (keep latest 3 visible per tier)
+      const shouldCollapse = index >= 3;
+
+      let badges = '';
+      if (isLatest) {
+        badges += '<span class="badge badge-latest">Latest</span>';
+      }
+      if (release.prerelease) {
+        badges += '<span class="badge badge-prerelease">Pre-release</span>';
+      } else {
+        badges += '<span class="badge badge-stable">Stable</span>';
+      }
+
+      // Filter relevant assets (exclude checksums, signatures, etc.)
+      const relevantAssets = release.assets.filter(asset => {
+        const name = asset.name.toLowerCase();
+        return name.endsWith('.deb') ||
+               name.endsWith('.rpm') ||
+               name.endsWith('.tar.gz') ||
+               name.endsWith('.appimage') ||
+               name.endsWith('.flatpak') ||
+               name.endsWith('.snap') ||
+               name.endsWith('.pkg.tar.zst');
+      });
+
+      let assetsHtml = '';
+      if (relevantAssets.length > 0) {
+        assetsHtml = `
+          <div class="release-assets">
+            <h4 style="margin: 0 0 0.75rem 0; color: var(--accent);">📥 Download Packages</h4>
+            <div class="asset-grid">
+              ${relevantAssets.map(asset => `
+                <a href="${asset.browser_download_url}" class="asset-item" target="_blank">
+                  <span class="asset-name">${asset.name}</span>
+                  <span class="asset-size">${formatSize(asset.size)}</span>
+                </a>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="release-card ${shouldCollapse ? 'collapsed' : ''}" data-tier="${tier}" data-stable="${!release.prerelease}">
+          <div class="release-header">
+            <h2 class="release-version">${release.tag_name}</h2>
+            <span class="release-date">${formatDate(release.published_at)}</span>
+          </div>
+          <div class="release-badges">${badges}</div>
+          <div class="release-notes">
+            ${parseMarkdown(release.body)}
+          </div>
+          ${assetsHtml}
+        </div>
+      `;
+    }
+
+    // Render releases
+    function renderReleases(filter = 'all') {
+      const foundationContainer = document.getElementById('foundation-releases');
+      const nativeContainer = document.getElementById('native-releases');
+      const foundationSection = document.getElementById('foundation-section');
+      const nativeSection = document.getElementById('native-section');
+
+      // Clear containers
+      foundationContainer.innerHTML = '';
+      nativeContainer.innerHTML = '';
+
+      // Filter releases
+      let filtered = allReleases;
+      if (filter === 'foundation') {
+        filtered = allReleases.filter(r => getTier(r.tag_name) === 'foundation');
+      } else if (filter === 'native') {
+        filtered = allReleases.filter(r => getTier(r.tag_name) === 'native');
+      } else if (filter === 'stable') {
+        filtered = allReleases.filter(r => !r.prerelease);
+      }
+
+      // Separate by tier
+      const foundationReleases = filtered.filter(r => getTier(r.tag_name) === 'foundation');
+      const nativeReleases = filtered.filter(r => getTier(r.tag_name) === 'native');
+
+      // Render Foundation releases
+      if (foundationReleases.length > 0) {
+        foundationSection.style.display = 'block';
+        foundationReleases.forEach((release, index) => {
+          const isLatest = index === 0;
+          foundationContainer.innerHTML += createReleaseCard(release, isLatest, index, foundationReleases.length);
+        });
+
+        // Add "Show More" button if there are collapsed items
+        if (foundationReleases.length > 3) {
+          foundationContainer.innerHTML += `
+            <button class="collapse-toggle" onclick="toggleCollapsed('foundation')">
+              Show ${foundationReleases.length - 3} Older Versions
+            </button>
+          `;
+        }
+      } else {
+        foundationSection.style.display = 'none';
+      }
+
+      // Render Native releases
+      if (nativeReleases.length > 0) {
+        nativeSection.style.display = 'block';
+        nativeReleases.forEach((release, index) => {
+          const isLatest = index === 0;
+          nativeContainer.innerHTML += createReleaseCard(release, isLatest, index, nativeReleases.length);
+        });
+
+        // Add "Show More" button if there are collapsed items
+        if (nativeReleases.length > 3) {
+          nativeContainer.innerHTML += `
+            <button class="collapse-toggle" onclick="toggleCollapsed('native')">
+              Show ${nativeReleases.length - 3} Older Versions
+            </button>
+          `;
+        }
+      } else {
+        nativeSection.style.display = 'none';
+      }
+    }
+
+    // Toggle collapsed releases
+    window.toggleCollapsed = function(tier) {
+      const section = document.getElementById(`${tier}-releases`);
+      const collapsed = section.querySelectorAll('.collapsed');
+      const button = section.querySelector('.collapse-toggle');
+
+      if (collapsed.length > 0) {
+        collapsed.forEach(card => card.classList.remove('collapsed'));
+        button.textContent = 'Show Less';
+      } else {
+        const cards = section.querySelectorAll('.release-card');
+        cards.forEach((card, index) => {
+          if (index >= 3) card.classList.add('collapsed');
+        });
+        const collapsedCount = section.querySelectorAll('.collapsed').length;
+        button.textContent = `Show ${collapsedCount} Older Versions`;
+      }
+    };
+
+    // Update stats
+    function updateStats() {
+      const foundationCount = allReleases.filter(r => getTier(r.tag_name) === 'foundation').length;
+      const nativeCount = allReleases.filter(r => getTier(r.tag_name) === 'native').length;
+
+      document.getElementById('total-releases').textContent = allReleases.length;
+      document.getElementById('foundation-count').textContent = foundationCount;
+      document.getElementById('native-count').textContent = nativeCount;
+    }
+
+    // Fetch releases from GitHub
+    async function fetchReleases() {
+      try {
+        const response = await fetch(GITHUB_API);
+        if (!response.ok) throw new Error('Failed to fetch releases');
+
+        allReleases = await response.json();
+
+        // Hide loading, show content
+        document.getElementById('loading').style.display = 'none';
+
+        // Update stats
+        updateStats();
+
+        // Render releases
+        renderReleases();
+
+      } catch (error) {
+        console.error('Error fetching releases:', error);
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+      }
+    }
+
+    // Filter button handlers
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active state
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Apply filter
+        const filter = btn.dataset.filter;
+        currentFilter = filter;
+        renderReleases(filter);
+      });
+    });
+
+    // Initialize
+    fetchReleases();
+  </script>
+</body>
+</html>

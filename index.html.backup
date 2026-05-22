@@ -35,15 +35,9 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 4rem auto;
       padding: 0 2rem;
-    }
-
-    @media (max-width: 1024px) {
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
 
     @media (max-width: 768px) {
@@ -200,49 +194,11 @@
       transform: scale(1.05);
       box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
     }
-
-    .enterprise-link {
-      right: 14rem;
-    }
-
-    .admin-link {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, var(--accent), var(--header-grad-2));
-      color: white;
-      padding: 12px 24px;
-      border-radius: 8px;
-      font-weight: bold;
-      box-shadow: 0 4px 16px rgba(var(--accent-rgb), 0.5);
-      z-index: 1000;
-      transition: all 0.3s ease;
-      display: none;
-    }
-
-    .admin-link:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.7);
-      text-decoration: none;
-    }
-
-    @media (max-width: 1024px) {
-      .portal-link {
-        position: static;
-        display: inline-block;
-        margin: 0.5rem;
-      }
-
-      .enterprise-link {
-        right: auto;
-      }
-    }
   </style>
 </head>
 <body>
-  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Dashboard</a>
-  <a href="/portal/enterprise/dashboard" class="portal-link enterprise-link">🏢 Enterprise Portal</a>
   <a href="/portal/" class="portal-link">👤 Customer Portal</a>
+  <a href="https://api.ytech.tools/admin/dashboard" class="admin-link" id="admin-link">🔧 Admin Portal</a>
 
   <header>
     <img src="branding/ytech_logo.png" height="64" alt="Ytech Tools Logo">
@@ -255,120 +211,36 @@
     <p>Bridging platforms and ecosystems with seamless integration tools. From bringing Microsoft Office to Linux, to connecting Apple and Android families — we make incompatible systems work together.</p>
   </div>
 
-  <!-- Quality You Can Trust -->
-  <div style="max-width: 1100px; margin: 0 auto 4rem; padding: 2.5rem; background: linear-gradient(135deg, rgba(255, 107, 53, 0.08), rgba(255, 140, 90, 0.04)); border-radius: 16px; border: 2px solid rgba(255, 107, 53, 0.15); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);">
-    <h2 style="text-align: center; color: var(--accent); font-size: 2.2rem; margin-bottom: 2rem; font-weight: 700;">Quality You Can Trust</h2>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto;">
-      <!-- Row 1 -->
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">✅</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Rigorously Tested</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">86.6% test coverage with 168 comprehensive E2E tests across all package formats and license tiers</p>
-      </div>
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🐧</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Works on Your Linux</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Compatible with Ubuntu, Fedora, Arch, and more - whatever distribution you prefer</p>
-      </div>
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">📦</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Install Your Way</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Choose from DEB, RPM, Arch, Snap, AppImage, or Flatpak - whatever fits your workflow</p>
-      </div>
-      <!-- Row 2 -->
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🔒</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Secure Licensing</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Cryptographic offline verification means your license works without constant internet checks</p>
-      </div>
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">💻</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">True Desktop Experience</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Native Linux desktop integration with proper windows, launchers, and file dialogs</p>
-      </div>
-      <div style="text-align: center; padding: 1.5rem;">
-        <div style="font-size: 3rem; margin-bottom: 0.75rem;">🚀</div>
-        <h3 style="color: var(--accent); margin: 0.5rem 0; font-size: 1.15rem; font-weight: 600;">Always Current</h3>
-        <p style="color: var(--fg); font-size: 0.95rem; margin: 0; line-height: 1.5;">Microsoft's latest Office features are automatically available - no waiting for updates</p>
-      </div>
-    </div>
-    <div style="text-align: center; margin-top: 1rem; font-size: 0.85rem; color: var(--fg);">
-      <strong>Distribution-Specific Compliance:</strong> ✅ Ubuntu 24.04 PEP 668 ✅ Arch Linux fuse2 ✅ Fedora DNF
-    </div>
-  </div>
-
   <div class="products-grid">
     <div class="product-card">
       <span class="product-icon">🖥️</span>
-      <h2>M365 Personal</h2>
-      <p>Microsoft 365 on Linux for individuals — all 13 apps with native OAuth auto-login.</p>
+      <h2>M365 WebApps Foundation</h2>
+      <p>Linux desktop with Chromium - Perfect to get started with Microsoft Office on Linux.</p>
       <ul class="features">
-        <li>All 13 Microsoft 365 apps</li>
-        <li>WebKitGTK + OAuth 2.0 auto-login</li>
-        <li>1 device license</li>
-        <li>Acrobat add-on: +$8/mo</li>
-        <li><strong>$15/mo or $153/yr</strong> (save 15%)</li>
+        <li>All 7 Microsoft apps</li>
+        <li>Chromium-based desktop launcher</li>
+        <li>Dedicated browser profiles</li>
+        <li>File picker integration</li>
+        <li>Starting at $19.99/year</li>
       </ul>
-      <a href="/m365/pricing.html" class="btn btn-primary">View Pricing</a>
+      <a href="/m365/" class="btn btn-primary">Learn More</a>
     </div>
 
-    <div class="product-card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 107, 53, 0.08)); border: 2px solid rgba(147, 197, 253, 0.4);">
-      <span class="product-icon">👥</span>
-      <h2>M365 Team</h2>
-      <p>Small teams — 5 seats included with simple license management.</p>
+    <div class="product-card coming-soon">
+      <span class="product-icon">⚡</span>
+      <h2>M365 WebApps Native</h2>
+      <p>Premium Linux native experience with WebKitGTK and OAuth auto-login.</p>
       <ul class="features">
-        <li>5 seats included (+$20/seat overage)</li>
-        <li>All 13 apps for every seat</li>
-        <li>Team license portal + bulk assignment</li>
-        <li>Acrobat add-on: +$25/mo</li>
-        <li><strong>$99/mo or $1,010/yr</strong></li>
+        <li>Embedded WebKitGTK (lighter & faster)</li>
+        <li>OAuth 2.0 auto-login</li>
+        <li>System theme integration</li>
+        <li>System tray & notifications</li>
+        <li>Starting at $39.99/year</li>
       </ul>
-      <a href="/m365/pricing.html" class="btn btn-primary">View Pricing</a>
+      <a href="/m365/" class="btn btn-primary">Coming Soon</a>
     </div>
 
-    <div class="product-card">
-      <span class="product-icon">💼</span>
-      <h2>M365 Business</h2>
-      <p>Growing businesses — 25 seats with SCIM provisioning and Azure AD SSO.</p>
-      <ul class="features">
-        <li>25 seats included (+$20/seat overage)</li>
-        <li>Azure AD SSO + SCIM provisioning</li>
-        <li>Group-based assignment + audit logging</li>
-        <li>Acrobat add-on: +$100/mo</li>
-        <li><strong>$499/mo or $5,090/yr</strong></li>
-      </ul>
-      <a href="/m365/pricing.html" class="btn btn-primary">View Pricing</a>
-    </div>
-
-    <div class="product-card" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 107, 53, 0.08)); border: 2px solid rgba(147, 197, 253, 0.4);">
-      <span class="product-icon">🏢</span>
-      <h2>M365 Enterprise</h2>
-      <p>Unlimited seats, Adobe Acrobat included, white-label branding.</p>
-      <ul class="features">
-        <li>Unlimited seats</li>
-        <li>Azure AD SSO + SCIM + audit logging</li>
-        <li>📄 Adobe Acrobat INCLUDED</li>
-        <li>White-label branding + self-hosting</li>
-        <li><strong>$999/mo or $10,190/yr</strong></li>
-      </ul>
-      <a href="/m365/pricing.html" class="btn btn-primary">View Pricing</a>
-    </div>
-
-    <div class="product-card">
-      <span class="product-icon">📄</span>
-      <h2>Acrobat Add-on</h2>
-      <p>Adobe Acrobat PDF tools — add to any tier or get it included with Enterprise.</p>
-      <ul class="features">
-        <li>Edit, sign, and convert PDFs</li>
-        <li>Personal: +$8/mo or +$80/yr</li>
-        <li>Team: +$25/mo or +$255/yr</li>
-        <li>Business: +$100/mo or +$1,020/yr</li>
-        <li>Enterprise: <strong>included</strong></li>
-      </ul>
-      <a href="/m365/pricing.html" class="btn btn-primary">View Pricing</a>
-    </div>
-
-    <div class="product-card coming-soon" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(255, 107, 53, 0.08)); border: 2px solid rgba(147, 197, 253, 0.4);">
+    <div class="product-card coming-soon">
       <span class="product-icon">🌐</span>
       <h2>OmniHub</h2>
       <p>Cross-ecosystem hub for mixed Apple/Android families and teams.</p>
