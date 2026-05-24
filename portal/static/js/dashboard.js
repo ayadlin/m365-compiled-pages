@@ -16,11 +16,60 @@ function escapeHtml(text) {
   }
 })();
 
-// Load brand logo
-fetch('/brand.json').then(r => r.json()).then(b => {
-  document.getElementById('logo').src = '/' + (b.logo || 'branding/logo.svg');
-  // Colors are now managed by CSS theme system (theme.css) for light/dark mode support
-});
+function tenantFromURL() {
+  return new URLSearchParams(window.location.search).get('tenant') || '';
+}
+
+function applyBrandingManifest(manifest) {
+  const app = manifest.application || {};
+  const logo = app.logo || {};
+  const icon = app.icon || {};
+  const colors = app.colors || {};
+  const companyName = manifest.organization_name || app.name || '';
+
+  if (logo.url) {
+    document.getElementById('logo').src = logo.url;
+  }
+  if (icon.url) {
+    document.getElementById('brand-favicon').href = icon.url;
+  }
+  if (colors.primary) {
+    document.documentElement.style.setProperty('--brand-color', colors.primary);
+    document.documentElement.style.setProperty('--brand-primary', colors.primary);
+    document.documentElement.style.setProperty('--accent', colors.primary);
+  }
+  if (companyName) {
+    document.getElementById('portalTitle').textContent = `${companyName} Portal`;
+    document.title = `Dashboard - ${companyName} Customer Portal`;
+  }
+}
+
+async function loadDefaultBranding() {
+  const response = await fetch('/brand.json');
+  const brand = await response.json();
+  document.getElementById('logo').src = '/' + (brand.logo || 'branding/logo.svg');
+}
+
+// Load tenant white-label branding when /portal/dashboard?tenant=<id> is used.
+async function loadBranding() {
+  const tenantID = tenantFromURL();
+  if (!tenantID) {
+    await loadDefaultBranding();
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE}/api/v1/branding?organization_id=${encodeURIComponent(tenantID)}`);
+    if (!response.ok) {
+      throw new Error('Failed to load branding manifest');
+    }
+    const manifest = await response.json();
+    applyBrandingManifest(manifest);
+  } catch (error) {
+    console.error('Branding load error:', error);
+    await loadDefaultBranding();
+  }
+}
 
 // Show message for users without an active license
 function showNoLicenseMessage() {
@@ -759,6 +808,7 @@ document.getElementById('purchaseAddonsBtn').addEventListener('click', async () 
 });
 
 // Load dashboard on page load
+loadBranding();
 loadDashboard().then(() => {
   // After loading license info, check if we should load add-ons
   const plan = document.getElementById('licensePlan').textContent;
