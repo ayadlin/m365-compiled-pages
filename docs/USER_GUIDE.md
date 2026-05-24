@@ -58,12 +58,13 @@ M365 WebApps uses your installed Chromium-based browser (Chrome, Chromium, or Ed
 
 ### 1.4 Available Plans
 
-| Plan | Price | Devices | Best For |
-|------|-------|---------|----------|
-| **Free Trial** | $0 | 1 device, 30 days | Trying the product |
-| **Pro** | $9.99/month | 1 device | Individual users |
-| **Team** | $29.99/month | 10 devices | Small teams |
-| **Enterprise** | $99.99/month | Unlimited devices | Large organizations |
+| Plan | Price | Seats | Best For |
+|------|-------|-------|----------|
+| **Free Trial** | $0 | 1 seat, 15 days | Trying the product |
+| **Personal** | $8/month or $79/year | 1 seat | Individual users |
+| **Team** | $59/month or $599/year | 5 seats | Small teams |
+| **Business** | $499/month or $5,090/year | 25 seats | Larger organizations |
+| **Enterprise** | $999/month or $10,190/year | Unlimited up to 500 seats | Large organizations |
 
 *Prices subject to change. See https://ytech.tools/m365/ for current pricing.*
 
@@ -279,7 +280,7 @@ You'll receive an email with:
 
 Download both files to a known location (e.g., `~/Downloads/`).
 
-**Note:** Trial licenses are valid for 30 days from issuance and work on 1 device.
+**Note:** Trial licenses are valid for 15 days from issuance and work for 1 seat.
 
 ### 4.2 Purchasing a Plan
 
@@ -290,9 +291,10 @@ Navigate to: https://ytech.tools/m365/pricing.html
 **Step 2: Choose Your Plan**
 
 Select the plan that fits your needs:
-- **Pro**: Individual use, 1 device
-- **Team**: Small team, 10 devices
-- **Enterprise**: Large organization, unlimited devices
+- **Personal**: Individual use, 1 seat
+- **Team**: Small team, 5 seats
+- **Business**: Organization use, 25 seats
+- **Enterprise**: Large organization, unlimited up to 500 seats
 
 **Step 3: Complete Checkout**
 
@@ -967,9 +969,10 @@ A: No. Licenses are tied to the purchaser's email address and cannot be shared o
 **Q: Can I use one license on multiple devices?**
 
 A:
-- **Free & Pro**: 1 device only
-- **Team**: Up to 10 devices
-- **Enterprise**: Unlimited devices
+- **Free Trial and Personal**: 1 seat
+- **Team**: 5 seats
+- **Business**: 25 seats
+- **Enterprise**: Unlimited up to 500 seats
 
 **Q: What happens when my license expires?**
 

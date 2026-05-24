@@ -47,9 +47,10 @@ m365ctl -mode install
 
 1. Visit: https://ytech.tools/m365/pricing.html
 2. Choose your plan:
-   - **Pro**: $9.99/month (1 device)
-   - **Team**: $29.99/month (10 devices)
-   - **Enterprise**: $99.99/month (unlimited devices)
+   - **Personal**: $8/month or $79/year (1 seat)
+   - **Team**: $59/month or $599/year (5 seats)
+   - **Business**: $499/month or $5,090/year (25 seats)
+   - **Enterprise**: $999/month or $10,190/year (unlimited up to 500 seats)
 3. Complete checkout with Stripe
 4. Check your email for license files
 

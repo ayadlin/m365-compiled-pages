@@ -1,6 +1,6 @@
 {
   "currency": "USD",
-  "billing_note": "Annual saves 15% vs monthly",
+  "billing_note": "Annual discounts are reflected per plan",
   "plans": [
     {
       "id": "free",
@@ -21,8 +21,8 @@
     {
       "id": "personal",
       "label": "M365 Personal",
-      "priceMonthly": 15,
-      "priceAnnual": 153,
+      "priceMonthly": 8,
+      "priceAnnual": 79,
       "period": "year",
       "description": "M365 WebApps for individuals — 12 base apps, Native experience with OAuth auto-login",
       "features": [
@@ -39,8 +39,8 @@
     {
       "id": "team",
       "label": "M365 Team",
-      "priceMonthly": 99,
-      "priceAnnual": 1010,
+      "priceMonthly": 59,
+      "priceAnnual": 599,
       "period": "year",
       "description": "M365 for small teams — 5 seats included, simple team management",
       "features": [

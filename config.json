@@ -1,6 +1,6 @@
 {
   "currency": "USD",
-  "billing_note": "Annual saves 15% vs monthly",
+  "billing_note": "Annual discounts are reflected per plan",
   "plans": [
     {
       "id": "free",

@@ -1,6 +1,6 @@
 {
   "currency": "USD",
-  "billing_note": "Annual saves 15% vs monthly",
+  "billing_note": "Annual discounts are reflected per plan",
   "plans": [
     {
       "id": "free",
@@ -15,7 +15,7 @@
         "Community support",
         "No payment required"
       ],
-      "badge": "\ud83c\udd93",
+      "badge": "🆓",
       "cta": "Start Free Trial"
     },
     {
@@ -24,7 +24,7 @@
       "priceMonthly": 8,
       "priceAnnual": 79,
       "period": "year",
-      "description": "M365 WebApps for individuals \u2014 all 13 apps, Native experience with OAuth auto-login",
+      "description": "M365 WebApps for individuals — all 13 apps, Native experience with OAuth auto-login",
       "features": [
         "All 13 Microsoft 365 apps (Word, Excel, PowerPoint, Outlook, OneNote, Teams, OneDrive, Copilot, SharePoint, Planner, Forms, Stream)",
         "Native experience with WebKitGTK + OAuth 2.0 auto-login",
@@ -33,7 +33,7 @@
         "1 device license",
         "Acrobat add-on available: +$8/mo or +$80/yr"
       ],
-      "badge": "\ud83d\udda5\ufe0f",
+      "badge": "🖥️",
       "cta": "Get Personal"
     },
     {
@@ -42,7 +42,7 @@
       "priceMonthly": 59,
       "priceAnnual": 599,
       "period": "year",
-      "description": "M365 for small teams \u2014 5 seats included, simple team management",
+      "description": "M365 for small teams — 5 seats included, simple team management",
       "features": [
         "All 13 M365 apps for every seat",
         "5 seats included",
@@ -52,7 +52,7 @@
         "Bulk license assignment",
         "Acrobat add-on available: +$25/mo or +$255/yr"
       ],
-      "badge": "\ud83d\udc65",
+      "badge": "👥",
       "popular": true,
       "cta": "Get Team"
     },
@@ -62,19 +62,19 @@
       "priceMonthly": 499,
       "priceAnnual": 5090,
       "period": "year",
-      "description": "For growing businesses \u2014 25 seats, SCIM provisioning, Azure AD SSO, audit logs",
+      "description": "For growing businesses — 25 seats, SCIM provisioning, Azure AD SSO, audit logs",
       "features": [
         "All 13 M365 apps for every seat",
         "25 seats included",
         "Additional seats: +$20/seat/mo",
-        "\ud83d\udd10 Azure AD SSO (single sign-on)",
-        "\ud83d\udd04 SCIM provisioning (auto user sync)",
-        "\ud83d\udc65 Group-based license assignment",
-        "\ud83d\udcca Company admin portal",
-        "\ud83d\udee1\ufe0f Audit logging",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📊 Company admin portal",
+        "🛡️ Audit logging",
         "Acrobat add-on available: +$100/mo or +$1,020/yr"
       ],
-      "badge": "\ud83c\udfe2",
+      "badge": "🏢",
       "cta": "Get Business"
     },
     {
@@ -86,29 +86,29 @@
       "description": "Unlimited seats, dedicated support, white-label, Acrobat included",
       "features": [
         "All 13 M365 apps for every seat",
-        "Up to 500 seats (email support@ytech.tools for more)",
-        "\ud83d\udd10 Azure AD SSO (single sign-on)",
-        "\ud83d\udd04 SCIM provisioning (auto user sync)",
-        "\ud83d\udc65 Group-based license assignment",
-        "\ud83d\udcc4 Adobe Acrobat INCLUDED for all seats",
-        "\ud83c\udfa8 White-label branding",
-        "\ud83c\udfd7\ufe0f Self-hosting option",
-        "\ud83d\udee1\ufe0f Audit logging + advanced compliance",
-        "\ud83d\udcde Dedicated support"
+        "Unlimited seats",
+        "🔐 Azure AD SSO (single sign-on)",
+        "🔄 SCIM provisioning (auto user sync)",
+        "👥 Group-based license assignment",
+        "📄 Adobe Acrobat INCLUDED for all seats",
+        "🎨 White-label branding",
+        "🏗️ Self-hosting option",
+        "🛡️ Audit logging + advanced compliance",
+        "📞 Dedicated support"
       ],
-      "badge": "\ud83c\udf1f",
+      "badge": "🌟",
       "cta": "Get Enterprise"
     }
   ],
   "checkout": {
     "free": "trial.html",
-    "personal_monthly": "https://buy.stripe.com/00wbJ12MW5HP5G45efgYU0R",
-    "personal_annual": "https://buy.stripe.com/bJedR9fzI6LTgkI223gYU0S",
-    "team_monthly": "https://buy.stripe.com/eVq5kDcnw8U13xW367gYU0T",
-    "team_annual": "https://buy.stripe.com/9B6eVddrA4DLfgEbCDgYU0U",
-    "business_monthly": "https://buy.stripe.com/4gMfZhfzI0nv1pOdKLgYU0V",
-    "business_annual": "https://buy.stripe.com/fZu4gzgDMfip8Sg5efgYU0W",
+    "personal_monthly":   "https://buy.stripe.com/00wbJ12MW5HP5G45efgYU0R",
+    "personal_annual":    "https://buy.stripe.com/bJedR9fzI6LTgkI223gYU0S",
+    "team_monthly":       "https://buy.stripe.com/eVq5kDcnw8U13xW367gYU0T",
+    "team_annual":        "https://buy.stripe.com/9B6eVddrA4DLfgEbCDgYU0U",
+    "business_monthly":   "https://buy.stripe.com/4gMfZhfzI0nv1pOdKLgYU0V",
+    "business_annual":    "https://buy.stripe.com/fZu4gzgDMfip8Sg5efgYU0W",
     "enterprise_monthly": "https://buy.stripe.com/6oUfZhevEdah1pO5efgYU0X",
-    "enterprise_annual": "https://buy.stripe.com/bJeeVdgDMeel4C07mngYU0Y"
+    "enterprise_annual":  "https://buy.stripe.com/bJeeVdgDMeel4C07mngYU0Y"
   }
 }
