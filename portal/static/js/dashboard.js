@@ -50,6 +50,8 @@ function showNoLicenseMessage() {
 }
 
 // Load license information
+let currentLicenseData = null;
+
 async function loadDashboard() {
   try {
     const response = await fetch(`${API_BASE}/api/portal/license-info`, {
@@ -70,6 +72,7 @@ async function loadDashboard() {
     }
 
     const data = await response.json();
+    currentLicenseData = data;
 
     // Update UI with license data
     document.getElementById('licenseStatus').innerHTML =
@@ -89,6 +92,9 @@ async function loadDashboard() {
     // Show billing button if customer has Stripe billing
     if (data.has_billing) {
       document.getElementById('billingBtn').style.display = 'block';
+    }
+    if (data.can_add_seats) {
+      document.getElementById('addSeatsSection').style.display = 'block';
     }
 
     // Show contextual upgrade button based on plan
@@ -197,6 +203,61 @@ document.getElementById('billingBtn').addEventListener('click', async () => {
   }
 });
 
+async function getCSRFToken() {
+  const response = await fetch(`${API_BASE}/api/portal/csrf-token`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+  if (!response.ok) {
+    throw new Error('Failed to get CSRF token');
+  }
+  const data = await response.json();
+  return data.csrf_token;
+}
+
+document.getElementById('addSeatsBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('addSeatsBtn');
+  const count = parseInt(document.getElementById('seatCount').value, 10);
+  if (!Number.isInteger(count) || count < 1) {
+    alert('Enter at least one seat');
+    return;
+  }
+  if (!currentLicenseData || !currentLicenseData.can_add_seats) {
+    alert('Seat additions are not available for this license.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Creating checkout...';
+
+  try {
+    const csrfToken = await getCSRFToken();
+    const response = await fetch(`${API_BASE}/api/portal/add-seats`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
+      body: JSON.stringify({
+        tier: currentLicenseData.plan,
+        count: count,
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to create checkout session');
+    }
+    window.location.href = data.checkout_url || data.url;
+  } catch (error) {
+    console.error('Add seats error:', error);
+    alert('Failed to create seat checkout: ' + error.message);
+    btn.disabled = false;
+    btn.textContent = '➕ Add seats';
+  }
+});
+
 // Logout
 document.getElementById('logoutLink').addEventListener('click', async (e) => {
   e.preventDefault();
@@ -217,9 +278,19 @@ document.getElementById('logoutLink').addEventListener('click', async (e) => {
 // Team management functions
 let currentTeamData = null;
 
+function isTeamPortalPlan(plan) {
+  const normalized = String(plan || '').toLowerCase();
+  return ['team', 'team_v2', 'business', 'business_v2', 'enterprise', 'enterprise_v2'].includes(normalized);
+}
+
+function hasBusinessTeamFeatures(plan) {
+  const normalized = String(plan || '').toLowerCase();
+  return ['business', 'business_v2', 'enterprise', 'enterprise_v2'].includes(normalized);
+}
+
 async function loadTeamInfo() {
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/info`, {
+    const response = await fetch(`${API_BASE}/api/portal/team/members`, {
       method: 'GET',
       credentials: 'include',
     });
@@ -242,9 +313,15 @@ async function loadTeamInfo() {
     // Render team members
     renderTeamMembers();
 
-    // Show add member section for admins
-    if (currentTeamData.is_admin) {
+    // Show owner-only management sections
+    if (currentTeamData.is_owner) {
       document.getElementById('addMemberSection').style.display = 'block';
+      if (hasBusinessTeamFeatures(currentTeamData.plan)) {
+        document.getElementById('teamGroupsSection').style.display = 'block';
+        document.getElementById('teamAuditSection').style.display = 'block';
+        await loadTeamGroups();
+        await loadTeamAuditLog();
+      }
     }
   } catch (error) {
     console.error('Error loading team info:', error);
@@ -282,21 +359,13 @@ function renderTeamMembers() {
     membersList.appendChild(card);
 
     // Add action buttons for admins
-    if (currentTeamData.is_admin && member.email !== currentTeamData.primary_admin) {
+    if (currentTeamData.is_owner && member.email !== currentTeamData.primary_admin) {
       const actionsDiv = card.querySelector('.member-actions');
-
-      // Toggle role button
-      const newRole = member.role === 'admin' ? 'member' : 'admin';
-      const roleBtn = document.createElement('button');
-      roleBtn.className = 'btn-sm btn-role';
-      roleBtn.textContent = `Make ${newRole}`;
-      roleBtn.onclick = () => updateMemberRole(member.email, newRole);
-      actionsDiv.appendChild(roleBtn);
 
       // Remove button
       const removeBtn = document.createElement('button');
       removeBtn.className = 'btn-sm btn-danger';
-      removeBtn.textContent = 'Remove';
+      removeBtn.textContent = 'Revoke';
       removeBtn.onclick = () => removeMember(member.email);
       actionsDiv.appendChild(removeBtn);
     }
@@ -331,10 +400,14 @@ async function removeMember(email) {
   if (!confirm(`Remove ${email} from the team?`)) return;
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/member/remove`, {
-      method: 'POST',
+    const csrfToken = await getCSRFToken();
+    const response = await fetch(`${API_BASE}/api/portal/team/members`, {
+      method: 'DELETE',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
       body: JSON.stringify({ member_email: email }),
     });
 
@@ -345,9 +418,9 @@ async function removeMember(email) {
 
     // Reload team data
     await loadTeamInfo();
-    alert(`Successfully removed ${email} from the team`);
+    alert(`Successfully revoked ${email} from the team`);
   } catch (error) {
-    alert('Error removing member: ' + error.message);
+    alert('Error revoking member: ' + error.message);
   }
 }
 
@@ -370,10 +443,14 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
   statusDiv.style.display = 'none';
 
   try {
-    const response = await fetch(`${API_BASE}/api/portal/team/member/add`, {
+    const csrfToken = await getCSRFToken();
+    const response = await fetch(`${API_BASE}/api/portal/team/members`, {
       method: 'POST',
       credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
       body: JSON.stringify({ member_email: email, role: role }),
     });
 
@@ -390,7 +467,7 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
     // Show success
     statusDiv.className = 'success-message';
     statusDiv.style.display = 'block';
-    statusDiv.textContent = `Successfully added ${email} as ${role}`;
+    statusDiv.textContent = `Successfully invited ${email} as ${role}`;
 
     // Reload team data
     await loadTeamInfo();
@@ -405,9 +482,129 @@ document.getElementById('addMemberBtn').addEventListener('click', async () => {
     statusDiv.textContent = 'Error: ' + error.message;
   } finally {
     btn.disabled = false;
-    btn.textContent = 'Add';
+    btn.textContent = 'Invite';
   }
 });
+
+async function loadTeamGroups() {
+  const groupsList = document.getElementById('teamGroupsList');
+  groupsList.innerHTML = '<p style="color: var(--muted);">Loading groups...</p>';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/portal/team/groups`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to load groups');
+    }
+    const data = await response.json();
+    const groups = data.groups || {};
+    const names = Object.keys(groups).sort();
+    if (names.length === 0) {
+      groupsList.innerHTML = '<p style="color: var(--muted);">No groups yet</p>';
+      return;
+    }
+    groupsList.innerHTML = '';
+    names.forEach(name => {
+      const members = groups[name] || [];
+      const row = document.createElement('div');
+      row.className = 'member-card';
+      row.innerHTML = `
+        <div class="member-info">
+          <div class="member-email">${escapeHtml(name)}</div>
+          <div class="member-meta">${members.length ? escapeHtml(members.join(', ')) : 'No assigned members'}</div>
+        </div>
+      `;
+      groupsList.appendChild(row);
+    });
+  } catch (error) {
+    groupsList.innerHTML = `<p style="color: #ef4444;">${escapeHtml(error.message)}</p>`;
+  }
+}
+
+document.getElementById('createGroupBtn').addEventListener('click', async () => {
+  const groupName = document.getElementById('newGroupName').value.trim();
+  if (!groupName) {
+    alert('Enter a group name');
+    return;
+  }
+  await updateTeamGroup({ action: 'create', group_name: groupName });
+  document.getElementById('newGroupName').value = '';
+});
+
+document.getElementById('assignGroupBtn').addEventListener('click', async () => {
+  const groupName = document.getElementById('assignGroupName').value.trim();
+  const memberEmail = document.getElementById('assignGroupEmail').value.trim();
+  if (!groupName || !memberEmail) {
+    alert('Enter a group name and member email');
+    return;
+  }
+  await updateTeamGroup({ action: 'assign', group_name: groupName, member_email: memberEmail });
+  document.getElementById('assignGroupName').value = '';
+  document.getElementById('assignGroupEmail').value = '';
+});
+
+async function updateTeamGroup(payload) {
+  try {
+    const csrfToken = await getCSRFToken();
+    const response = await fetch(`${API_BASE}/api/portal/team/groups`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': csrfToken,
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(data.error || 'Failed to update group');
+    }
+    await loadTeamGroups();
+    await loadTeamAuditLog();
+  } catch (error) {
+    alert('Error updating group: ' + error.message);
+  }
+}
+
+async function loadTeamAuditLog() {
+  const auditList = document.getElementById('teamAuditList');
+  auditList.innerHTML = '<p style="color: var(--muted);">Loading audit log...</p>';
+
+  try {
+    const response = await fetch(`${API_BASE}/api/portal/team/audit-log`, {
+      method: 'GET',
+      credentials: 'include',
+    });
+    if (!response.ok) {
+      throw new Error('Failed to load audit log');
+    }
+    const data = await response.json();
+    const entries = data.audit_log || [];
+    if (entries.length === 0) {
+      auditList.innerHTML = '<p style="color: var(--muted);">No audit events yet</p>';
+      return;
+    }
+    auditList.innerHTML = '';
+    entries.forEach(entry => {
+      const details = entry.details || {};
+      const line = document.createElement('div');
+      line.className = 'member-card';
+      const createdAt = entry.created_at ? new Date(entry.created_at).toLocaleString() : '';
+      line.innerHTML = `
+        <div class="member-info">
+          <div class="member-email">${escapeHtml(entry.action)}</div>
+          <div class="member-meta">${escapeHtml(details.member_email || details.group_name || '')}</div>
+          <div class="member-meta">${escapeHtml(createdAt)}</div>
+        </div>
+      `;
+      auditList.appendChild(line);
+    });
+  } catch (error) {
+    auditList.innerHTML = `<p style="color: #ef4444;">${escapeHtml(error.message)}</p>`;
+  }
+}
 
 // Add-on management functions
 let availableAddons = [];
@@ -567,6 +764,8 @@ loadDashboard().then(() => {
   const plan = document.getElementById('licensePlan').textContent;
   if (plan && plan !== '-') {
     loadAddons(plan);
+    if (isTeamPortalPlan(plan)) {
+      loadTeamInfo();
+    }
   }
 });
-loadTeamInfo();

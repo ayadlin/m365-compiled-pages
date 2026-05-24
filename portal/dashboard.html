@@ -82,6 +82,21 @@
           <button class="btn btn-secondary" id="billingBtn" style="display: none;">
             💳 Manage Billing
           </button>
+          <div id="addSeatsSection" style="display: none; margin-top: 1rem; padding-top: 1rem; border-top: 2px solid rgba(255, 107, 53, 0.2);">
+            <label for="seatCount" style="display: block; margin-bottom: 0.5rem; color: var(--muted); font-weight: 600;">Additional seats</label>
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.75rem;">
+              <input
+                type="number"
+                id="seatCount"
+                min="1"
+                value="1"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              />
+              <button class="btn btn-primary" id="addSeatsBtn" style="width: auto; white-space: nowrap;">
+                ➕ Add seats
+              </button>
+            </div>
+          </div>
           <a href="/m365/docs.html" class="btn btn-secondary">
             📚 View Documentation
           </a>
@@ -124,7 +139,7 @@
           </div>
         </div>
 
-        <!-- Team Management Card (shown for team/enterprise plans) -->
+        <!-- Team Management Card (shown for Team/Business/Enterprise owners and members) -->
         <div class="dashboard-card actions-card" id="teamCard" style="display: none;">
           <h2>👥 Team Management</h2>
           <div id="teamInfo" style="margin: 1rem 0;">
@@ -148,7 +163,7 @@
 
           <!-- Add Member Form (shown for admins only) -->
           <div id="addMemberSection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 107, 53, 0.2);">
-            <h3 style="color: var(--accent); margin-bottom: 1rem;">Add Team Member</h3>
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">Invite Team Member</h3>
             <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; margin-bottom: 1rem;">
               <input
                 type="email"
@@ -163,9 +178,45 @@
                 <option value="member">Member</option>
                 <option value="admin">Admin</option>
               </select>
-              <button id="addMemberBtn" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">Add</button>
+              <button id="addMemberBtn" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">Invite</button>
             </div>
             <div id="addMemberStatus" style="padding: 1rem; border-radius: 6px; display: none; margin-top: 1rem;"></div>
+          </div>
+
+          <!-- Business Group Assignment -->
+          <div id="teamGroupsSection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 107, 53, 0.2);">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">License Groups</h3>
+            <div id="teamGroupsList"></div>
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; margin: 1rem 0;">
+              <input
+                type="text"
+                id="newGroupName"
+                placeholder="Group name"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              />
+              <button id="createGroupBtn" class="btn btn-primary" style="width: auto; padding: 0.75rem 2rem;">Create</button>
+            </div>
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 1rem;">
+              <input
+                type="text"
+                id="assignGroupName"
+                placeholder="Group name"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              />
+              <input
+                type="email"
+                id="assignGroupEmail"
+                placeholder="member@email.com"
+                style="padding: 0.75rem; border: 2px solid rgba(255, 107, 53, 0.3); border-radius: 6px; background: rgba(0, 0, 0, 0.2); color: var(--fg); font-size: 1rem;"
+              />
+              <button id="assignGroupBtn" class="btn btn-secondary" style="width: auto; padding: 0.75rem 2rem;">Assign</button>
+            </div>
+          </div>
+
+          <!-- Business Audit Log -->
+          <div id="teamAuditSection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 2px solid rgba(255, 107, 53, 0.2);">
+            <h3 style="color: var(--accent); margin-bottom: 1rem;">Audit Log</h3>
+            <div id="teamAuditList"></div>
           </div>
         </div>
 
