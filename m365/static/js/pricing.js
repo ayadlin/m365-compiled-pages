@@ -66,6 +66,7 @@ fetch('config.json').then(r => r.json()).then(config => {
   if (freeTrial) {
     const heroContainer = document.createElement('div');
     heroContainer.className = 'free-trial-hero';
+    heroContainer.id = 'free-trial';
 
     const features = freeTrial.features.map(f => `<li>${escapeHtml(f)}</li>`).join('');
     const checkoutUrl = escapeHtml(config.checkout[freeTrial.id] || '#');
